@@ -47,13 +47,13 @@ public class Services {
         return usrDAO.getAllUsers();
     }
 
-/*    public static List<Message> getUserMessages(User user) {
+/*    public static List<Message> getUserMessages(USER user) {
         MessageDAO    msgDAO       = new MySQLMessageDAO();
         List<Message> allMessages  = msgDAO.getAllMessages();
         List<Message> userMessages = new ArrayList<>();
 
         for (Message message : allMessages) {
-            if (message.getAuthorId() == user.getId() || message.getReceiverId() == user.getId()) {
+            if (message.getAuthorId() == user.ID() || message.getReceiverId() == user.ID()) {
                 userMessages.add(message);
             }
         }
@@ -61,20 +61,20 @@ public class Services {
         return userMessages;
     }*/
 
-/*    public static List<User> getConversingUsers(User user) {
+/*    public static List<USER> getConversingUsers(USER user) {
         List<Message> userMessages        = getUserMessages(user);
-        List<User>    conversingUsersList = new ArrayList<>();
+        List<USER>    conversingUsersList = new ArrayList<>();
 
         for (Message message : userMessages) {
 
-            if (message.getAuthorId() == user.getId()) {
-                User conversingUser = getDAOUser(message.getReceiverId());
+            if (message.getAuthorId() == user.ID()) {
+                USER conversingUser = getDAOUser(message.getReceiverId());
 
                 if (!conversingUsersList.contains(conversingUser)) {
                     conversingUsersList.add(conversingUser);
                 }
             } else {
-                User conversingUser = getDAOUser(message.getAuthorId());
+                USER conversingUser = getDAOUser(message.getAuthorId());
                 if (!conversingUsersList.contains(conversingUser)) {
                     conversingUsersList.add(conversingUser);
                 }
@@ -97,7 +97,7 @@ public class Services {
         }
     }
 
-/*    public static boolean conversationExists(User user, User conversingUser){
+/*    public static boolean conversationExists(USER user, USER conversingUser){
         if (getConversingUsers(user).contains(conversingUser)){
             return true;
         }
@@ -107,10 +107,10 @@ public class Services {
     public static void printMessages(List<Message> messages) {
         for (Message m : messages) {
             System.out.print("\nMsgID: " + m.getId() + "\t\t" + getDAOUsernameFromId(m.getAuthorId()) +
-                    "\t\tDateTime: " + m.getMessageDateTime() + "\n\tMessage: " + m.getMessageBody());
+                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime() +
+                    "\n\tMessage: " + m.getMessageBody());
         }
         System.out.println("\n");
-        pauseExecution();
     }
 
     public static void printUserInfo(User user) {

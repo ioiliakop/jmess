@@ -20,7 +20,7 @@ public class ViewConversationsListOption extends MenuOption {
 
     @Override
     public void doAction() {
-/*        List<User> conversingUsersList = getConversingUsers(owner);
+/*        List<USER> conversingUsersList = getConversingUsers(owner);
         if (!conversingUsersList.isEmpty()){
             System.out.println("You have a conversation with the following users:");
             printUsernamesFromUsers(conversingUsersList);

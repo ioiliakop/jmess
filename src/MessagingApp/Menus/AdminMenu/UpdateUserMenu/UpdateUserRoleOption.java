@@ -6,6 +6,7 @@ import MessagingApp.DAO.RoleDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 
+import static MessagingApp.Entities.Constants.getUserRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.Services.getRoleNameById;
 import static MessagingApp.Menus.Services.roleExists;
@@ -34,8 +35,8 @@ public class UpdateUserRoleOption extends UpdateUserMenuOption {
 
             if (requestConfirmation("Role will be changed from " + getRoleNameById(user.getRoleId()) + " to " + newRoleName + ".")) {
                 UserDAO usrDAO = new MySQLUserDAO();
-                usrDAO.updateUser(user.getUsername(), user.getPassword(), user.getRoleId() , user.getId());
-                System.out.println("User updated.");
+                usrDAO.updateUser(user.getUsername(), user.getPassword(), getUserRoleFromRoleId(user.getRoleId()) , user.getId());
+                System.out.println("USER updated.");
             }
         } else System.out.println("Sorry, unknown role.");
         pauseExecution();

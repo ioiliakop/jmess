@@ -2,12 +2,14 @@ package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.DBConnection.MySQLConnection;
+import MessagingApp.Entities.Constants.Roles;
 import MessagingApp.Entities.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLDeleteById;
+import static MessagingApp.Entities.Constants.Roles.USER;
 
 public class MySQLUserDAO implements UserDAO {
 
@@ -94,7 +96,7 @@ public class MySQLUserDAO implements UserDAO {
         return null;
     }
 
-    /* private method to process a ResultSet returning a User object */
+    /* private method to process a ResultSet returning a USER object */
     private User extractUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();
         user.setId(rs.getLong("id"));
@@ -105,13 +107,13 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public long insertUser(String username, String password, long roleId) {
+    public long insertUser(String username, String password, Roles role) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            pstmt.setLong(3, roleId);
+            pstmt.setLong(3, role.ID());
 
             int insertedRows = pstmt.executeUpdate();
             if (insertedRows == 1) {
@@ -130,18 +132,18 @@ public class MySQLUserDAO implements UserDAO {
 
     @Override
     public long insertUser(String username, String password) {
-        return insertUser(username, password, 1);
+        return insertUser(username, password, USER);
     }
 
 
     @Override
-    public int updateUser(String username, String password, long roleId, long id) {
+    public int updateUser(String username, String password, Roles role, long id) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_UPDATE)) {
 
             pstmt.setString(1, username);
             pstmt.setString(2, password);
-            pstmt.setLong(3, roleId);
+            pstmt.setLong(3, role.ID());
             pstmt.setLong(4, id);
 
             int rowsUpdated = pstmt.executeUpdate();

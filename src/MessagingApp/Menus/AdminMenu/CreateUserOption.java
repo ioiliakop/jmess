@@ -23,7 +23,7 @@ public class CreateUserOption extends MenuOption {
             String password = inputPassword();
             UserDAO usrDAO = new MySQLUserDAO();
             long userId = usrDAO.insertUser(username, password);
-            System.out.println("User successfully created with id " + userId + ".");
+            System.out.println("USER successfully created with id " + userId + ".");
         }
         else System.out.println("Sorry, entered username is not available.");
 

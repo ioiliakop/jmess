@@ -23,10 +23,10 @@ public class MenuUtils {
     public static boolean requestConfirmation(String message) {
         String  input = "";
         Scanner sc    = new Scanner(System.in);
-        System.out.println(message);
+//        System.out.print(message);
 
         while (true) {
-            System.out.print("Continue with the operation? (y/n)");
+            System.out.print(message + " (y/n)");
             input = sc.nextLine().toLowerCase();
             if (input.equals("y") || input.equals("yes"))
                 return true;

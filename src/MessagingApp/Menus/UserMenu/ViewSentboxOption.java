@@ -8,9 +8,10 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.Constants.SENTBOX_ID;
+import static MessagingApp.Entities.Constants.MessageContainers.SENTBOX;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
+import static MessagingApp.Menus.Services.printMessages;
 
 public class ViewSentboxOption extends MenuOption {
 
@@ -25,11 +26,11 @@ public class ViewSentboxOption extends MenuOption {
     @Override
     public void doAction() {
         UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), SENTBOX_ID);
+        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), SENTBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);
-            System.out.println(inboxMessages);
+            printMessages(inboxMessages);
         } else System.out.println("You have no messages... :(\nDon't feel lonely, start chatting!! :D");
 
         pauseExecution();

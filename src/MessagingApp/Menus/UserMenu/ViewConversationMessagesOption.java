@@ -29,7 +29,7 @@ public class ViewConversationMessagesOption extends MenuOption {
 /*        String username = inputUsername("Your conversation with which user?\n");
         if (conversationExists(owner,getDAOUser(username))){
             MessageDAO    msgDAO = new MySQLMessageDAO();
-            List<Message> conversation = msgDAO.getConversation(owner.getId(),getDAOUser(username).getId());
+            List<Message> conversation = msgDAO.getConversation(owner.ID(),getDAOUser(username).ID());
             printMessages(conversation);
         } else System.out.println("Sorry, conversation doesn't exist");*/
     }

@@ -25,7 +25,7 @@ public class UpdateUserOption extends MenuOption {
         if (usernameExists(username)) {
             UserDAO usrDAO = new MySQLUserDAO();
             User    user   = usrDAO.getUser(username);
-            System.out.print("User with following info will be updated:");
+            System.out.print("USER with following info will be updated:");
             printUserInfo(user);
 
             // If all is well, the UpdateUser submenu is called and run

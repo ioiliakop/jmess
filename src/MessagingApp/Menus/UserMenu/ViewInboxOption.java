@@ -8,9 +8,10 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.Constants.INBOX_ID;
+import static MessagingApp.Entities.Constants.MessageContainers.INBOX;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
+import static MessagingApp.Menus.Services.printMessages;
 
 public class ViewInboxOption extends MenuOption {
 
@@ -22,14 +23,19 @@ public class ViewInboxOption extends MenuOption {
         this.owner = owner;
     }
 
+    public ViewInboxOption(User owner) {
+        this.owner = owner;
+    }
+
+
     @Override
     public void doAction() {
         UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), INBOX_ID);
+        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), INBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);
-            System.out.println(inboxMessages);
+           printMessages(inboxMessages);
         } else System.out.println("You have no messages... :(\nDon't feel lonely, start chatting!! :D");
 
         pauseExecution();

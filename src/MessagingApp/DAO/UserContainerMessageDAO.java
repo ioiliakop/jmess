@@ -1,16 +1,16 @@
 package MessagingApp.DAO;
 
-import MessagingApp.Entities.Message;
+import MessagingApp.Entities.Constants.MessageContainers;
 
 import java.util.List;
 
 public interface UserContainerMessageDAO {
 
-    List<Long> getUserContainerMessages(long userId, long containerId);
+    List<Long> getUserContainerMessages(long userId, MessageContainers container);
 
-    long insertUserContainerMessage(long userId, long containerId, long messageId);
+    long insertUserContainerMessage(long userId, MessageContainers container, long messageId);
 
-    int updateUserContainerMessage(long userId, long containerId, long messageId);
+    int updateUserContainerMessage(long userId, MessageContainers container, long messageId);
 
-    int deleteUserContainerMessage(long userId, long containerId, long messageId);
+    int deleteUserContainerMessage(long userId, MessageContainers container, long messageId);
 }

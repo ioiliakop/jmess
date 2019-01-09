@@ -7,8 +7,8 @@ import MessagingApp.DAO.UserContainerMessageDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Entities.Constants.INBOX_ID;
-import static MessagingApp.Entities.Constants.SENTBOX_ID;
+import static MessagingApp.Entities.Constants.MessageContainers.INBOX;
+import static MessagingApp.Entities.Constants.MessageContainers.SENTBOX;
 import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.Services.getDAOUser;
 import static MessagingApp.Menus.Services.usernameExists;
@@ -39,8 +39,8 @@ public class SendMessageOption extends MenuOption {
 
             /* And assign it to sender's sentbox and receiver's inbox */
             UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-            ucmDAO.insertUserContainerMessage(sender.getId(), SENTBOX_ID, messageId);
-            ucmDAO.insertUserContainerMessage(receiver.getId(), INBOX_ID, messageId);
+            ucmDAO.insertUserContainerMessage(sender.getId(), SENTBOX, messageId);
+            ucmDAO.insertUserContainerMessage(receiver.getId(), INBOX, messageId);
 
         } else System.out.println("Sorry, username not found.");
 

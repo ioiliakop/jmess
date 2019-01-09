@@ -21,10 +21,10 @@ public class DeleteUserOption extends MenuOption {
         String username = inputUsername();
         if (usernameExists(username)) {
             UserDAO usrDAO = new MySQLUserDAO();
-            User    user   = usrDAO.getUser(username);
-            if (requestConfirmation("User with following info will be deleted: \n" + user)) {
-                usrDAO.deleteUser(user.getId());
-                System.out.println("User deleted.");
+            USER    user   = usrDAO.getUser(username);
+            if (requestConfirmation("USER with following info will be deleted: \n" + user)) {
+                usrDAO.deleteUser(user.ID());
+                System.out.println("USER deleted.");
             }
         } else System.out.println("Sorry, username not found.");
         pauseExecution();
@@ -37,9 +37,9 @@ public class DeleteUserOption extends MenuOption {
         if (userExists(usrDAO.getUser(username))) {
             User    user   = usrDAO.getUser(username);
 
-            if (requestConfirmation("User with following info will be deleted: \n" + user)) {
+            if (requestConfirmation("USER with following info will be deleted: \n" + user)) {
                 usrDAO.deleteUser(user.getId());
-                System.out.println("User deleted.");
+                System.out.println("USER deleted.");
             }
 
         } else System.out.println("Sorry, username not found.");
