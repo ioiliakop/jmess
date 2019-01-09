@@ -8,32 +8,28 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.Constants.MessageContainers.INBOX;
+import static MessagingApp.Entities.Constants.MessageContainers.SENTBOX;
 import static MessagingApp.Entities.Constants.MessageContainers.TRASH;
-import static MessagingApp.Menus.MenuUtils.*;
+import static MessagingApp.Menus.MenuUtils.getMessageIdInList;
+import static MessagingApp.Menus.MenuUtils.pauseExecution;
+import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
-import static MessagingApp.Menus.Services.getRoleNameById;
 import static MessagingApp.Menus.Services.printMessages;
 
+public class DeleteMessageFromSentboxOption extends MenuOption {
 
-public class DeleteMessageFromInboxOption extends MenuOption {
-
-    private static final String MENU_LINE = "Delete a message from Inbox";
+    private static final String MENU_LINE = "Delete a message from Sentbox";
     private              User   owner;
 
-    public DeleteMessageFromInboxOption(int option, User owner) {
+    public DeleteMessageFromSentboxOption(int option, User owner) {
         super(option, MENU_LINE);
         this.owner = owner;
     }
 
     @Override
     public void doAction() {
-
-/*        MenuOption viewInbox = new ViewInboxOption(owner);
-        viewInbox.doAction();*/
-
         UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), INBOX);
+        List<Long>                      messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), SENTBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);

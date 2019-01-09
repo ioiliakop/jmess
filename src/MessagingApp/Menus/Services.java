@@ -107,8 +107,7 @@ public class Services {
     public static void printMessages(List<Message> messages) {
         for (Message m : messages) {
             System.out.print("\nMsgID: " + m.getId() + "\t\t" + getDAOUsernameFromId(m.getAuthorId()) +
-                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime() +
-                    "\n\tMessage: " + m.getMessageBody());
+                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime());
         }
         System.out.println("\n");
     }

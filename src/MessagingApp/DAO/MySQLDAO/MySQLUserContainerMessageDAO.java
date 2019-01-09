@@ -11,9 +11,9 @@ import java.util.List;
 public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
 
     private static final String SQL_MESSAGE_IDS_SELECT_BY_USER_CONTAINER = "SELECT message_id FROM users_containers_messages WHERE user_id = ? AND container_id = ?";
-//    private static final String SQL_ROLE_SELECT_BY_NAME                  = "SELECT * FROM users_containers_messages WHERE role_name = ?";
+    //    private static final String SQL_ROLE_SELECT_BY_NAME                  = "SELECT * FROM users_containers_messages WHERE role_name = ?";
     private static final String SQL_USER_CONTAINER_MESSAGE_INSERT        = "INSERT INTO users_containers_messages (user_id,container_id,message_id) VALUES(?,?,?)";
-    private static final String SQL_MESSAGE_CONTAINER_UPDATE             = "UPDATE users_containers_messages SET message_id = ? WHERE user_id = ? AND container_id = ?";
+    private static final String SQL_MESSAGE_CONTAINER_UPDATE             = "UPDATE users_containers_messages SET container_id = ? WHERE user_id = ? AND message_id = ?";
     private static final String SQL_ROLE_DELETE                          = "DELETE FROM users_containers_messages WHERE message_id = ?";
 
 
@@ -58,7 +58,7 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
             pstmt.setLong(3, messageId);
             int rowsInserted = pstmt.executeUpdate();
 
-            if (rowsInserted==1) return rowsInserted;
+            if (rowsInserted == 1) return rowsInserted;
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -85,6 +85,19 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
 
     @Override
     public int updateUserContainerMessage(long userId, MessageContainers container, long messageId) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_CONTAINER_UPDATE)) {
+
+            pstmt.setLong(1, container.ID());
+            pstmt.setLong(2, userId);
+            pstmt.setLong(3, messageId);
+            int rowsUpdated = pstmt.executeUpdate();
+
+            if (rowsUpdated == 1) return rowsUpdated;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return 0;
     }
 

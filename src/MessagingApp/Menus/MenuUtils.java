@@ -1,5 +1,6 @@
 package MessagingApp.Menus;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuUtils {
@@ -57,6 +58,28 @@ public class MenuUtils {
         Scanner sc = new Scanner(System.in);
         System.out.print(message);
         return sc.nextLine();
+    }
+
+    public static long getMessageIdInList(List<Long> messageIds){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter messageId: ");
+        String input = sc.nextLine();
+
+        long messageId = 0;
+        try {
+            messageId = Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Sorry, not a valid message id.");
+        }
+
+        if (messageId!=0){
+            if (!messageIds.contains(messageId)){
+                System.out.println("Selected message not available.");
+                messageId = 0;
+            }
+        }
+
+        return messageId;
     }
 
 }

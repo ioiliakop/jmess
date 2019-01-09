@@ -62,5 +62,5 @@ public class Constants {
         if (roleId==2) return VIEWER;
         return USER;
     }
-    
+
 }

@@ -22,6 +22,8 @@ public class UserMenu {
 
         userMenu.add(new DeleteMessageFromInboxOption(4,owner));
 
+        userMenu.add(new DeleteMessageFromSentboxOption(5,owner));
+
 /*        userMenu.add(new ViewAllUserMessagesOption(2,owner));
 
         userMenu.add(new ViewConversationsListOption(3,owner));
