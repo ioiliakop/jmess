@@ -1,6 +1,7 @@
 package MessagingApp.Entities;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Message {
 
@@ -71,6 +72,24 @@ public class Message {
 
     public void setReceiverId(long receiverId) {
         this.receiverId = receiverId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Message message = (Message) o;
+        return id == message.id &&
+                senderId == message.senderId &&
+                receiverId == message.receiverId &&
+                Objects.equals(messageSubject, message.messageSubject) &&
+                Objects.equals(messageBody, message.messageBody) &&
+                Objects.equals(messageDateTime, message.messageDateTime);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, messageSubject, messageBody, messageDateTime, senderId, receiverId);
     }
 
     @Override

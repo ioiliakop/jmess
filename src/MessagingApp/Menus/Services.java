@@ -144,6 +144,14 @@ public class Services {
         return messagesList;
     }
 
+    public static List<Long> getMessageIdsFromMessages(List<Message> messagesList) {
+        List<Long> messageIdsList = new ArrayList<>();
+        for (Message m : messagesList) {
+            messageIdsList.add(m.getId());
+        }
+        return messageIdsList;
+    }
+
     public static String assignUsernameFromUserId(long userId) {
         UserDAO usrDAO = new MySQLUserDAO();
         User    user   = usrDAO.getUser(userId);

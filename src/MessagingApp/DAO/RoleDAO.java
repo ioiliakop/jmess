@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface RoleDAO {
 
-    Role getRole(long id);
+    Role getRole(long roleId);
 
     Role getRole(String roleName);
 
@@ -14,7 +14,7 @@ public interface RoleDAO {
 
     long insertRole(String roleName);
 
-    int updateRole(String roleName, long id);
+    int updateRole(String roleName, long roleId);
 
-    int deleteRole(long id);
+    int deleteRole(long roleId);
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ContainerDAO {
 
-    Container getContainer(long id);
+    Container getContainer(long containerId);
 
     Container getContainer(String containerName);
 
@@ -14,8 +14,8 @@ public interface ContainerDAO {
 
     long insertContainer(String containerName);
 
-    int updateContainer(String containerName, long id);
+    int updateContainer(String containerName, long containerId);
 
-    int deleteContainer(long id);
+    int deleteContainer(long containerId);
 
 }

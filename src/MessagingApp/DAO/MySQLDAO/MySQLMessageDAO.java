@@ -18,7 +18,7 @@ public class MySQLMessageDAO implements MessageDAO {
     //    private static final String SQL_MESSAGE_SELECT_ALL_BETWEEN_2_USERS = "SELECT * FROM messages WHERE " +
 //            "(sender_id = ? and receiver_id = ?) or (sender_id = ? and receiver_id = ?) order by date_time";
     private static final String SQL_MESSAGE_INSERT                = "INSERT INTO messages (subject,body,sender_id,receiver_id) VALUES(?,?,?,?)";
-    private static final String SQL_MESSAGE_UPDATE                = "UPDATE messages SET message_body = ? WHERE id = ?";
+    private static final String SQL_MESSAGE_UPDATE                = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
     private static final String SQL_MESSAGE_DELETE                = "DELETE FROM messages WHERE id = ?";
 
 
@@ -146,14 +146,30 @@ public class MySQLMessageDAO implements MessageDAO {
     }
 
     @Override
-    public int updateMessage(String messageSubject, String messageBody, long messageId) {
+    public int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_UPDATE)) {
+
+            pstmt.setString(1, messageSubject);
+            pstmt.setString(2, messageBody);
+            pstmt.setLong(3, messageId);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated == 1) {
+                return rowsUpdated;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return 0;
     }
 
-/*    @Override
-    public int updateMessage(String messageBody, long messageId) {
-        return SQLUpdateVarcharFieldById(SQL_MESSAGE_UPDATE, messageBody, messageId);
-    }*/
+    @Override
+    public int updateMessageSubjectOrBody(String messageBodyOrSubject, long messageId) {
+//        return SQLUpdateVarcharFieldById(SQL_MESSAGE_UPDATE, messageBody, messageId);
+        return 0;
+    }
 
     @Override
     public int deleteMessage(long messageId) {

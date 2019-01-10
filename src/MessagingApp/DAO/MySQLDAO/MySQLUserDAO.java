@@ -9,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLDeleteById;
+import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLUpdateVarcharFieldById;
 import static MessagingApp.Entities.Constants.Roles.USER;
 
 public class MySQLUserDAO implements UserDAO {
@@ -25,11 +26,11 @@ public class MySQLUserDAO implements UserDAO {
 
 
     @Override
-    public User getUser(long id) {
+    public User getUser(long userId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_SELECT_BY_ID)) {
 
-            pstmt.setLong(1, id);
+            pstmt.setLong(1, userId);
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
@@ -141,13 +142,13 @@ public class MySQLUserDAO implements UserDAO {
 
 
     @Override
-    public int updateUserNameRole(String username, Roles role, long id) {
+    public int updateUserNameRole(String username, Roles role, long userId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_NAME_ROLE_UPDATE)) {
 
             pstmt.setString(1, username);
             pstmt.setLong(2, role.ID());
-            pstmt.setLong(3, id);
+            pstmt.setLong(3, userId);
 
             int rowsUpdated = pstmt.executeUpdate();
             if (rowsUpdated == 1) {
@@ -161,26 +162,12 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public int updateUserPassword(String password, long id) {
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_PASS_UPDATE)) {
-
-            pstmt.setString(1, password);
-            pstmt.setLong(2, id);
-
-            int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated == 1) {
-                return rowsUpdated;
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
+    public int updateUserPassword(String password, long userId) {
+        return SQLUpdateVarcharFieldById(SQL_USER_PASS_UPDATE, password, userId);
     }
 
     @Override
-    public int deleteUser(long id) {
-        return SQLDeleteById(SQL_USER_DELETE, id);
+    public int deleteUser(long userId) {
+        return SQLDeleteById(SQL_USER_DELETE, userId);
     }
 }

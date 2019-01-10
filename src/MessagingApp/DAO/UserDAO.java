@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserDAO {
 
-    User getUser(long id);
+    User getUser(long userId);
 
     User getUser(String username);
 
@@ -20,9 +20,9 @@ public interface UserDAO {
     /* default role will be 1, simple user */
     long insertUser(String username, String password);
 
-    int updateUserNameRole(String username, Roles role, long id);
+    int updateUserNameRole(String username, Roles role, long userId);
 
-    int updateUserPassword(String password, long id);
+    int updateUserPassword(String password, long userId);
 
-    int deleteUser(long id);
+    int deleteUser(long userId);
 }

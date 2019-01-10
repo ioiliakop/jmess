@@ -25,11 +25,11 @@ class MySQLHelper {
         return 0;
     }
 
-    static int SQLUpdateVarcharFieldById(String SQLString, String updatedField, long id){
+    static int SQLUpdateVarcharFieldById(String SQLString, String updatedFieldValue, long id){
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQLString)) {
 
-            pstmt.setString(1, updatedField);
+            pstmt.setString(1, updatedFieldValue);
             pstmt.setLong(2, id);
 
             int rowsUpdated = pstmt.executeUpdate();

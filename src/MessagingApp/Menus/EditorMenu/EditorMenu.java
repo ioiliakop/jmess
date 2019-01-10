@@ -13,14 +13,14 @@ public class EditorMenu {
         this.user = user;
     }
 
-    public void viewerMenuExecute() {
+    public void editorMenuExecute() {
         Menu editorMenu = new Menu(user);
 
         editorMenu.add(new ViewAllUsersOption(1));
 
         editorMenu.add(new ViewUserMessagesOption(2));
 
-
+        editorMenu.add(new EditUserMessagesOption(3));
 
         editorMenu.run();
     }

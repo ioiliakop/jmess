@@ -54,13 +54,42 @@ public class MenuUtils {
         return sc.nextLine();
     }
 
+    public static String inputMessageBody(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter message:");
+        String inputMessage = sc.nextLine();
+        if (inputMessage.length() > 250) {
+            System.out.println("Message is limited to 250 characters. Rest will be skipped. Sorry :/");
+            inputMessage = inputMessage.substring(0, 249);
+        }
+        return inputMessage;
+    }
+
+    public static String inputMessageSubject(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter subject:");
+        String inputMessage = sc.nextLine();
+        if (inputMessage.length() > 100) {
+            System.out.println("Subject is limited to 100 characters. Rest will be skipped. Sorry :/");
+            inputMessage = inputMessage.substring(0, 99);
+        }
+        return inputMessage;
+    }
+
+    /* Helper method that returns user input from console after printing message in parameter */
     public static String inputGeneric(String message) {
         Scanner sc = new Scanner(System.in);
         System.out.print(message);
         return sc.nextLine();
     }
 
-    public static long getMessageIdInList(List<Long> messageIds){
+    /*
+     * Helper method that gets a message Id from user input
+     * First validates input if it's valid number type, returns 0 if not
+     * Then compares it against list of message IDs passed as parameter
+     * Returns the message ID if it is contained in the list or 0 otherwise
+     */
+    public static long getMessageIdInList(List<Long> messageIds) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter messageId: ");
         String input = sc.nextLine();
@@ -72,8 +101,8 @@ public class MenuUtils {
             System.out.println("Sorry, not a valid message id.");
         }
 
-        if (messageId!=0){
-            if (!messageIds.contains(messageId)){
+        if (messageId != 0) {
+            if (!messageIds.contains(messageId)) {
                 System.out.println("Selected message not available.");
                 messageId = 0;
             }

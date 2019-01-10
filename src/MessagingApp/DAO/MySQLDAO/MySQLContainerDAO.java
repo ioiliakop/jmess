@@ -22,10 +22,10 @@ public class MySQLContainerDAO implements ContainerDAO {
 
 
     @Override
-    public Container getContainer(long id) {
+    public Container getContainer(long containerId) {
         try (Connection conn = MySQLConnection.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SQL_CONTAINER_SELECT_BY_ID + id)) {
+             ResultSet rs = stmt.executeQuery(SQL_CONTAINER_SELECT_BY_ID + containerId)) {
 
             if (rs.next()) {
                 return extractContainerFromResultSet(rs);
@@ -107,13 +107,13 @@ public class MySQLContainerDAO implements ContainerDAO {
     }
 
     @Override
-    public int updateContainer(String containerName, long id) {
-        return SQLUpdateVarcharFieldById(SQL_CONTAINER_UPDATE, containerName, id);
+    public int updateContainer(String containerName, long containerId) {
+        return SQLUpdateVarcharFieldById(SQL_CONTAINER_UPDATE, containerName, containerId);
 
     }
 
     @Override
-    public int deleteContainer(long id) {
-        return SQLDeleteById(SQL_CONTAINER_DELETE, id);
+    public int deleteContainer(long containerId) {
+        return SQLDeleteById(SQL_CONTAINER_DELETE, containerId);
     }
 }

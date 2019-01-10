@@ -17,7 +17,9 @@ public interface MessageDAO {
     /* date_time is assigned at the database by default during the insert operation */
     long insertMessage(String messageSubject, String messageBody, long authorId, long receiverId);
 
-    int updateMessage(String messageSubject, String messageBody, long messageId);
+    int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId);
+
+    int updateMessageSubjectOrBody(String messageSubjectOrBody, long messageId);
 
     int deleteMessage(long messageId);
 }

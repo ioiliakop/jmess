@@ -21,10 +21,10 @@ public class MySQLRoleDAO implements RoleDAO {
     private static final String SQL_ROLE_DELETE         = "DELETE FROM roles WHERE id = ?";
 
     @Override
-    public Role getRole(long id) {
+    public Role getRole(long roleId) {
         try (Connection conn = MySQLConnection.getConnection();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SQL_ROLE_SELECT_BY_ID + id)) {
+             ResultSet rs = stmt.executeQuery(SQL_ROLE_SELECT_BY_ID + roleId)) {
 
             if (rs.next()) {
                 return extractRoleFromResultSet(rs);
@@ -106,13 +106,13 @@ public class MySQLRoleDAO implements RoleDAO {
     }
 
     @Override
-    public int updateRole(String roleName, long id) {
-        return SQLUpdateVarcharFieldById(SQL_ROLE_UPDATE, roleName, id);
+    public int updateRole(String roleName, long roleId) {
+        return SQLUpdateVarcharFieldById(SQL_ROLE_UPDATE, roleName, roleId);
 
     }
 
     @Override
-    public int deleteRole(long id) {
-        return SQLDeleteById(SQL_ROLE_DELETE, id);
+    public int deleteRole(long roleId) {
+        return SQLDeleteById(SQL_ROLE_DELETE, roleId);
     }
 }
