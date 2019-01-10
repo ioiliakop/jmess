@@ -12,8 +12,6 @@ import MessagingApp.Entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
-
 public class Services {
 
     public static boolean usernameExists(String username) {
@@ -53,7 +51,7 @@ public class Services {
         List<Message> userMessages = new ArrayList<>();
 
         for (Message message : allMessages) {
-            if (message.getAuthorId() == user.ID() || message.getReceiverId() == user.ID()) {
+            if (message.getSenderId() == user.ID() || message.getReceiverId() == user.ID()) {
                 userMessages.add(message);
             }
         }
@@ -67,14 +65,14 @@ public class Services {
 
         for (Message message : userMessages) {
 
-            if (message.getAuthorId() == user.ID()) {
+            if (message.getSenderId() == user.ID()) {
                 USER conversingUser = getDAOUser(message.getReceiverId());
 
                 if (!conversingUsersList.contains(conversingUser)) {
                     conversingUsersList.add(conversingUser);
                 }
             } else {
-                USER conversingUser = getDAOUser(message.getAuthorId());
+                USER conversingUser = getDAOUser(message.getSenderId());
                 if (!conversingUsersList.contains(conversingUser)) {
                     conversingUsersList.add(conversingUser);
                 }
@@ -106,8 +104,12 @@ public class Services {
 
     public static void printMessages(List<Message> messages) {
         for (Message m : messages) {
-            System.out.print("\nMsgID: " + m.getId() + "\t\t" + getDAOUsernameFromId(m.getAuthorId()) +
-                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime());
+            String senderName   = assignUsernameFromUserId(m.getSenderId());
+            String receiverName = assignUsernameFromUserId(m.getReceiverId());
+
+            System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
+                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime() +
+                    "\n\tMessage: " + m.getMessageBody());
         }
         System.out.println("\n");
     }
@@ -142,4 +144,10 @@ public class Services {
         return messagesList;
     }
 
+    public static String assignUsernameFromUserId(long userId) {
+        UserDAO usrDAO = new MySQLUserDAO();
+        User    user   = usrDAO.getUser(userId);
+        if (user == null) return "UNKNOWN USER";
+        else return user.getUsername();
+    }
 }

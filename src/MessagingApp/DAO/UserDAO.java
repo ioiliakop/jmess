@@ -17,10 +17,12 @@ public interface UserDAO {
 
     long insertUser(String username, String password, Roles role);
 
-    /* default role will be 1, simple user/viewer */
+    /* default role will be 1, simple user */
     long insertUser(String username, String password);
 
-    int updateUser(String username, String password, Roles role, long id);
+    int updateUserNameRole(String username, Roles role, long id);
+
+    int updateUserPassword(String password, long id);
 
     int deleteUser(long id);
 }

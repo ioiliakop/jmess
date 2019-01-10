@@ -35,7 +35,7 @@ public class SendMessageOption extends MenuOption {
 
             /* We then insert the message int to the messages table */
             MessageDAO              msgDAO         = new MySQLMessageDAO();
-            long                    messageId      = msgDAO.insertMessage(messageSubject, messageBody, sender.getId());
+            long                    messageId      = msgDAO.insertMessage(messageSubject, messageBody, sender.getId(), receiver.getId());
 
             /* And assign it to sender's sentbox and receiver's inbox */
             UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();

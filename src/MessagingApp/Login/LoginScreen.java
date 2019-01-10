@@ -5,8 +5,10 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.AdminMenu.AdminMenu;
 import MessagingApp.Menus.UserMenu.UserMenu;
+import MessagingApp.Menus.ViewerMenu.ViewerMenu;
 
 import static MessagingApp.Entities.Constants.Roles.ADMIN;
+import static MessagingApp.Entities.Constants.Roles.VIEWER;
 import static MessagingApp.Login.Helper.isAdmin;
 import static MessagingApp.Menus.MenuUtils.inputPassword;
 import static MessagingApp.Menus.MenuUtils.inputUsername;
@@ -27,9 +29,12 @@ public class LoginScreen {
 
             if (user == null) {
                 System.out.println("\nUsername or password not correct.");
-            } else if (user.getId()==ADMIN.ID()){
+            } else if (user.getRoleId() == ADMIN.ID()) {
                 AdminMenu adMenu = new AdminMenu(user);
                 adMenu.adminMenuExecute();
+            } else if (user.getRoleId() == VIEWER.ID()) {
+                ViewerMenu viewMenu = new ViewerMenu(user);
+                viewMenu.viewerMenuExecute();
             } else {
                 UserMenu usrMenu = new UserMenu(user);
                 usrMenu.userMenuExecute();

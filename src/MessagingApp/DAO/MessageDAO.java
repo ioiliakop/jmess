@@ -10,12 +10,12 @@ public interface MessageDAO {
 
     List<Message> getAllMessages();
 
-//    List<Message> getAllUserMessages(long userId); // implemented on app logic
+    List<Message> getAllUserMessages(long userId);
 
     List<Message> getConversation(long user1Id, long user2Id);
 
     /* date_time is assigned at the database by default during the insert operation */
-    long insertMessage(String messageSubject, String messageBody, long authorId);
+    long insertMessage(String messageSubject, String messageBody, long authorId, long receiverId);
 
     int updateMessage(String messageSubject, String messageBody, long messageId);
 

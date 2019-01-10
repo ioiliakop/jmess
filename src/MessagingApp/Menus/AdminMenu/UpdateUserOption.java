@@ -21,10 +21,10 @@ public class UpdateUserOption extends MenuOption {
     @Override
     public void doAction() {
         String username = inputUsername("Which user would you like to update? \n");
+        UserDAO usrDAO = new MySQLUserDAO();
+        User    user   = usrDAO.getUser(username);
 
-        if (usernameExists(username)) {
-            UserDAO usrDAO = new MySQLUserDAO();
-            User    user   = usrDAO.getUser(username);
+        if (user != null) {
             System.out.print("USER with following info will be updated:");
             printUserInfo(user);
 

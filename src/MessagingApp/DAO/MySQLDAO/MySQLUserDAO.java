@@ -14,19 +14,23 @@ import static MessagingApp.Entities.Constants.Roles.USER;
 public class MySQLUserDAO implements UserDAO {
 
     private static final String SQL_USER_SELECT_ALL          = "SELECT * FROM users";
-    private static final String SQL_USER_SELECT_BY_ID        = "SELECT * FROM users WHERE id = ";
+    private static final String SQL_USER_SELECT_BY_ID        = "SELECT * FROM users WHERE id = ?";
     private static final String SQL_USER_SELECT_BY_NAME      = "SELECT * FROM users WHERE username = ?";
     private static final String SQL_USER_SELECT_BY_NAME_PASS = "SELECT * FROM users WHERE username = ? AND password = SHA(?)";
     private static final String SQL_USER_INSERT              = "INSERT INTO users(username,password,role_id) VALUES(?,SHA(?),?)";
-    private static final String SQL_USER_UPDATE              = "UPDATE users SET username = ?, password = SHA(?), role_id = ? WHERE id = ?";
+    //    private static final String SQL_USER_UPDATE              = "UPDATE users SET username = ?, password = SHA(?), role_id = ? WHERE id = ?";
+    private static final String SQL_USER_NAME_ROLE_UPDATE    = "UPDATE users SET username = ?, role_id = ? WHERE id = ?";
+    private static final String SQL_USER_PASS_UPDATE         = "UPDATE users SET password = SHA(?) WHERE id = ?";
     private static final String SQL_USER_DELETE              = "DELETE FROM users WHERE id = ?";
 
 
     @Override
     public User getUser(long id) {
         try (Connection conn = MySQLConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SQL_USER_SELECT_BY_ID + id)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_SELECT_BY_ID)) {
+
+            pstmt.setLong(1, id);
+            ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
                 return extractUserFromResultSet(rs);
@@ -96,7 +100,7 @@ public class MySQLUserDAO implements UserDAO {
         return null;
     }
 
-    /* private method to process a ResultSet returning a USER object */
+    /* private helper method to process a ResultSet returning a USER object */
     private User extractUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();
         user.setId(rs.getLong("id"));
@@ -137,14 +141,32 @@ public class MySQLUserDAO implements UserDAO {
 
 
     @Override
-    public int updateUser(String username, String password, Roles role, long id) {
+    public int updateUserNameRole(String username, Roles role, long id) {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_UPDATE)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_NAME_ROLE_UPDATE)) {
 
             pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            pstmt.setLong(3, role.ID());
-            pstmt.setLong(4, id);
+            pstmt.setLong(2, role.ID());
+            pstmt.setLong(3, id);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated == 1) {
+                return rowsUpdated;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int updateUserPassword(String password, long id) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_PASS_UPDATE)) {
+
+            pstmt.setString(1, password);
+            pstmt.setLong(2, id);
 
             int rowsUpdated = pstmt.executeUpdate();
             if (rowsUpdated == 1) {

@@ -8,15 +8,16 @@ public class Message {
     private String messageSubject;
     private String messageBody;
     private Date   messageDateTime;
-    private long   authorId;
+    private long   senderId;
+    private long   receiverId;
 
     public Message() {
     }
 
-    public Message(String messageSubject, String messageBody, long authorId) {
+    public Message(String messageSubject, String messageBody, long senderId) {
         this.messageSubject = messageSubject;
         this.messageBody = messageBody;
-        this.authorId = authorId;
+        this.senderId = senderId;
     }
 
     public Message(String messageSubject, String messageBody) {
@@ -56,18 +57,25 @@ public class Message {
         this.messageDateTime = messageDateTime;
     }
 
-    public long getAuthorId() {
-        return authorId;
+    public long getSenderId() {
+        return senderId;
     }
 
-    public void setAuthorId(long authorId) {
-        this.authorId = authorId;
+    public void setSenderId(long senderId) {
+        this.senderId = senderId;
     }
 
+    public long getReceiverId() {
+        return receiverId;
+    }
+
+    public void setReceiverId(long receiverId) {
+        this.receiverId = receiverId;
+    }
 
     @Override
     public String toString() {
-        return "\nMsgID: " + id + "\tauthorId: " + authorId +
+        return "\nMsgID: " + id + "\tsenderId: " + senderId +
                 "\tDateTime: " + messageDateTime + "\tSubject: " + messageSubject +
                 "\n\tMessage: " + messageBody;
     }
