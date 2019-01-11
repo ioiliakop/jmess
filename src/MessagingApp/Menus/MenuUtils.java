@@ -36,10 +36,16 @@ public class MenuUtils {
         }
     }
 
+    /* Helper method that returns user input, while checking corresponding character length restriction */
     public static String inputUsername() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter username: ");
-        return sc.nextLine();
+        String inputMessage = sc.nextLine();
+        if (inputMessage.length() > 20) {
+            System.out.println("Username is limited to 20 characters. Rest will be skipped. Sorry :/");
+            inputMessage = inputMessage.substring(0, 19);
+        }
+        return inputMessage;
     }
 
     public static String inputUsername(String message) {
@@ -54,6 +60,7 @@ public class MenuUtils {
         return sc.nextLine();
     }
 
+    /* Helper method that returns user input, while checking corresponding character length restriction */
     public static String inputMessageBody(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter message:");
@@ -65,6 +72,7 @@ public class MenuUtils {
         return inputMessage;
     }
 
+    /* Helper method that returns user input, while checking corresponding character length restriction */
     public static String inputMessageSubject(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter subject:");

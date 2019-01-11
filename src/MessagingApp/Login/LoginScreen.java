@@ -4,14 +4,12 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.AdminMenu.AdminMenu;
+import MessagingApp.Menus.DeleterMenu.DeleterMenu;
 import MessagingApp.Menus.EditorMenu.EditorMenu;
 import MessagingApp.Menus.UserMenu.UserMenu;
 import MessagingApp.Menus.ViewerMenu.ViewerMenu;
 
-import static MessagingApp.Entities.Constants.Roles.ADMIN;
-import static MessagingApp.Entities.Constants.Roles.EDITOR;
-import static MessagingApp.Entities.Constants.Roles.VIEWER;
-import static MessagingApp.Login.Helper.isAdmin;
+import static MessagingApp.Entities.Constants.Roles.*;
 import static MessagingApp.Menus.MenuUtils.inputPassword;
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
@@ -22,7 +20,7 @@ public class LoginScreen {
         System.out.println("Welcome to our private messaging app");
 
         do {
-            System.out.println("\nPlease enter login credentials\n");
+            System.out.println("\nPlease enter login credentials");
             String username = inputUsername();
             String password = inputPassword();
 
@@ -34,7 +32,10 @@ public class LoginScreen {
             } else if (user.getRoleId() == ADMIN.ID()) {
                 AdminMenu adMenu = new AdminMenu(user);
                 adMenu.adminMenuExecute();
-            } else if (user.getRoleId() == EDITOR.ID()) {
+            } else if (user.getRoleId() == DELETER.ID()) {
+                DeleterMenu deleterMenu = new DeleterMenu(user);
+                deleterMenu.deleterMenuExecute();
+            }else if (user.getRoleId() == EDITOR.ID()) {
                 EditorMenu editorMenu = new EditorMenu(user);
                 editorMenu.editorMenuExecute();
             } else if (user.getRoleId() == VIEWER.ID()) {
@@ -44,7 +45,7 @@ public class LoginScreen {
                 UserMenu usrMenu = new UserMenu(user);
                 usrMenu.userMenuExecute();
             }
-        } while (requestConfirmation("\n\nLogin again?"));
+        } while (requestConfirmation("\nLogin again?"));
     }
 
 }

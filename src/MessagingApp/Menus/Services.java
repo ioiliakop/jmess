@@ -2,9 +2,7 @@ package MessagingApp.Menus;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
-import MessagingApp.DAO.MySQLDAO.MySQLRoleDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
-import MessagingApp.DAO.RoleDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
@@ -102,6 +100,13 @@ public class Services {
         return false;
     }*/
 
+/*    public static String printMessage(Message message) {
+
+        return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
+                "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime() +
+                "\n\tMessage: " + m.getMessageBody();
+    }*/
+
     public static void printMessages(List<Message> messages) {
         for (Message m : messages) {
             String senderName   = assignUsernameFromUserId(m.getSenderId());
@@ -116,23 +121,7 @@ public class Services {
 
     public static void printUserInfo(User user) {
         System.out.println("\nid: " + user.getId() + "\tusername: " + user.getUsername() +
-                "\tpassword: " + user.getPassword() + "\troleId: " + getRoleNameById(user.getRoleId()));
-    }
-
-    public static String getRoleNameById(long id) {
-        RoleDAO rlDAO = new MySQLRoleDAO();
-        return rlDAO.getRole(id).getRoleName();
-    }
-
-    public static boolean roleExists(String roleName) {
-        RoleDAO rlDAO = new MySQLRoleDAO();
-        if (rlDAO.getRole(roleName) != null) return true;
-        return false;
-    }
-
-    public static long getRoleIdbyRoleName(String roleName) {
-        RoleDAO rlDAO = new MySQLRoleDAO();
-        return rlDAO.getRole(roleName).getId();
+                "\tpassword: " + user.getPassword() + "\troleId: " + user.getRoleId());
     }
 
     public static List<Message> getMessagesFromMessageIds(List<Long> messageIdsList) {

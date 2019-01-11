@@ -11,10 +11,10 @@ import java.util.List;
 public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
 
     private static final String SQL_MESSAGE_IDS_SELECT_BY_USER_CONTAINER = "SELECT message_id FROM users_containers_messages WHERE user_id = ? AND container_id = ?";
-    //    private static final String SQL_ROLE_SELECT_BY_NAME                  = "SELECT * FROM users_containers_messages WHERE role_name = ?";
     private static final String SQL_USER_CONTAINER_MESSAGE_INSERT        = "INSERT INTO users_containers_messages (user_id,container_id,message_id) VALUES(?,?,?)";
     private static final String SQL_MESSAGE_CONTAINER_UPDATE             = "UPDATE users_containers_messages SET container_id = ? WHERE user_id = ? AND message_id = ?";
-    private static final String SQL_ROLE_DELETE                          = "DELETE FROM users_containers_messages WHERE message_id = ?";
+    private static final String SQL_USER_CONTAINER_ALL_MESSAGES_DELETE   = "DELETE FROM users_containers_messages WHERE user_id = ? AND container_id= ?";
+    private static final String SQL_USER_CONTAINER_MESSAGE_DELETE        = "DELETE FROM users_containers_messages WHERE message_id = ?";
 
 
     @Override
@@ -98,6 +98,11 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return 0;
+    }
+
+    @Override
+    public int deleteUserAllContainerMessages(long userId, MessageContainers container) {
         return 0;
     }
 

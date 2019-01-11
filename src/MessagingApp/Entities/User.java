@@ -8,6 +8,7 @@ public class User {
     private String username;
     private String password;
     private long roleId;
+    private long statusId;
 
     public User() {
     }
@@ -57,10 +58,18 @@ public class User {
         this.roleId = roleId;
     }
 
+    public long getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(long statusId) {
+        this.statusId = statusId;
+    }
+
     @Override
     public String toString() {
         return "\nid: " + id + "\tusername: " + username +
-                "\tpassword: " + password + "\troleId: " + roleId;
+                "\t\tpassword: " + password + "\troleId: " + roleId + "\tstatusId: " + statusId;
     }
 
 

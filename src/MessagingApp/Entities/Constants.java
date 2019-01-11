@@ -4,11 +4,11 @@ package MessagingApp.Entities;
 import static MessagingApp.Entities.Constants.Roles.*;
 
 /**
- * Both the 'Roles' and message 'Containers' values are finite and final
+ * 'Roles', 'Containers' and 'Status' values are finite and final
  * They are not meant to be altered by any user of this application
  * Only assigned to various users
  * Therefore, we decided to implement them with the use of enums
- * Both Roles and MessageContainers, Enums contain the corresponding id number in our db,
+ * All three enums contain the corresponding id number in our db,
  * which is accessible by the ID() function, that is actually a getter.
  * It's abbreviated to ID for convenience and better expression of it's final, non-altering nature
  */
@@ -31,7 +31,7 @@ public class Constants {
             ADMIN.ID = 5;
         }
 
-        public int ID(){
+        public int ID() {
             return ID;
         }
     }
@@ -49,17 +49,33 @@ public class Constants {
             TRASH.ID = 3;
         }
 
-        public int ID(){
+        public int ID() {
+            return ID;
+        }
+    }
+
+    public enum Status {
+        DELETED,
+        ACTIVE;
+
+        private int ID;
+
+        static {
+            DELETED.ID = 0;
+            ACTIVE.ID = 1;
+        }
+
+        public int ID() {
             return ID;
         }
     }
 
     /* Helper method */
-    public static Roles getUserRoleFromRoleId(long roleId){
-        if (roleId==5) return ADMIN;
-        if (roleId==4) return DELETER;
-        if (roleId==3) return EDITOR;
-        if (roleId==2) return VIEWER;
+    public static Roles getUserRoleFromRoleId(long roleId) {
+        if (roleId == 5) return ADMIN;
+        if (roleId == 4) return DELETER;
+        if (roleId == 3) return EDITOR;
+        if (roleId == 2) return VIEWER;
         return USER;
     }
 

@@ -94,8 +94,8 @@ public class Message {
 
     @Override
     public String toString() {
-        return "\nMsgID: " + id + "\tsenderId: " + senderId +
-                "\tDateTime: " + messageDateTime + "\tSubject: " + messageSubject +
+        return "\nMsgID: " + id + "\tsenderId: " + senderId + "\treceiverId: " + receiverId +
+                "\tDateTime: " + messageDateTime + "\n\tSubject: " + messageSubject +
                 "\n\tMessage: " + messageBody;
     }
 }

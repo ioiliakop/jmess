@@ -2,6 +2,7 @@ package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.DBConnection.MySQLConnection;
+import MessagingApp.Entities.Constants;
 import MessagingApp.Entities.Constants.Roles;
 import MessagingApp.Entities.User;
 
@@ -21,6 +22,7 @@ public class MySQLUserDAO implements UserDAO {
     private static final String SQL_USER_INSERT              = "INSERT INTO users(username,password,role_id) VALUES(?,SHA(?),?)";
     //    private static final String SQL_USER_UPDATE              = "UPDATE users SET username = ?, password = SHA(?), role_id = ? WHERE id = ?";
     private static final String SQL_USER_NAME_ROLE_UPDATE    = "UPDATE users SET username = ?, role_id = ? WHERE id = ?";
+    private static final String SQL_USER_NAME_STATUS_UPDATE  = "UPDATE users SET username = ?, status_id = ? WHERE id = ?";
     private static final String SQL_USER_PASS_UPDATE         = "UPDATE users SET password = SHA(?) WHERE id = ?";
     private static final String SQL_USER_DELETE              = "DELETE FROM users WHERE id = ?";
 
@@ -108,6 +110,7 @@ public class MySQLUserDAO implements UserDAO {
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
         user.setRoleId(rs.getLong("role_id"));
+        user.setStatusId(rs.getLong("status_id"));
         return user;
     }
 
@@ -158,6 +161,11 @@ public class MySQLUserDAO implements UserDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+        return 0;
+    }
+
+    @Override
+    public int updateUserNameStatus(String username, Constants.Status status, long userId) {
         return 0;
     }
 

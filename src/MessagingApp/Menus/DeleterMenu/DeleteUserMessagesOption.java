@@ -1,4 +1,4 @@
-package MessagingApp.Menus.EditorMenu;
+package MessagingApp.Menus.DeleterMenu;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
@@ -14,22 +14,20 @@ import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.Services.getMessageIdsFromMessages;
 import static MessagingApp.Menus.Services.printMessages;
 
+public class DeleteUserMessagesOption extends MenuOption {
+    private static final String MENU_LINE = "Delete a user's messages";
 
-public class EditUserMessagesOption extends MenuOption {
-
-    private static final String MENU_LINE = "Edit a user's messages";
-
-    public EditUserMessagesOption(int option) {
+    public DeleteUserMessagesOption(int option) {
         super(option, MENU_LINE);
     }
 
     @Override
     public void doAction() {
-        String  username = inputUsername("Which user's messages would you like to edit? \n");
+        String  username = inputUsername("Which user's messages would you like to delete? \n");
         UserDAO usrDAO   = new MySQLUserDAO();
         User    user     = usrDAO.getUser(username);
 
-        if (user != null) {
+/*        if (user != null) {
             MessageDAO    msgDAO       = new MySQLMessageDAO();
             List<Message> userMessages = msgDAO.getAllUserMessages(user.getId());
 
@@ -44,15 +42,15 @@ public class EditUserMessagesOption extends MenuOption {
                     Message updatedMessage  = msgDAO.getMessage(selectedMessageId);
 
                     if (requestConfirmation("Do you want to edit message subject? ")) {
-                        updatedMessage.setMessageSubject(inputMessageSubject());
+                        updatedMessage.setMessageSubject(inputGeneric("Enter new subject: "));
                     }
 
                     if (requestConfirmation("Do you want to edit message body? ")) {
-                        updatedMessage.setMessageBody(inputMessageBody());
+                        updatedMessage.setMessageBody(inputGeneric("Enter new message body: "));
                     }
 
                     if (!updatedMessage.equals(selectedMessage)) {
-                        if(msgDAO.updateMessageSubjectAndBody(updatedMessage.getMessageSubject(), updatedMessage.getMessageBody(),selectedMessageId)==1){
+                        if (msgDAO.updateMessageSubjectAndBody(updatedMessage.getMessageSubject(), updatedMessage.getMessageBody(), selectedMessageId) == 1) {
                             System.out.println("Message successfully updated.");
                         } else System.out.println("Unknown error. Message was not updated.");
                     }
@@ -64,7 +62,7 @@ public class EditUserMessagesOption extends MenuOption {
 
         } else {
             System.out.println("Sorry, username not found.");
-        }
+        }*/
 
         pauseExecution();
     }

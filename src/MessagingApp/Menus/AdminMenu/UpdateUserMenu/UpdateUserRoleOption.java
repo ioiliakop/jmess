@@ -1,23 +1,16 @@
 package MessagingApp.Menus.AdminMenu.UpdateUserMenu;
 
-import MessagingApp.DAO.MySQLDAO.MySQLRoleDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
-import MessagingApp.DAO.RoleDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Entities.Constants;
 import MessagingApp.Entities.Constants.Roles;
-import MessagingApp.Entities.Role;
 import MessagingApp.Entities.User;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumSet;
 import java.util.List;
 
 import static MessagingApp.Entities.Constants.getUserRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.Menus.Services.getRoleNameById;
-import static MessagingApp.Menus.Services.roleExists;
+
 
 public class UpdateUserRoleOption extends UpdateUserMenuOption {
 
@@ -31,7 +24,6 @@ public class UpdateUserRoleOption extends UpdateUserMenuOption {
     @Override // Incomplete
     public void doAction() {
 
-//        RoleDAO rlDAO = new MySQLRoleDAO();
         System.out.println("Available roles are:");
 //        System.out.print(rlDAO.getAllRoles());
         List<String> rolesIndexing = new ArrayList<>();

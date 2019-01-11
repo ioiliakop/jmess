@@ -12,7 +12,6 @@ import static MessagingApp.Entities.Constants.MessageContainers.INBOX;
 import static MessagingApp.Entities.Constants.MessageContainers.TRASH;
 import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
-import static MessagingApp.Menus.Services.getRoleNameById;
 import static MessagingApp.Menus.Services.printMessages;
 
 

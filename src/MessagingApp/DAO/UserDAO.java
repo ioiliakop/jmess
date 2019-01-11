@@ -5,6 +5,8 @@ import MessagingApp.Entities.User;
 
 import java.util.List;
 
+import static MessagingApp.Entities.Constants.*;
+
 public interface UserDAO {
 
     User getUser(long userId);
@@ -21,6 +23,8 @@ public interface UserDAO {
     long insertUser(String username, String password);
 
     int updateUserNameRole(String username, Roles role, long userId);
+
+    int updateUserNameStatus(String username, Status status, long userId);
 
     int updateUserPassword(String password, long userId);
 

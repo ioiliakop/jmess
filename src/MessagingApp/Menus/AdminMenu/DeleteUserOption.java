@@ -37,9 +37,9 @@ public class DeleteUserOption extends MenuOption {
         if (userExists(usrDAO.getUser(username))) {
             User    user   = usrDAO.getUser(username);
 
-            if (requestConfirmation("USER with following info will be deleted: \n" + user)) {
-                usrDAO.deleteUser(user.getId());
-                System.out.println("USER deleted.");
+            if (requestConfirmation("Following user will be deleted: " + user + "\nAre you sure?")) {
+                if (usrDAO.deleteUser(user.getId())==1) System.out.println("User successfully deleted.");
+                else System.out.println("Unknown Error. User was not deleted.");
             }
 
         } else System.out.println("Sorry, username not found.");
