@@ -17,7 +17,7 @@ public class MySQLMessageDAO implements MessageDAO {
     private static final String SQL_MESSAGE_SELECT_ALL_BY_USER_ID = "SELECT * FROM messages WHERE sender_id = ? OR receiver_id = ?";
     //    private static final String SQL_MESSAGE_SELECT_ALL_BETWEEN_2_USERS = "SELECT * FROM messages WHERE " +
 //            "(sender_id = ? and receiver_id = ?) or (sender_id = ? and receiver_id = ?) order by date_time";
-    private static final String SQL_MESSAGE_INSERT                = "INSERT INTO messages (subject,body,sender_id,receiver_id) VALUES(?,?,?,?)";
+    private static final String SQL_MESSAGE_INSERT                = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
     private static final String SQL_MESSAGE_UPDATE                = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
     private static final String SQL_MESSAGE_DELETE                = "DELETE FROM messages WHERE id = ?";
 
@@ -121,6 +121,25 @@ public class MySQLMessageDAO implements MessageDAO {
 
     @Override
     public long insertMessage(String messageSubject, String messageBody, long senderId) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_INSERT, Statement.RETURN_GENERATED_KEYS)) {
+
+            pstmt.setString(1, messageSubject);
+            pstmt.setString(2, messageBody);
+            pstmt.setLong(3, senderId);
+
+            int insertedRows = pstmt.executeUpdate();
+            if (insertedRows == 1) {
+                // We get the generated key from the resultSet below
+                ResultSet rs = pstmt.getGeneratedKeys();
+                if (rs.next()) {
+                    return rs.getLong(1);
+                }
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return 0;
     }
 

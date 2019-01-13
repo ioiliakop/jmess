@@ -5,6 +5,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.AdminOptions.AdminOptionsMenu;
 import MessagingApp.Menus.Menu;
+import MessagingApp.Menus.UserOptions.UserOptionsMenu;
 import MessagingApp.OldMenus.DeleterMenu.DeleterMenu;
 import MessagingApp.OldMenus.EditorMenu.EditorMenu;
 import MessagingApp.OldMenus.UserMenu.UserMenu;
@@ -45,8 +46,10 @@ public class LoginScreen {
                 ViewerMenu viewMenu = new ViewerMenu(user);
                 viewMenu.viewerMenuExecute();
             } else {
-                UserMenu usrMenu = new UserMenu(user);
-                usrMenu.userMenuExecute();
+//                UserMenu usrMenu = new UserMenu(user);
+//                usrMenu.userMenuExecute();
+                UserOptionsMenu userMenu = new UserOptionsMenu(user);
+                userMenu.execute();
             }
         } while (requestConfirmation("\nLogin again?"));
     }
