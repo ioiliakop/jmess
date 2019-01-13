@@ -13,6 +13,7 @@ public class UserOptionsMenu extends Menu {
         super(user);
         this.add(new SendMessageOption(user));
         this.add(new ViewInboxOption(user));
+        this.add(new ViewSentboxOption(user));
     }
 
     /*
@@ -23,5 +24,6 @@ public class UserOptionsMenu extends Menu {
         super(user, menuLine);
         this.add(new SendMessageOption(user));
         this.add(new ViewInboxOption(user));
+        this.add(new ViewSentboxOption(user));
     }
 }
