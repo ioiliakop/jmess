@@ -5,7 +5,7 @@ import java.util.List;
 public interface MessageReceiversDAO {
 
     /* Returns all receiver IDs of a given message */
-    List<Long> getMessageReceivers(long messageId);
+    List<Long> getMessageReceiverIds(long messageId);
 
     /* Registers the receivers of the message in our db*/
     int insertMessageReceivers(long messageId, long receiverId);

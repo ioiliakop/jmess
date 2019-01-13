@@ -1,7 +1,9 @@
 package MessagingApp.OldMenus;
 
 import MessagingApp.DAO.MessageDAO;
+import MessagingApp.DAO.MessageReceiversDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLMessageReceiversDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
@@ -104,16 +106,32 @@ public class Services {
     }*/
 
     public static void printMessages(List<Message> messages) {
-        for (Message m : messages) {
-            String senderName   = assignUsernameFromUserId(m.getSenderId());
-//            String receiverName = assignUsernameFromUserId(m.getReceiverId());
+        if (!messages.isEmpty()) {
+            UserDAO             usrDAO = new MySQLUserDAO();
+            MessageReceiversDAO mrDAO  = new MySQLMessageReceiversDAO();
+            for (Message m : messages) {
+                String        senderName  = assignUsernameFromUserId(m.getSenderId());
+                List<Long>    receiverIds = mrDAO.getMessageReceiverIds(m.getId());
+                StringBuilder receiversSb = new StringBuilder();
 
-//            System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
-//                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
-//                    "\n\tMessage: " + m.getMessageBody());
+                for (long receiverId : receiverIds) {
+                    User receiver = usrDAO.getUser(receiverId);
+                    receiversSb.append(receiver.getUsername() + ", ");
+                }
+
+                System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiversSb +
+                        "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated());
+//                        "\n\tMessage: " + m.getMessageBody());
+            }
+            System.out.println("\n");
         }
-        System.out.println("\n");
     }
+
+/*    public static void printMessage(Message m) {
+        System.out.println("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
+                "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
+                "\n\tMessage: " + m.getMessageBody()));
+    }*/
 
     public static void printUserInfo(User user) {
         System.out.println("\nid: " + user.getId() + "\tusername: " + user.getUsername() +

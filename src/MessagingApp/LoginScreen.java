@@ -8,7 +8,6 @@ import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.UserOptions.UserOptionsMenu;
 import MessagingApp.OldMenus.DeleterMenu.DeleterMenu;
 import MessagingApp.OldMenus.EditorMenu.EditorMenu;
-import MessagingApp.OldMenus.UserMenu.UserMenu;
 import MessagingApp.OldMenus.ViewerMenu.ViewerMenu;
 
 import static MessagingApp.Entities.FinalEntities.Roles.*;
@@ -35,6 +34,7 @@ public class LoginScreen {
 //                adMenu.adminMenuExecute();
                 Menu adminMenu = new Menu(user);
                 adminMenu.add(new AdminOptionsMenu(user));
+                adminMenu.add(new UserOptionsMenu(user, "User Options"));
                 adminMenu.execute();
             } else if (user.getRoleId() == DELETER.ID()) {
                 DeleterMenu deleterMenu = new DeleterMenu(user);
