@@ -3,6 +3,9 @@ package MessagingApp.Menus.UserOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 
+import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
+import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
+
 public class UserOptionsMenu extends Menu {
 
     /*
@@ -12,8 +15,8 @@ public class UserOptionsMenu extends Menu {
     public UserOptionsMenu(User user) {
         super(user);
         this.add(new SendMessageOption(user));
-        this.add(new ViewInboxOption(user));
-        this.add(new ViewSentboxOption(user));
+        this.add(new ViewContainerMessagesOption(user, INBOX));
+        this.add(new ViewContainerMessagesOption(user, SENTBOX));
     }
 
     /*
@@ -23,7 +26,7 @@ public class UserOptionsMenu extends Menu {
     public UserOptionsMenu(User user, String menuLine) {
         super(user, menuLine);
         this.add(new SendMessageOption(user));
-        this.add(new ViewInboxOption(user));
-        this.add(new ViewSentboxOption(user));
+        this.add(new ViewContainerMessagesOption(user, INBOX));
+        this.add(new ViewContainerMessagesOption(user, SENTBOX));
     }
 }
