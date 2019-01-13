@@ -8,9 +8,8 @@ public class Message {
     private long   id;
     private String messageSubject;
     private String messageBody;
-    private Date   messageDateTime;
+    private Date   messageDateCreated;
     private long   senderId;
-    private long   receiverId;
 
     public Message() {
     }
@@ -50,12 +49,12 @@ public class Message {
         this.messageBody = messageBody;
     }
 
-    public Date getMessageDateTime() {
-        return messageDateTime;
+    public Date getMessageDateCreated() {
+        return messageDateCreated;
     }
 
-    public void setMessageDateTime(Date messageDateTime) {
-        this.messageDateTime = messageDateTime;
+    public void setMessageDateCreated(Date messageDateCreated) {
+        this.messageDateCreated = messageDateCreated;
     }
 
     public long getSenderId() {
@@ -66,14 +65,6 @@ public class Message {
         this.senderId = senderId;
     }
 
-    public long getReceiverId() {
-        return receiverId;
-    }
-
-    public void setReceiverId(long receiverId) {
-        this.receiverId = receiverId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -81,21 +72,19 @@ public class Message {
         Message message = (Message) o;
         return id == message.id &&
                 senderId == message.senderId &&
-                receiverId == message.receiverId &&
                 Objects.equals(messageSubject, message.messageSubject) &&
                 Objects.equals(messageBody, message.messageBody) &&
-                Objects.equals(messageDateTime, message.messageDateTime);
+                Objects.equals(messageDateCreated, message.messageDateCreated);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, messageSubject, messageBody, messageDateTime, senderId, receiverId);
+        return Objects.hash(id, messageSubject, messageBody, messageDateCreated, senderId);
     }
 
     @Override
     public String toString() {
-        return "\nMsgID: " + id + "\tsenderId: " + senderId + "\treceiverId: " + receiverId +
-                "\tDateTime: " + messageDateTime + "\n\tSubject: " + messageSubject +
-                "\n\tMessage: " + messageBody;
+        return "\nMsgID: " + id + "\tsenderId: " + senderId + "\tSubject: " + messageSubject +
+                "\tDateTime: " + messageDateCreated + "\n\tMessage: " + messageBody;
     }
 }

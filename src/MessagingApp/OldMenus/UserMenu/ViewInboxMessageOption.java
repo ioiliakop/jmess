@@ -1,7 +1,7 @@
-package MessagingApp.Menus.UserMenu;
+package MessagingApp.OldMenus.UserMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 
 public class ViewInboxMessageOption extends MenuOption {
 

@@ -72,18 +72,20 @@ public class User {
                 "\t\tpassword: " + password + "\troleId: " + roleId + "\tstatusId: " + statusId;
     }
 
-
-    /* If 2 users have the same id, we consider them equal in our application. No need to check the other fields */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return id == user.id;
+        return id == user.id &&
+                roleId == user.roleId &&
+                statusId == user.statusId &&
+                Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, username, password, roleId, statusId);
     }
 }

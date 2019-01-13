@@ -1,8 +1,8 @@
-package MessagingApp.Menus.ViewerMenu;
+package MessagingApp.OldMenus.ViewerMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.CommonOptions.ViewAllUsersOption;
-import MessagingApp.Menus.Menu;
+import MessagingApp.OldMenus.CommonOptions.ViewAllUsersOption;
+import MessagingApp.OldMenus.Menu;
 
 public class ViewerMenu {
     private User user;

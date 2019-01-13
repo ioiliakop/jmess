@@ -1,30 +1,33 @@
 package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.DBConnection.MySQLConnection;
-import MessagingApp.Entities.Constants;
-import MessagingApp.Entities.Constants.Roles;
+import MessagingApp.MySQLConnection;
+import MessagingApp.Entities.FinalEntities.Status;
+import MessagingApp.Entities.FinalEntities.Roles;
 import MessagingApp.Entities.User;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLDeleteById;
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLUpdateVarcharFieldById;
-import static MessagingApp.Entities.Constants.Roles.USER;
+import static MessagingApp.Entities.FinalEntities.Roles.USER;
 
 public class MySQLUserDAO implements UserDAO {
 
-    private static final String SQL_USER_SELECT_ALL          = "SELECT * FROM users";
-    private static final String SQL_USER_SELECT_BY_ID        = "SELECT * FROM users WHERE id = ?";
-    private static final String SQL_USER_SELECT_BY_NAME      = "SELECT * FROM users WHERE username = ?";
-    private static final String SQL_USER_SELECT_BY_NAME_PASS = "SELECT * FROM users WHERE username = ? AND password = SHA(?)";
-    private static final String SQL_USER_INSERT              = "INSERT INTO users(username,password,role_id) VALUES(?,SHA(?),?)";
+    private static final String SQL_USER_SELECT_ALL             = "SELECT * FROM users";
+    private static final String SQL_USER_SELECT_ALL_ACTIVE      = "SELECT * FROM users WHERE status_id = 1";
+    private static final String SQL_USER_SELECT_BY_ID           = "SELECT * FROM users WHERE id = ?";
+    private static final String SQL_USER_SELECT_BY_NAME         = "SELECT * FROM users WHERE username = ?";
+    private static final String SQL_USER_SELECT_BY_NAME_PASS    = "SELECT * FROM users WHERE username = ? AND password = MD5(?) AND status_id = 1";
+    private static final String SQL_USER_INSERT                 = "INSERT INTO users(username,password,role_id) VALUES(?,MD5(?),?)";
     //    private static final String SQL_USER_UPDATE              = "UPDATE users SET username = ?, password = SHA(?), role_id = ? WHERE id = ?";
-    private static final String SQL_USER_NAME_ROLE_UPDATE    = "UPDATE users SET username = ?, role_id = ? WHERE id = ?";
-    private static final String SQL_USER_NAME_STATUS_UPDATE  = "UPDATE users SET username = ?, status_id = ? WHERE id = ?";
-    private static final String SQL_USER_PASS_UPDATE         = "UPDATE users SET password = SHA(?) WHERE id = ?";
-    private static final String SQL_USER_DELETE              = "DELETE FROM users WHERE id = ?";
+    private static final String SQL_USER_NAME_ROLE_UPDATE       = "UPDATE users SET username = ?, role_id = ? WHERE id = ?";
+    private static final String SQL_USER_NAME_STATUS_UPDATE     = "UPDATE users SET username = ?, status_id = ? WHERE id = ?";
+    private static final String SQL_USER_NAME_ROLE_STATUS_UPDATE = "UPDATE users SET username = ?, role_id = ?, status_id = ? WHERE id = ?";
+    private static final String SQL_USER_PASSWORD_UPDATE        = "UPDATE users SET password = MD5(?) WHERE id = ?";
+    private static final String SQL_USER_DELETE                 = "DELETE FROM users WHERE id = ?";
 
 
     @Override
@@ -64,6 +67,25 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
+    public User getActiveUserByUsernameAndPassword(String username, String password) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_SELECT_BY_NAME_PASS)) {
+
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return extractUserFromResultSet(rs);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public ArrayList<User> getAllUsers() {
         try (Connection conn = MySQLConnection.getConnection();
              Statement stmt = conn.createStatement();
@@ -85,17 +107,19 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public User getUserByUsernameAndPassword(String username, String password) {
+    public List<User> getAllActiveUsers() {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_SELECT_BY_NAME_PASS)) {
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(SQL_USER_SELECT_ALL_ACTIVE)) {
 
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
+            ArrayList<User> usersList = new ArrayList<>();
 
-            if (rs.next()) {
-                return extractUserFromResultSet(rs);
+            while (rs.next()) {
+                User user = extractUserFromResultSet(rs);
+                usersList.add(user);
             }
+
+            return usersList;
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -165,13 +189,29 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public int updateUserNameStatus(String username, Constants.Status status, long userId) {
+    public int updateUserNameRoleStatus(String username, Roles role, Status status, long userId) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_NAME_ROLE_STATUS_UPDATE)) {
+
+            pstmt.setString(1, username);
+            pstmt.setLong(2, role.ID());
+            pstmt.setLong(3, status.ID());
+            pstmt.setLong(4, userId);
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated == 1) {
+                return rowsUpdated;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return 0;
     }
 
     @Override
     public int updateUserPassword(String password, long userId) {
-        return SQLUpdateVarcharFieldById(SQL_USER_PASS_UPDATE, password, userId);
+        return SQLUpdateVarcharFieldById(SQL_USER_PASSWORD_UPDATE, password, userId);
     }
 
     @Override

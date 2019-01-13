@@ -1,14 +1,14 @@
-package MessagingApp.Menus.AdminMenu.UpdateUserMenu;
+package MessagingApp.OldMenus.AdminMenu.UpdateUserMenu;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Entities.Constants.Roles;
+import MessagingApp.Entities.FinalEntities.Roles;
 import MessagingApp.Entities.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static MessagingApp.Entities.Constants.getUserRoleFromRoleId;
+import static MessagingApp.Entities.FinalEntities.getUserRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.*;
 
 

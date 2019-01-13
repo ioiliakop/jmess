@@ -1,9 +1,9 @@
-package MessagingApp.Menus.EditorMenu;
+package MessagingApp.OldMenus.EditorMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.CommonOptions.ViewAllUsersOption;
-import MessagingApp.Menus.Menu;
-import MessagingApp.Menus.ViewerMenu.ViewUserMessagesOption;
+import MessagingApp.OldMenus.CommonOptions.ViewAllUsersOption;
+import MessagingApp.OldMenus.Menu;
+import MessagingApp.OldMenus.ViewerMenu.ViewUserMessagesOption;
 
 public class EditorMenu {
 

@@ -1,4 +1,4 @@
-package MessagingApp.FileAccess;
+package MessagingApp;
 
 import MessagingApp.Entities.Message;
 

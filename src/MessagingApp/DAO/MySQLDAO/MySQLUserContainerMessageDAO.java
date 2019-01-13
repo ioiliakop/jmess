@@ -1,8 +1,8 @@
 package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.UserContainerMessageDAO;
-import MessagingApp.DBConnection.MySQLConnection;
-import MessagingApp.Entities.Constants.MessageContainers;
+import MessagingApp.MySQLConnection;
+import MessagingApp.Entities.FinalEntities.MessageContainers;
 
 import java.sql.*;
 import java.util.ArrayList;

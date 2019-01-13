@@ -1,17 +1,17 @@
-package MessagingApp.Menus.UserMenu;
+package MessagingApp.OldMenus.UserMenu;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
 import MessagingApp.DAO.UserContainerMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.Constants.MessageContainers.INBOX;
+import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
-import static MessagingApp.Menus.Services.printMessages;
+import static MessagingApp.OldMenus.Services.getMessagesFromMessageIds;
+import static MessagingApp.OldMenus.Services.printMessages;
 
 public class ViewInboxOption extends MenuOption {
 

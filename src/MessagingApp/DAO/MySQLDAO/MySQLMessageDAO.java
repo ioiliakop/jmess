@@ -1,7 +1,7 @@
 package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.MessageDAO;
-import MessagingApp.DBConnection.MySQLConnection;
+import MessagingApp.MySQLConnection;
 import MessagingApp.Entities.Message;
 
 import java.sql.*;
@@ -46,9 +46,8 @@ public class MySQLMessageDAO implements MessageDAO {
         message.setId(rs.getLong("id"));
         message.setMessageSubject(rs.getString("subject"));
         message.setMessageBody(rs.getString("body"));
-        message.setMessageDateTime(rs.getTimestamp("date"));
+        message.setMessageDateCreated(rs.getTimestamp("date_created"));
         message.setSenderId(rs.getLong("sender_id"));
-        message.setReceiverId(rs.getLong("receiver_id"));
         return message;
     }
 
@@ -121,6 +120,11 @@ public class MySQLMessageDAO implements MessageDAO {
     }
 
     @Override
+    public long insertMessage(String messageSubject, String messageBody, long senderId) {
+        return 0;
+    }
+
+//    @Override
     public long insertMessage(String messageSubject, String messageBody, long senderId, long receiverId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_INSERT, Statement.RETURN_GENERATED_KEYS)) {

@@ -1,4 +1,4 @@
-package MessagingApp.Menus.ViewerMenu;
+package MessagingApp.OldMenus.ViewerMenu;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
@@ -6,12 +6,12 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.Services.printMessages;
+import static MessagingApp.OldMenus.Services.printMessages;
 
 public class ViewUserMessagesOption extends MenuOption {
 

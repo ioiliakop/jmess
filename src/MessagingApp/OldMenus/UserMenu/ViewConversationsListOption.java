@@ -1,12 +1,10 @@
-package MessagingApp.Menus.UserMenu;
+package MessagingApp.OldMenus.UserMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 
-import java.util.List;
+//import static MessagingApp.OldMenus.Services.getConversingUsers;
 
-//import static MessagingApp.Menus.Services.getConversingUsers;
-import static MessagingApp.Menus.Services.printUsernamesFromUsers;
 
 public class ViewConversationsListOption extends MenuOption {
 

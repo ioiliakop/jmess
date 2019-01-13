@@ -1,4 +1,4 @@
-package MessagingApp.Menus;
+package MessagingApp.OldMenus;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;

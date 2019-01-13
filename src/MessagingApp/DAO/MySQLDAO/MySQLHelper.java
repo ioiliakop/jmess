@@ -1,6 +1,6 @@
 package MessagingApp.DAO.MySQLDAO;
 
-import MessagingApp.DBConnection.MySQLConnection;
+import MessagingApp.MySQLConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

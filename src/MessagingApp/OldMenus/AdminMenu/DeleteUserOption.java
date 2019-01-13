@@ -1,12 +1,12 @@
-package MessagingApp.Menus.AdminMenu;
+package MessagingApp.OldMenus.AdminMenu;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.Menus.Services.userExists;
+import static MessagingApp.OldMenus.Services.userExists;
 
 public class DeleteUserOption extends MenuOption {
 

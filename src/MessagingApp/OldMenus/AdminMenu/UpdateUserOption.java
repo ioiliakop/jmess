@@ -1,14 +1,13 @@
-package MessagingApp.Menus.AdminMenu;
+package MessagingApp.OldMenus.AdminMenu;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
-import MessagingApp.Menus.AdminMenu.UpdateUserMenu.UpdateUserMenu;
+import MessagingApp.OldMenus.MenuOption;
+import MessagingApp.OldMenus.AdminMenu.UpdateUserMenu.UpdateUserMenu;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.Menus.Services.printUserInfo;
-import static MessagingApp.Menus.Services.usernameExists;
+import static MessagingApp.OldMenus.Services.printUserInfo;
 
 public class UpdateUserOption extends MenuOption {
 

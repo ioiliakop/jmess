@@ -1,7 +1,7 @@
-package MessagingApp.Menus.UserMenu;
+package MessagingApp.OldMenus.UserMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.Menu;
+import MessagingApp.OldMenus.Menu;
 
 public class UserMenu {
 

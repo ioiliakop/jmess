@@ -1,8 +1,8 @@
-package MessagingApp.Menus.CommonOptions;
+package MessagingApp.OldMenus.CommonOptions;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 

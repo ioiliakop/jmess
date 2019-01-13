@@ -1,4 +1,4 @@
-package MessagingApp.Menus.AdminMenu.UpdateUserMenu;
+package MessagingApp.OldMenus.AdminMenu.UpdateUserMenu;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;

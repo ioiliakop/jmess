@@ -1,10 +1,10 @@
-package MessagingApp.Menus.DeleterMenu;
+package MessagingApp.OldMenus.DeleterMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.CommonOptions.ViewAllUsersOption;
-import MessagingApp.Menus.EditorMenu.EditUserMessagesOption;
-import MessagingApp.Menus.Menu;
-import MessagingApp.Menus.ViewerMenu.ViewUserMessagesOption;
+import MessagingApp.OldMenus.CommonOptions.ViewAllUsersOption;
+import MessagingApp.OldMenus.EditorMenu.EditUserMessagesOption;
+import MessagingApp.OldMenus.Menu;
+import MessagingApp.OldMenus.ViewerMenu.ViewUserMessagesOption;
 
 public class DeleterMenu {
 

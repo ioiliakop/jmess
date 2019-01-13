@@ -1,18 +1,11 @@
-package MessagingApp.Menus.DeleterMenu;
+package MessagingApp.OldMenus.DeleterMenu;
 
-import MessagingApp.DAO.MessageDAO;
-import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
-
-import java.util.List;
+import MessagingApp.OldMenus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.Menus.Services.getMessageIdsFromMessages;
-import static MessagingApp.Menus.Services.printMessages;
 
 public class DeleteUserMessagesOption extends MenuOption {
     private static final String MENU_LINE = "Delete a user's messages";

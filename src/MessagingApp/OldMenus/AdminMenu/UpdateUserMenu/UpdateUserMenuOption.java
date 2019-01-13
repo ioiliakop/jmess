@@ -1,7 +1,7 @@
-package MessagingApp.Menus.AdminMenu.UpdateUserMenu;
+package MessagingApp.OldMenus.AdminMenu.UpdateUserMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 
 public abstract class UpdateUserMenuOption extends MenuOption {
 

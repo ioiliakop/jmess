@@ -1,5 +1,8 @@
 package MessagingApp.Menus;
 
+import javax.xml.bind.DatatypeConverter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,16 +38,20 @@ public class MenuUtils {
         }
     }
 
-    /* Helper method that returns user input, while checking corresponding character length restriction */
+    /*
+     * Helper method that returns user input for username
+     * while checking character length restrictions
+     */
     public static String inputUsername() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter username: ");
-        String inputMessage = sc.nextLine();
-        if (inputMessage.length() > 20) {
-            System.out.println("Username is limited to 20 characters. Try a shorter username.");
-            inputMessage = inputMessage.substring(0, 19);
+        String username = sc.nextLine();
+        if (username.length() < 2 || username.length() > 20) {
+            System.out.println("Password should be at least 2 characters and no more than 20.");
+            System.out.println("Please try again.");
+            return inputUsername();
         }
-        return inputMessage;
+        return username;
     }
 
     public static String inputUsername(String message) {
@@ -53,14 +60,37 @@ public class MenuUtils {
         return sc.nextLine();
     }
 
+    /*
+     * Helper method that returns user input for password
+     * while checking minimum and maximum character length restriction
+     */
     public static String inputPassword() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter password: ");
-        return sc.nextLine();
+        String password = sc.nextLine();
+        if (password.length() < 3 || password.length() > 32) {
+            System.out.println("Password should be at least 3 characters and no more than 32.");
+            System.out.println("Please try again.");
+            return inputPassword();
+        }
+        return password;
+    }
+
+    public static String getMD5OfString(String string){
+        String myHash = null;
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(string.getBytes());
+            byte[] digest = md.digest();
+            myHash = DatatypeConverter.printHexBinary(digest);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return myHash;
     }
 
     /* Helper method that returns user input, while checking corresponding character length restriction */
-    public static String inputMessageBody(){
+    public static String inputMessageBody() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter message:");
         String inputMessage = sc.nextLine();
@@ -72,7 +102,7 @@ public class MenuUtils {
     }
 
     /* Helper method that returns user input, while checking corresponding character length restriction */
-    public static String inputMessageSubject(){
+    public static String inputMessageSubject() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter subject:");
         String inputMessage = sc.nextLine();

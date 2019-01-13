@@ -1,15 +1,16 @@
-package MessagingApp.Login;
+package MessagingApp;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.AdminMenu.AdminMenu;
-import MessagingApp.Menus.DeleterMenu.DeleterMenu;
-import MessagingApp.Menus.EditorMenu.EditorMenu;
-import MessagingApp.Menus.UserMenu.UserMenu;
-import MessagingApp.Menus.ViewerMenu.ViewerMenu;
+import MessagingApp.Menus.AdminOptions.AdminOptionsMenu;
+import MessagingApp.Menus.Menu;
+import MessagingApp.OldMenus.DeleterMenu.DeleterMenu;
+import MessagingApp.OldMenus.EditorMenu.EditorMenu;
+import MessagingApp.OldMenus.UserMenu.UserMenu;
+import MessagingApp.OldMenus.ViewerMenu.ViewerMenu;
 
-import static MessagingApp.Entities.Constants.Roles.*;
+import static MessagingApp.Entities.FinalEntities.Roles.*;
 import static MessagingApp.Menus.MenuUtils.inputPassword;
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
@@ -25,13 +26,16 @@ public class LoginScreen {
             String password = inputPassword();
 
             UserDAO usrDAO = new MySQLUserDAO();
-            User    user   = usrDAO.getUserByUsernameAndPassword(username, password);
+            User    user   = usrDAO.getActiveUserByUsernameAndPassword(username, password);
 
             if (user == null) {
                 System.out.println("\nUsername or password not correct.");
             } else if (user.getRoleId() == ADMIN.ID()) {
-                AdminMenu adMenu = new AdminMenu(user);
-                adMenu.adminMenuExecute();
+//                AdminMenu adMenu = new AdminMenu(user);
+//                adMenu.adminMenuExecute();
+                Menu adminMenu = new Menu(user);
+                adminMenu.add(new AdminOptionsMenu(user));
+                adminMenu.execute();
             } else if (user.getRoleId() == DELETER.ID()) {
                 DeleterMenu deleterMenu = new DeleterMenu(user);
                 deleterMenu.deleterMenuExecute();

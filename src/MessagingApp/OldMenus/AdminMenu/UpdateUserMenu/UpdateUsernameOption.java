@@ -1,16 +1,15 @@
-package MessagingApp.Menus.AdminMenu.UpdateUserMenu;
+package MessagingApp.OldMenus.AdminMenu.UpdateUserMenu;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Entities.Constants;
-import MessagingApp.Entities.Constants.Roles;
+import MessagingApp.Entities.FinalEntities.Roles;
 import MessagingApp.Entities.User;
 
-import static MessagingApp.Entities.Constants.getUserRoleFromRoleId;
+import static MessagingApp.Entities.FinalEntities.getUserRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
-import static MessagingApp.Menus.Services.usernameExists;
+import static MessagingApp.OldMenus.Services.usernameExists;
 
 public class UpdateUsernameOption extends UpdateUserMenuOption {
 

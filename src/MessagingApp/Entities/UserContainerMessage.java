@@ -5,6 +5,7 @@ public class UserContainerMessage {
     private long userId;
     private long containerId;
     private long messageId;
+    private boolean isRead;
 
     public UserContainerMessage() {
     }
@@ -37,5 +38,13 @@ public class UserContainerMessage {
 
     public void setMessageId(long messageId) {
         this.messageId = messageId;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 }

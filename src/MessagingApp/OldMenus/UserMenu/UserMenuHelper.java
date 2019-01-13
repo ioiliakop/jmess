@@ -1,4 +1,4 @@
-package MessagingApp.Menus.UserMenu;
+package MessagingApp.OldMenus.UserMenu;
 
 public class UserMenuHelper {
 }

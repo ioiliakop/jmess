@@ -1,4 +1,4 @@
-package MessagingApp.Menus.UserMenu;
+package MessagingApp.OldMenus.UserMenu;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
@@ -8,14 +8,13 @@ import MessagingApp.DAO.UserContainerMessageDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.MenuOption;
+import MessagingApp.OldMenus.MenuOption;
 
-import static MessagingApp.Entities.Constants.MessageContainers.INBOX;
-import static MessagingApp.Entities.Constants.MessageContainers.SENTBOX;
-import static MessagingApp.FileAccess.FileAccess.appendMessageToFile;
+import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
+import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
+import static MessagingApp.FileAccess.appendMessageToFile;
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.Menus.Services.getDAOUser;
-import static MessagingApp.Menus.Services.usernameExists;
+import static MessagingApp.OldMenus.Services.getDAOUser;
 
 public class SendMessageOption extends MenuOption {
 
@@ -40,14 +39,14 @@ public class SendMessageOption extends MenuOption {
 
             /* We then insert the message int to the messages table */
             MessageDAO msgDAO    = new MySQLMessageDAO();
-            long       messageId = msgDAO.insertMessage(messageSubject, messageBody, sender.getId(), receiver.getId());
-            Message sentMessage = msgDAO.getMessage(messageId);
-            appendMessageToFile(sentMessage);
-
-            /* And assign it to sender's sentbox and receiver's inbox */
-            UserContainerMessageDAO ucmDAO = new MySQLUserContainerMessageDAO();
-            ucmDAO.insertUserContainerMessage(sender.getId(), SENTBOX, messageId);
-            ucmDAO.insertUserContainerMessage(receiver.getId(), INBOX, messageId);
+//            long       messageId = msgDAO.insertMessage(messageSubject, messageBody, sender.getId(), receiver.getId());
+//            Message sentMessage = msgDAO.getMessage(messageId);
+//            appendMessageToFile(sentMessage);
+//
+//            /* And assign it to sender's sentbox and receiver's inbox */
+//            UserContainerMessageDAO ucmDAO = new MySQLUserContainerMessageDAO();
+//            ucmDAO.insertUserContainerMessage(sender.getId(), SENTBOX, messageId);
+//            ucmDAO.insertUserContainerMessage(receiver.getId(), INBOX, messageId);
 
         } else System.out.println("Sorry, username not found.");
 

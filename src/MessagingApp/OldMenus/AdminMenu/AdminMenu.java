@@ -1,8 +1,8 @@
-package MessagingApp.Menus.AdminMenu;
+package MessagingApp.OldMenus.AdminMenu;
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.Menu;
-import MessagingApp.Menus.CommonOptions.ViewAllUsersOption;
+import MessagingApp.OldMenus.Menu;
+import MessagingApp.OldMenus.CommonOptions.ViewAllUsersOption;
 
 /**
  * Menu with admin options

@@ -1,8 +1,8 @@
-package MessagingApp.Menus.AdminMenu.UpdateUserMenu;
+package MessagingApp.OldMenus.AdminMenu.UpdateUserMenu;
 
 
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.Menu;
+import MessagingApp.OldMenus.Menu;
 
 public class UpdateUserMenu {
 

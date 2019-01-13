@@ -1,11 +1,15 @@
 package MessagingApp;
 
-import MessagingApp.Entities.Constants;
-import MessagingApp.Login.LoginScreen;
+
+import static MessagingApp.Menus.MenuUtils.getMD5OfString;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        String teststr = "admin";
+        System.out.println(getMD5OfString(teststr));
+
 
 /*        public enum Tests{
             TEST1(1),
@@ -22,12 +26,12 @@ public class Main {
             }
         }
 
-        System.out.println(Constants.Tests.TEST1.);*/
+        System.out.println(FinalEntities.Tests.TEST1.);*/
 
         //enum tet
 
-/*        if ("USER".equals(Constants.Roles.USER.name())) {
-            System.out.println(Constants.Roles.USER.ID());
+/*        if ("USER".equals(FinalEntities.Roles.USER.name())) {
+            System.out.println(FinalEntities.Roles.USER.ID());
         }*/
 
 

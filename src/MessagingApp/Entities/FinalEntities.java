@@ -1,18 +1,18 @@
 package MessagingApp.Entities;
 
 
-import static MessagingApp.Entities.Constants.Roles.*;
+import static MessagingApp.Entities.FinalEntities.Roles.*;
 
 /**
  * 'Roles', 'Containers' and 'Status' values are finite and final
  * They are not meant to be altered by any user of this application
  * Only assigned to various users
- * Therefore, we decided to implement them with the use of enums
- * All three enums contain the corresponding id number in our db,
- * which is accessible by the ID() function, that is actually a getter.
+ * With that in mind, they're implemented here with the use of enums
+ * All three enums contain the corresponding id number in the db,
+ * which is accessible by the ID() method, that is actually a getter.
  * It's abbreviated to ID for convenience and better expression of it's final, non-altering nature
  */
-public class Constants {
+public class FinalEntities {
 
     public enum Roles {
         USER,

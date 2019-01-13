@@ -1,4 +1,4 @@
-package MessagingApp.Menus;
+package MessagingApp.OldMenus;
 
 public abstract class MenuOption {
     private int option;

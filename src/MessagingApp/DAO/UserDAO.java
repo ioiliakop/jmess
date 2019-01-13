@@ -1,11 +1,11 @@
 package MessagingApp.DAO;
 
-import MessagingApp.Entities.Constants.Roles;
+import MessagingApp.Entities.FinalEntities.Roles;
 import MessagingApp.Entities.User;
 
 import java.util.List;
 
-import static MessagingApp.Entities.Constants.*;
+import static MessagingApp.Entities.FinalEntities.*;
 
 public interface UserDAO {
 
@@ -13,9 +13,11 @@ public interface UserDAO {
 
     User getUser(String username);
 
-    User getUserByUsernameAndPassword(String username, String password);
+    User getActiveUserByUsernameAndPassword(String username, String password);
 
     List<User> getAllUsers();
+
+    List<User> getAllActiveUsers();
 
     long insertUser(String username, String password, Roles role);
 
@@ -24,8 +26,13 @@ public interface UserDAO {
 
     int updateUserNameRole(String username, Roles role, long userId);
 
-    int updateUserNameStatus(String username, Status status, long userId);
+    int updateUserNameRoleStatus(String username, Roles role, Status status, long userId);
 
+    /*
+     * The password field must have a separate method in our implementation
+     * As it is not the password that is retrieved from the db
+     * but the MD5 hash of the password
+     */
     int updateUserPassword(String password, long userId);
 
     int deleteUser(long userId);

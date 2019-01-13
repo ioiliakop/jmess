@@ -1,6 +1,6 @@
 package MessagingApp.DAO;
 
-import MessagingApp.Entities.Constants.MessageContainers;
+import MessagingApp.Entities.FinalEntities.MessageContainers;
 
 import java.util.List;
 
