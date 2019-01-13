@@ -9,7 +9,7 @@ import static MessagingApp.Entities.FinalEntities.getUserRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
-import static MessagingApp.OldMenus.Services.usernameExists;
+import static MessagingApp.Menus.Services.usernameExists;
 
 public class UpdateUsernameOption extends UpdateUserMenuOption {
 

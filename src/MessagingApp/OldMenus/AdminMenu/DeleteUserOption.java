@@ -6,7 +6,7 @@ import MessagingApp.Entities.User;
 import MessagingApp.OldMenus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.OldMenus.Services.userExists;
+import static MessagingApp.Menus.Services.userExists;
 
 public class DeleteUserOption extends MenuOption {
 

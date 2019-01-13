@@ -3,7 +3,7 @@ package MessagingApp.OldMenus.UserMenu;
 import MessagingApp.Entities.User;
 import MessagingApp.OldMenus.MenuOption;
 
-//import static MessagingApp.OldMenus.Services.getConversingUsers;
+//import static MessagingApp.Menus.Services.getConversingUsers;
 
 
 public class ViewConversationsListOption extends MenuOption {

@@ -5,7 +5,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.OldMenus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.OldMenus.Services.usernameExists;
+import static MessagingApp.Menus.Services.usernameExists;
 
 public class CreateUserOption extends MenuOption {
 

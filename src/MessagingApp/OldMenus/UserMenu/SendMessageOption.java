@@ -2,19 +2,13 @@ package MessagingApp.OldMenus.UserMenu;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
-import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
-import MessagingApp.DAO.UserContainerMessageDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.OldMenus.MenuOption;
 
-import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
-import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
-import static MessagingApp.FileAccess.appendMessageToFile;
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.OldMenus.Services.getDAOUser;
+import static MessagingApp.Menus.Services.getDAOUser;
 
 public class SendMessageOption extends MenuOption {
 

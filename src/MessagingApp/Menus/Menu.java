@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class Menu extends MenuOption {
 
     private static final int              EXIT_INDEX          = 0;
-    private static final String           MENU_TITLE_TEMPLATE = "________  %s  ________";
+    private static final String           MENU_TITLE_TEMPLATE = "\n__________  %s  __________";
     private              String           exitPrompt;
     private              String           menuTitle;
     private              List<MenuOption> menuOptions;

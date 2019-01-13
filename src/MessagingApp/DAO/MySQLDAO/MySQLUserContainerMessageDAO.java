@@ -10,11 +10,13 @@ import java.util.List;
 
 public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
 
-    private static final String SQL_MESSAGE_IDS_SELECT_BY_USER_CONTAINER = "SELECT message_id FROM users_containers_messages WHERE user_id = ? AND container_id = ?";
-    private static final String SQL_USER_CONTAINER_MESSAGE_INSERT        = "INSERT INTO users_containers_messages (user_id,container_id,message_id) VALUES(?,?,?)";
-    private static final String SQL_MESSAGE_CONTAINER_UPDATE             = "UPDATE users_containers_messages SET container_id = ? WHERE user_id = ? AND message_id = ?";
-    private static final String SQL_USER_CONTAINER_ALL_MESSAGES_DELETE   = "DELETE FROM users_containers_messages WHERE user_id = ? AND container_id= ?";
-    private static final String SQL_USER_CONTAINER_MESSAGE_DELETE        = "DELETE FROM users_containers_messages WHERE message_id = ?";
+    private static final String SQL_MESSAGE_IDS_SELECT_BY_USER_CONTAINER     = "SELECT message_id FROM users_containers_messages WHERE user_id = ? AND container_id = ?";
+    private static final String SQL_USER_CONTAINER_MESSAGE_INSERT            = "INSERT INTO users_containers_messages (user_id,container_id,message_id) VALUES(?,?,?)";
+    private static final String SQL_MESSAGE_CONTAINER_UPDATE                 = "UPDATE users_containers_messages SET container_id = ? WHERE user_id = ? AND message_id = ?";
+    private static final String SQL_ALL_MESSAGES_IN_CONTAINER_UPDATE         = "UPDATE users_containers_messages SET container_id = ? WHERE user_id = ? AND container_id = ?";
+    private static final String SQL_ALL_TARGET_USER_MESSAGES_IN_INBOX_UPDATE = "UPDATE users_containers_messages SET container_id = ? WHERE user_id = ? AND container_id = 1 AND users_containers_messages.message_id = ";
+    private static final String SQL_USER_CONTAINER_ALL_MESSAGES_DELETE       = "DELETE FROM users_containers_messages WHERE user_id = ? AND container_id= ?";
+    private static final String SQL_USER_CONTAINER_MESSAGE_DELETE            = "DELETE FROM users_containers_messages WHERE message_id = ?";
 
 
     @Override
@@ -94,6 +96,24 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
             int rowsUpdated = pstmt.executeUpdate();
 
             if (rowsUpdated == 1) return rowsUpdated;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int updateAllUserContainerMessages(MessageContainers originalContainer, long userId, MessageContainers targetContainer) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_ALL_MESSAGES_IN_CONTAINER_UPDATE)) {
+
+            pstmt.setLong(1, targetContainer.ID());
+            pstmt.setLong(2, userId);
+            pstmt.setLong(3, originalContainer.ID());
+            int rowsUpdated = pstmt.executeUpdate();
+
+            if (rowsUpdated > 0) return rowsUpdated;
 
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -66,7 +66,7 @@ public class SendMessageOption extends MenuOption {
                 for (User receiver : messageReceivers) {
                     //We insert each receiver id along with the message id, in the messages_receivers table
                     mrDAO.insertMessageReceivers(messageId, receiver.getId());
-                    // And register in each receiver's inbox
+                    // And register the message in each receiver's inbox
                     ucmDAO.insertUserContainerMessage(receiver.getId(), INBOX, messageId);
                 }
             } else System.out.println("Unknown error. Message was not sent.");

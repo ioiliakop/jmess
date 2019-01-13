@@ -10,11 +10,11 @@ import MessagingApp.Menus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.OldMenus.Services.getMessagesFromMessageIds;
-import static MessagingApp.OldMenus.Services.printMessages;
+import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
+import static MessagingApp.Menus.Services.printMessages;
 
 
-/* User option that prints all user messages in container passed as parameter */
+/* User option that prints all user messages in the container (Inbox/Sentbox etc.) passed as parameter */
 public class ViewContainerMessagesOption extends MenuOption {
 
     private MessageContainers container;

@@ -12,6 +12,8 @@ public interface UserContainerMessageDAO {
 
     int updateUserContainerMessage(long userId, MessageContainers container, long messageId);
 
+    int updateAllUserContainerMessages(MessageContainers originalContainer, long userId, MessageContainers targetContainer);
+
     int deleteUserAllContainerMessages(long userId, MessageContainers container);
 
     int deleteUserContainerMessage(long userId, MessageContainers container, long messageId);

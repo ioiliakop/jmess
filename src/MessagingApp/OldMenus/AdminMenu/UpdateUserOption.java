@@ -7,7 +7,7 @@ import MessagingApp.OldMenus.MenuOption;
 import MessagingApp.OldMenus.AdminMenu.UpdateUserMenu.UpdateUserMenu;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.OldMenus.Services.printUserInfo;
+import static MessagingApp.Menus.Services.printUserInfo;
 
 public class UpdateUserOption extends MenuOption {
 

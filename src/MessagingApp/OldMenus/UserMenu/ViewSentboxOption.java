@@ -10,8 +10,8 @@ import java.util.List;
 
 import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.OldMenus.Services.getMessagesFromMessageIds;
-import static MessagingApp.OldMenus.Services.printMessages;
+import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
+import static MessagingApp.Menus.Services.printMessages;
 
 public class ViewSentboxOption extends MenuOption {
 

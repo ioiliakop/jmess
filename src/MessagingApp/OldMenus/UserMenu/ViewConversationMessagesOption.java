@@ -4,8 +4,8 @@ import MessagingApp.Entities.User;
 import MessagingApp.OldMenus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.inputUsername;
-//import static MessagingApp.OldMenus.Services.conversationExists;
-import static MessagingApp.OldMenus.Services.getDAOUser;
+//import static MessagingApp.Menus.Services.conversationExists;
+import static MessagingApp.Menus.Services.getDAOUser;
 
 public class ViewConversationMessagesOption extends MenuOption {
 

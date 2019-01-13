@@ -11,8 +11,8 @@ import java.util.List;
 import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
 import static MessagingApp.Entities.FinalEntities.MessageContainers.TRASH;
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.OldMenus.Services.getMessagesFromMessageIds;
-import static MessagingApp.OldMenus.Services.printMessages;
+import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
+import static MessagingApp.Menus.Services.printMessages;
 
 
 public class DeleteMessageFromInboxOption extends MenuOption {

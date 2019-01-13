@@ -11,8 +11,8 @@ import MessagingApp.OldMenus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.OldMenus.Services.getMessageIdsFromMessages;
-import static MessagingApp.OldMenus.Services.printMessages;
+import static MessagingApp.Menus.Services.getMessageIdsFromMessages;
+import static MessagingApp.Menus.Services.printMessages;
 
 
 public class EditUserMessagesOption extends MenuOption {
