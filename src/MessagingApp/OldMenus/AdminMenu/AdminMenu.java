@@ -5,7 +5,7 @@ import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.CommonOptions.ViewAllUsersOption;
 
 /**
- * Menu presented to the admin of the system
+ * Menu with admin options
  * Currently provides ability to
  * - View all users
  * - Create a user

@@ -38,10 +38,6 @@ public class Services {
         return usrDAO.getUser(id).getUsername();
     }
 
-    public static List<User> getAllDAOUsers() {
-        UserDAO usrDAO = new MySQLUserDAO();
-        return usrDAO.getAllUsers();
-    }
 
 /*    public static List<Message> getUserMessages(USER user) {
         MessageDAO    msgDAO       = new MySQLMessageDAO();
@@ -103,18 +99,18 @@ public class Services {
 /*    public static String printMessage(Message message) {
 
         return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
-                "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime() +
+                "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
                 "\n\tMessage: " + m.getMessageBody();
     }*/
 
     public static void printMessages(List<Message> messages) {
         for (Message m : messages) {
             String senderName   = assignUsernameFromUserId(m.getSenderId());
-            String receiverName = assignUsernameFromUserId(m.getReceiverId());
+//            String receiverName = assignUsernameFromUserId(m.getReceiverId());
 
-            System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
-                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateTime() +
-                    "\n\tMessage: " + m.getMessageBody());
+//            System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
+//                    "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
+//                    "\n\tMessage: " + m.getMessageBody());
         }
         System.out.println("\n");
     }

@@ -24,10 +24,9 @@ public class MenuUtils {
     public static boolean requestConfirmation(String message) {
         String  input = "";
         Scanner sc    = new Scanner(System.in);
-//        System.out.print(message);
 
         while (true) {
-            System.out.print(message + " (y/n)");
+            System.out.print(message + " (y/n) ");
             input = sc.nextLine().toLowerCase();
             if (input.equals("y") || input.equals("yes"))
                 return true;
@@ -42,7 +41,7 @@ public class MenuUtils {
         System.out.print("Enter username: ");
         String inputMessage = sc.nextLine();
         if (inputMessage.length() > 20) {
-            System.out.println("Username is limited to 20 characters. Rest will be skipped. Sorry :/");
+            System.out.println("Username is limited to 20 characters. Try a shorter username.");
             inputMessage = inputMessage.substring(0, 19);
         }
         return inputMessage;

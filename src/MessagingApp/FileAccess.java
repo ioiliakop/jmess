@@ -11,10 +11,11 @@ public class FileAccess {
     public static void appendMessageToFile(Message message) {
 
         try {
-            //Specify the file name and path here
+            // We specify the file name and path here
             File file = new File("messages.txt");
 
-            /* This logic is to create the file if the
+            /*
+             * This logic is to create the file if the
              * file is not already present
              */
             if (!file.exists()) {
