@@ -13,8 +13,8 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
 public class UpdateUsernameOption extends MenuOption {
 
-    public UpdateUsernameOption(User selectedUser) {
-        super(selectedUser, "Update " + selectedUser.getUsername() + "'s username");
+    public UpdateUsernameOption(User user) {
+        super(user, "Update " + user.getUsername() + "'s username");
     }
 
     @Override
@@ -25,11 +25,15 @@ public class UpdateUsernameOption extends MenuOption {
 
         if (user == null) {
 
-            if (requestConfirmation("Username will be changed from " + this.getUser().getUsername() + " to " + newUsername + ".")) {
-                this.getUser().setUsername(newUsername);
-                if (usrDAO.updateUser(this.getUser())==1) System.out.println("Username successfully updated.");
+            if (requestConfirmation("Username will be changed to " + newUsername + ". Proceed? ")) {
+
+                User updatedUser = this.getUser();
+                updatedUser.setUsername(newUsername);
+                if (usrDAO.updateUser(updatedUser) == 1) System.out.println("Username successfully updated.");
                 else System.out.println("Unknown error. User was not updated.");
-            }
+
+            } else System.out.println("Update cancelled.");
+
         } else System.out.println("Sorry, username not available.");
 
         pauseExecution();

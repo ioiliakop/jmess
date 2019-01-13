@@ -12,5 +12,4 @@ public class AdminOptionsMenu extends Menu {
         this.add(new DeleteUserOption());
     }
 
-
 }

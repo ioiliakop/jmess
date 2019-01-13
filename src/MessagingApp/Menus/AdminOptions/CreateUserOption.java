@@ -20,11 +20,13 @@ public class CreateUserOption extends MenuOption {
         User    user     = usrDAO.getUser(username);
 
         if (user == null) {
-            String password = inputPassword();
+
+            String password    = inputPassword();
             String passwordMD5 = getMD5Of(password);
-            long   userId   = usrDAO.insertUser(username, passwordMD5);
+            long   userId      = usrDAO.insertUser(username, passwordMD5);
             if (userId != 0) System.out.println("User successfully created with id " + userId + ".");
             else System.out.println("Unknown Error. User was not created.");
+
         } else System.out.println("Sorry, entered username is not available.");
 
         pauseExecution();

@@ -32,9 +32,12 @@ public class UpdateUserOption extends MenuOption {
         if (targetUser != null) {
 
             if (targetUser.getStatusId() == ACTIVE.ID()) {
+
                 Menu updateUserMenu = new UpdateUserOptionsMenu(targetUser);
                 updateUserMenu.execute();
+
             } else System.out.println("Selected user has been deleted.");
+
         } else System.out.println("User not found.");
     }
 }

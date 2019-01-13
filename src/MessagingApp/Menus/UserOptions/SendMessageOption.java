@@ -1,4 +1,13 @@
 package MessagingApp.Menus.UserOptions;
 
-public class SendMessageOption {
+import MessagingApp.Menus.MenuOption;
+
+public class SendMessageOption extends MenuOption {
+
+
+
+    @Override
+    public void execute() {
+
+    }
 }
