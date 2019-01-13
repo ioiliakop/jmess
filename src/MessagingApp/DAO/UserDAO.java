@@ -21,8 +21,10 @@ public interface UserDAO {
 
     long insertUser(String username, String password, Roles role);
 
-    /* default role will be 1, simple user */
+    /* default role and status will be 1, active user */
     long insertUser(String username, String password);
+
+    int updateUser(User user);
 
     int updateUserNameRole(String username, Roles role, long userId);
 

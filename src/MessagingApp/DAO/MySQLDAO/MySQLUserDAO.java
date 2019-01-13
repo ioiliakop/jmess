@@ -16,18 +16,18 @@ import static MessagingApp.Entities.FinalEntities.Roles.USER;
 
 public class MySQLUserDAO implements UserDAO {
 
-    private static final String SQL_USER_SELECT_ALL             = "SELECT * FROM users";
-    private static final String SQL_USER_SELECT_ALL_ACTIVE      = "SELECT * FROM users WHERE status_id = 1";
-    private static final String SQL_USER_SELECT_BY_ID           = "SELECT * FROM users WHERE id = ?";
-    private static final String SQL_USER_SELECT_BY_NAME         = "SELECT * FROM users WHERE username = ?";
-    private static final String SQL_USER_SELECT_BY_NAME_PASS    = "SELECT * FROM users WHERE username = ? AND password = MD5(?) AND status_id = 1";
-    private static final String SQL_USER_INSERT                 = "INSERT INTO users(username,password,role_id) VALUES(?,MD5(?),?)";
-    //    private static final String SQL_USER_UPDATE              = "UPDATE users SET username = ?, password = SHA(?), role_id = ? WHERE id = ?";
-    private static final String SQL_USER_NAME_ROLE_UPDATE       = "UPDATE users SET username = ?, role_id = ? WHERE id = ?";
-    private static final String SQL_USER_NAME_STATUS_UPDATE     = "UPDATE users SET username = ?, status_id = ? WHERE id = ?";
+    private static final String SQL_USER_SELECT_ALL              = "SELECT * FROM users";
+    private static final String SQL_USER_SELECT_ALL_ACTIVE       = "SELECT * FROM users WHERE status_id = 1";
+    private static final String SQL_USER_SELECT_BY_ID            = "SELECT * FROM users WHERE id = ?";
+    private static final String SQL_USER_SELECT_BY_NAME          = "SELECT * FROM users WHERE username = ?";
+    private static final String SQL_USER_SELECT_BY_NAME_PASS     = "SELECT * FROM users WHERE username = ? AND password = ? AND status_id = 1";
+    private static final String SQL_USER_INSERT                  = "INSERT INTO users(username,password,role_id) VALUES(?,?,?)";
+    private static final String SQL_USER_UPDATE                  = "UPDATE users SET username = ?, password = ?, role_id = ?, status_id = ? WHERE id = ?";
+    private static final String SQL_USER_NAME_ROLE_UPDATE        = "UPDATE users SET username = ?, role_id = ? WHERE id = ?";
+    private static final String SQL_USER_NAME_STATUS_UPDATE      = "UPDATE users SET username = ?, status_id = ? WHERE id = ?";
     private static final String SQL_USER_NAME_ROLE_STATUS_UPDATE = "UPDATE users SET username = ?, role_id = ?, status_id = ? WHERE id = ?";
-    private static final String SQL_USER_PASSWORD_UPDATE        = "UPDATE users SET password = MD5(?) WHERE id = ?";
-    private static final String SQL_USER_DELETE                 = "DELETE FROM users WHERE id = ?";
+    private static final String SQL_USER_PASSWORD_UPDATE         = "UPDATE users SET password = ? WHERE id = ?";
+    private static final String SQL_USER_DELETE                  = "DELETE FROM users WHERE id = ?";
 
 
     @Override
@@ -165,6 +165,28 @@ public class MySQLUserDAO implements UserDAO {
     @Override
     public long insertUser(String username, String password) {
         return insertUser(username, password, USER);
+    }
+
+    @Override
+    public int updateUser(User user) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_UPDATE)) {
+
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, user.getPassword());
+            pstmt.setLong(3, user.getRoleId());
+            pstmt.setLong(4, user.getStatusId());
+            pstmt.setLong(5, user.getId());
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated == 1) {
+                return rowsUpdated;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
     }
 
 

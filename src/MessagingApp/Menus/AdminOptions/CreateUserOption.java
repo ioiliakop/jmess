@@ -5,9 +5,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Menus.MenuUtils.inputPassword;
-import static MessagingApp.Menus.MenuUtils.inputUsername;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
+import static MessagingApp.Menus.MenuUtils.*;
 
 public class CreateUserOption extends MenuOption {
 
@@ -23,7 +21,8 @@ public class CreateUserOption extends MenuOption {
 
         if (user == null) {
             String password = inputPassword();
-            long   userId   = usrDAO.insertUser(username, password);
+            String passwordMD5 = getMD5Of(password);
+            long   userId   = usrDAO.insertUser(username, passwordMD5);
             if (userId != 0) System.out.println("User successfully created with id " + userId + ".");
             else System.out.println("Unknown Error. User was not created.");
         } else System.out.println("Sorry, entered username is not available.");

@@ -26,10 +26,12 @@ public class UpdateUsernameOption extends MenuOption {
         if (user == null) {
 
             if (requestConfirmation("Username will be changed from " + this.getUser().getUsername() + " to " + newUsername + ".")) {
-                usrDAO.updateUserNameRole(newUsername, selectedUser.getId());
-                System.out.println("Username updated to: " + newUsername);
+                this.getUser().setUsername(newUsername);
+                if (usrDAO.updateUser(this.getUser())==1) System.out.println("Username successfully updated.");
+                else System.out.println("Unknown error. User was not updated.");
             }
         } else System.out.println("Sorry, username not available.");
+
         pauseExecution();
 
     }

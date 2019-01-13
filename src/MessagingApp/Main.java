@@ -1,14 +1,14 @@
 package MessagingApp;
 
 
-import static MessagingApp.Menus.MenuUtils.getMD5OfString;
+import static MessagingApp.Menus.MenuUtils.getMD5Of;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        String teststr = "admin";
-        System.out.println(getMD5OfString(teststr));
+//        String teststr = "admin";
+//        System.out.println(getMD5Of(teststr));
 
 
 /*        public enum Tests{

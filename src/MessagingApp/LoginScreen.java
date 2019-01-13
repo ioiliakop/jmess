@@ -11,9 +11,7 @@ import MessagingApp.OldMenus.UserMenu.UserMenu;
 import MessagingApp.OldMenus.ViewerMenu.ViewerMenu;
 
 import static MessagingApp.Entities.FinalEntities.Roles.*;
-import static MessagingApp.Menus.MenuUtils.inputPassword;
-import static MessagingApp.Menus.MenuUtils.inputUsername;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.MenuUtils.*;
 
 public class LoginScreen {
 
@@ -24,9 +22,10 @@ public class LoginScreen {
             System.out.println("\nPlease enter login credentials");
             String username = inputUsername();
             String password = inputPassword();
+            String passwordMD5 = getMD5Of(password);
 
             UserDAO usrDAO = new MySQLUserDAO();
-            User    user   = usrDAO.getActiveUserByUsernameAndPassword(username, password);
+            User    user   = usrDAO.getActiveUserByUsernameAndPassword(username, passwordMD5);
 
             if (user == null) {
                 System.out.println("\nUsername or password not correct.");

@@ -76,7 +76,11 @@ public class MenuUtils {
         return password;
     }
 
-    public static String getMD5OfString(String string){
+    /*
+    * Helper method that returns the MD5 hash of the string passed as parameter
+    * Used for calculating the MD5 hash of the password
+    */
+    public static String getMD5Of(String string){
         String myHash = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
