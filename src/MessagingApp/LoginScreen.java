@@ -5,6 +5,8 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.AdminOptions.AdminOptionsMenu;
 import MessagingApp.Menus.Menu;
+import MessagingApp.Menus.RoleOptions.RoleOptionsMenu;
+import MessagingApp.Menus.RoleOptions.ViewUserMessagesOption;
 import MessagingApp.Menus.UserOptions.UserOptionsMenu;
 import MessagingApp.OldMenus.DeleterMenu.DeleterMenu;
 import MessagingApp.OldMenus.EditorMenu.EditorMenu;
@@ -43,8 +45,12 @@ public class LoginScreen {
                 EditorMenu editorMenu = new EditorMenu(user);
                 editorMenu.editorMenuExecute();
             } else if (user.getRoleId() == VIEWER.ID()) {
-                ViewerMenu viewMenu = new ViewerMenu(user);
-                viewMenu.viewerMenuExecute();
+//                ViewerMenu viewMenu = new ViewerMenu(user);
+//                viewMenu.viewerMenuExecute();
+                Menu viewerMenu = new Menu(user);
+                viewerMenu.add(new RoleOptionsMenu(user));
+                viewerMenu.add(new UserOptionsMenu(user,"User Options"));
+                viewerMenu.execute();
             } else {
 //                UserMenu usrMenu = new UserMenu(user);
 //                usrMenu.userMenuExecute();

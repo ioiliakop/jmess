@@ -32,4 +32,6 @@ public class UserOptionsMenu extends Menu {
         this.add(new ViewContainerMessagesOption(user, SENTBOX));
         this.add(new DeleteMessageOptionsMenu(user));
     }
+
+
 }

@@ -52,7 +52,11 @@ public class Menu extends MenuOption {
     }
 
     public void setMenuTitle(String menuTitle) {
-        this.menuTitle = menuTitle;
+        this.menuTitle = String.format(MENU_TITLE_TEMPLATE, menuTitle);
+    }
+
+    public void setExitPrompt(String exitPrompt) {
+        this.exitPrompt = exitPrompt;
     }
 
     /* Method to add menu options */
