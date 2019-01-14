@@ -8,7 +8,7 @@ import MessagingApp.Entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
-import static MessagingApp.Entities.FinalEntities.getUserRoleFromRoleId;
+import static MessagingApp.Entities.FinalEntities.getRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.*;
 
 
@@ -38,7 +38,7 @@ public class UpdateUserRoleOption extends UpdateUserMenuOption {
             * so we don't need to try/catch a NumberFormatException here, when we parse string to Int
             * */
             int newRoleId = Integer.parseInt(newRoleInput);
-            Roles newRole = getUserRoleFromRoleId(newRoleId);
+            Roles newRole = getRoleFromRoleId(newRoleId);
 
             UserDAO usrDAO = new MySQLUserDAO();
             User user = this.getTargetUser();
@@ -56,7 +56,7 @@ public class UpdateUserRoleOption extends UpdateUserMenuOption {
 
             if (requestConfirmation("Role will be changed from " + getRoleNameById(user.getRoleId()) + " to " + newRoleName + ".")) {
                 UserDAO usrDAO = new MySQLUserDAO();
-                usrDAO.updateUser(user.getUsername(), user.getPassword(), getUserRoleFromRoleId(user.getRoleId()) , user.getId());
+                usrDAO.updateUser(user.getUsername(), user.getPassword(), getRoleFromRoleId(user.getRoleId()) , user.getId());
                 System.out.println("USER updated.");
             }
         } else System.out.println("Sorry, unknown role.");

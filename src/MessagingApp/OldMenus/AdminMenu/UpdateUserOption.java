@@ -7,7 +7,7 @@ import MessagingApp.OldMenus.MenuOption;
 import MessagingApp.OldMenus.AdminMenu.UpdateUserMenu.UpdateUserMenu;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.Menus.Services.printUserInfo;
+//import static MessagingApp.Menus.Services.printUserInfo;
 
 public class UpdateUserOption extends MenuOption {
 
@@ -25,7 +25,7 @@ public class UpdateUserOption extends MenuOption {
 
         if (user != null) {
             System.out.print("USER with following info will be updated:");
-            printUserInfo(user);
+//            printUserInfo(user);
 
             // If all is well, the UpdateUser submenu is called and run
             UpdateUserMenu updMenu = new UpdateUserMenu(user);

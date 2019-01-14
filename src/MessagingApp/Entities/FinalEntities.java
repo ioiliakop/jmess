@@ -2,6 +2,8 @@ package MessagingApp.Entities;
 
 
 import static MessagingApp.Entities.FinalEntities.Roles.*;
+import static MessagingApp.Entities.FinalEntities.Status.ACTIVE;
+import static MessagingApp.Entities.FinalEntities.Status.DELETED;
 
 /**
  * 'Roles', 'Containers' and 'Status' values are finite and final
@@ -71,12 +73,18 @@ public class FinalEntities {
     }
 
     /* Helper method */
-    public static Roles getUserRoleFromRoleId(long roleId) {
+    public static Roles getRoleFromRoleId(long roleId) {
         if (roleId == 5) return ADMIN;
         if (roleId == 4) return DELETER;
         if (roleId == 3) return EDITOR;
         if (roleId == 2) return VIEWER;
         return USER;
+    }
+
+
+    public static Status getStatusFromStatusId(long statusId) {
+        if (statusId == 1) return ACTIVE;
+        return DELETED;
     }
 
 }
