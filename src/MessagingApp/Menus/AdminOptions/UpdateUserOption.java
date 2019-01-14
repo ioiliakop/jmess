@@ -9,6 +9,7 @@ import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Entities.FinalEntities.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
+import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
 /* This class is an admin option
  * It prompts the admin to enter a user to update
@@ -39,5 +40,6 @@ public class UpdateUserOption extends MenuOption {
             } else System.out.println("Selected user has been deleted.");
 
         } else System.out.println("User not found.");
+        pauseExecution();
     }
 }

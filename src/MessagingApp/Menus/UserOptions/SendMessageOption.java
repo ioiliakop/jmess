@@ -30,6 +30,7 @@ public class SendMessageOption extends MenuOption {
     public void execute() {
 
         // In the first section we ask and get from the user, a list of users he wants to message
+        // He can input one or more usernames for recipients of the message
         List<User> messageReceivers = new ArrayList<>();
         do {
             String  username = inputGeneric("Which user do you want to message?\n");

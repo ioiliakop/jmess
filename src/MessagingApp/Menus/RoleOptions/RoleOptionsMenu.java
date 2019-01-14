@@ -3,7 +3,6 @@ package MessagingApp.Menus.RoleOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 
-import static MessagingApp.Entities.FinalEntities.Roles.VIEWER;
 import static MessagingApp.Entities.FinalEntities.getRoleFromRoleId;
 
 public class RoleOptionsMenu extends Menu {
@@ -12,6 +11,6 @@ public class RoleOptionsMenu extends Menu {
         super(user);
         this.setMenuLine(getRoleFromRoleId(user.getRoleId()) + " Options");
         this.setMenuTitle(this.getMenuLine());
-        if (user.getRoleId()==VIEWER.ID()) this.add(new ViewUserMessagesOption());
+        this.add(new RoleUserMessagesOption(user));
     }
 }

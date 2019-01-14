@@ -38,7 +38,7 @@ public class DeleteAllMessagesFromContainerOption extends MenuOption {
                 } else System.out.println("Unknown error. No messages were deleted.");
 
             }
-        } else System.out.println("You have no messages to delete...");
+        } else System.out.println("There are no messages to delete...");
 
         pauseExecution();
     }

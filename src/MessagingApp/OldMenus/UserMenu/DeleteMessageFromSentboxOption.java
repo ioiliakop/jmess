@@ -10,7 +10,7 @@ import java.util.List;
 
 import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
 import static MessagingApp.Entities.FinalEntities.MessageContainers.TRASH;
-import static MessagingApp.Menus.MenuUtils.getMessageIdInList;
+import static MessagingApp.Menus.Services.getMessageIdInList;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.Services.getMessagesFromMessageIds;

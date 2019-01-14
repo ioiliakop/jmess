@@ -4,6 +4,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
 import MessagingApp.DAO.UserContainerMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
+import MessagingApp.Menus.Services;
 import MessagingApp.OldMenus.MenuOption;
 
 import java.util.List;
@@ -38,7 +39,7 @@ public class DeleteMessageFromInboxOption extends MenuOption {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);
             printMessages(inboxMessages);
 
-            long selectedMessageId = getMessageIdInList(messageIdsList);
+            long selectedMessageId = Services.getMessageIdInList(messageIdsList);
 
             if (selectedMessageId != 0) {
 

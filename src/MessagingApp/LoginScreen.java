@@ -6,11 +6,8 @@ import MessagingApp.Entities.User;
 import MessagingApp.Menus.AdminOptions.AdminOptionsMenu;
 import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.RoleOptions.RoleOptionsMenu;
-import MessagingApp.Menus.RoleOptions.ViewUserMessagesOption;
 import MessagingApp.Menus.UserOptions.UserOptionsMenu;
-import MessagingApp.OldMenus.DeleterMenu.DeleterMenu;
 import MessagingApp.OldMenus.EditorMenu.EditorMenu;
-import MessagingApp.OldMenus.ViewerMenu.ViewerMenu;
 
 import static MessagingApp.Entities.FinalEntities.Roles.*;
 import static MessagingApp.Menus.MenuUtils.*;
@@ -39,8 +36,12 @@ public class LoginScreen {
                 adminMenu.add(new UserOptionsMenu(user, "User Options"));
                 adminMenu.execute();
             } else if (user.getRoleId() == DELETER.ID()) {
-                DeleterMenu deleterMenu = new DeleterMenu(user);
-                deleterMenu.deleterMenuExecute();
+//                DeleterMenu deleterMenu = new DeleterMenu(user);
+//                deleterMenu.deleterMenuExecute();
+                Menu deleterMenu = new Menu(user);
+                deleterMenu.add(new RoleOptionsMenu(user));
+                deleterMenu.add(new UserOptionsMenu(user,"User Options"));
+                deleterMenu.execute();
             }else if (user.getRoleId() == EDITOR.ID()) {
                 EditorMenu editorMenu = new EditorMenu(user);
                 editorMenu.editorMenuExecute();

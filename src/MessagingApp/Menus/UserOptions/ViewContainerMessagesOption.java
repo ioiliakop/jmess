@@ -11,7 +11,7 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Menus.MenuUtils.getMessageIdInList;
+import static MessagingApp.Menus.Services.getMessageIdInList;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.Services.getMessageString;
@@ -54,7 +54,7 @@ public class ViewContainerMessagesOption extends MenuOption {
                 } while (requestConfirmation("Would you like to view another message?"));
             }
 
-        } else System.out.println("You have no messages... :(\nDon't feel lonely, start chatting!! :D");
+        } else System.out.println("No messages in " + container);
 
         pauseExecution();
     }

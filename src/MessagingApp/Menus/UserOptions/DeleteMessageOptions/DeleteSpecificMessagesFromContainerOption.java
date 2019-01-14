@@ -10,7 +10,7 @@ import MessagingApp.Menus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Entities.FinalEntities.MessageContainers.TRASH;
-import static MessagingApp.Menus.MenuUtils.getMessageIdInList;
+import static MessagingApp.Menus.Services.getMessageIdInList;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
@@ -55,7 +55,7 @@ public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
                 } // no need to print related message here. It's already printed by getMessageIdInList
 
             } else {
-                System.out.println("You have no messages in " + container.name() + " to delete...");
+                System.out.println("There are no messages in " + container + " to delete...");
                 break;
             }
             // TODO adjust exit loop condition. It asks to repeat even if no messages. Added break temporarily

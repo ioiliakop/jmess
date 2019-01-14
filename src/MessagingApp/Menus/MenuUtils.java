@@ -3,7 +3,6 @@ package MessagingApp.Menus;
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 import java.util.Scanner;
 
 public class MenuUtils {
@@ -122,34 +121,6 @@ public class MenuUtils {
         Scanner sc = new Scanner(System.in);
         System.out.print(message);
         return sc.nextLine();
-    }
-
-    /*
-     * Helper method that gets a message Id from user input
-     * First validates input if it's valid number type, returns 0 if not
-     * Then compares it against list of message IDs passed as parameter
-     * Returns the message ID if it is contained in the list or 0 otherwise
-     */
-    public static long getMessageIdInList(List<Long> messageIds) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter messageId: ");
-        String input = sc.nextLine();
-
-        long messageId = 0;
-        try {
-            messageId = Long.parseLong(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Sorry, not a valid message id.");
-        }
-
-        if (messageId != 0) {
-            if (!messageIds.contains(messageId)) {
-                System.out.println("Selected message not available.");
-                messageId = 0;
-            }
-        }
-
-        return messageId;
     }
 
 }
