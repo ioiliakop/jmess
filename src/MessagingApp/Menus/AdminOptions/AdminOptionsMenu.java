@@ -10,6 +10,7 @@ public class AdminOptionsMenu extends Menu {
         this.add(new CreateUserOption());
         this.add(new UpdateUserOption());
         this.add(new DeleteUserOption());
+        this.add(new RestoreDeletedUser());
         this.add(new ViewAllUsersOption());
     }
 

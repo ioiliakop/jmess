@@ -5,7 +5,6 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Entities.FinalEntities.*;
 import static MessagingApp.Entities.FinalEntities.Status.DELETED;
 import static MessagingApp.Entities.FinalEntities.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.*;
