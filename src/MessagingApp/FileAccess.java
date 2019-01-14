@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import static MessagingApp.Menus.Services.getMessageString;
+
 public class FileAccess {
 
     public static void appendMessageToFile(Message message) {
@@ -24,7 +26,7 @@ public class FileAccess {
 
             FileWriter fw = new FileWriter(file, true);
 
-            fw.write(message.toString());
+            fw.write(getMessageString(message));
 
             fw.close();
 

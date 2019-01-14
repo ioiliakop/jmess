@@ -20,7 +20,7 @@ import static MessagingApp.Menus.MenuUtils.inputGeneric;
 public class UpdateUserOption extends MenuOption {
 
     public UpdateUserOption() {
-        super("Update a user account");
+        super("Update an active user account");
     }
 
     @Override

@@ -49,7 +49,7 @@ public class UpdateUserRoleOption extends MenuOption {
 
             } else System.out.println("Update cancelled.");
 
-        } else System.out.println("false");
+        } else System.out.println("Not a valid role.");
 
         pauseExecution();
     }

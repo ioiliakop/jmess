@@ -98,12 +98,12 @@ public class Services {
         return false;
     }*/
 
-/*    public static String printMessage(Message message) {
-
-        return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
-                "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
-                "\n\tMessage: " + m.getMessageBody();
-    }*/
+//    public static String getMessageString(Message message) {
+//
+//        return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverName +
+//                "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
+//                "\n\tMessage: " + m.getMessageBody();
+//    }
 
 /*    public static void printMessages(List<Message> messages) {
         if (!messages.isEmpty()) {
@@ -140,12 +140,16 @@ public class Services {
         }
     }
 
-    public static void viewMessage(Message m) {
+    /*
+     * Helper method that returns a string with all message info
+     * So it can be more understandable and user friendly
+     */
+    public static String getMessageString(Message message) {
         UserDAO             usrDAO = new MySQLUserDAO();
         MessageReceiversDAO mrDAO  = new MySQLMessageReceiversDAO();
 
-        String        senderName  = assignUsernameFromUserId(m.getSenderId());
-        List<Long>    receiverIds = mrDAO.getMessageReceiverIds(m.getId());
+        String        senderName  = assignUsernameFromUserId(message.getSenderId());
+        List<Long>    receiverIds = mrDAO.getMessageReceiverIds(message.getId());
         StringBuilder receiversSb = new StringBuilder();
 
         for (long receiverId : receiverIds) {
@@ -153,9 +157,9 @@ public class Services {
             receiversSb.append(receiver.getUsername() + " ");
         }
 
-        System.out.println("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiversSb +
-                "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
-                "\n\tMessage: " + m.getMessageBody());
+        return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiversSb +
+                "\t\tDateTime: " + message.getMessageDateCreated() + "\n\tSubject: " + message.getMessageSubject() +
+                "\n\tMessage: " + message.getMessageBody();
     }
 
     public static String getMessageReceiverNames(Message message) {
@@ -185,7 +189,7 @@ public class Services {
         String[] names  = new String[2];
         names[0] = sender.getUsername();
 
-        List<Long>    receiverIds       = mrDAO.getMessageReceiverIds(message.getId());
+        List<Long>    receiverIds = mrDAO.getMessageReceiverIds(message.getId());
         StringBuilder receiversSb = new StringBuilder();
 
         for (long receiverId : receiverIds) {
