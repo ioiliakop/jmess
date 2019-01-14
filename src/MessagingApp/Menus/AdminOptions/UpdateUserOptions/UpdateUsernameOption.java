@@ -2,11 +2,9 @@ package MessagingApp.Menus.AdminOptions.UpdateUserOptions;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Entities.FinalEntities;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Entities.FinalEntities.getUserRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
@@ -14,7 +12,7 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 public class UpdateUsernameOption extends MenuOption {
 
     public UpdateUsernameOption(User user) {
-        super(user, "Update " + user.getUsername() + "'s username");
+        super(user, "Update user's username");
     }
 
     @Override

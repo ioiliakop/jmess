@@ -7,7 +7,7 @@ import MessagingApp.Menus.Menu;
 public class UpdateUserOptionsMenu extends Menu {
 
     public UpdateUserOptionsMenu(User targetUser) {
-        super(targetUser,"","Update " + targetUser.getUsername());
+        super(targetUser,"","Update user with id: " + targetUser.getId());
         this.add(new UpdateUsernameOption(targetUser));
         this.add(new UpdatePasswordOption(targetUser));
         this.add(new UpdateUserRoleOption(targetUser));

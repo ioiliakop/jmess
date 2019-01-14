@@ -9,7 +9,6 @@ import MessagingApp.Menus.MenuOption;
 import java.util.ArrayList;
 import java.util.List;
 
-import static MessagingApp.Entities.FinalEntities.getUserRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
@@ -17,7 +16,7 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 public class UpdateUserRoleOption extends MenuOption {
 
     public UpdateUserRoleOption(User user) {
-        super(user, "Update " + user.getUsername() + "'s role");
+        super(user, "Update user's role");
     }
 
     @Override

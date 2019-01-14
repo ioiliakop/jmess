@@ -105,7 +105,7 @@ public class Services {
                 "\n\tMessage: " + m.getMessageBody();
     }*/
 
-    public static void printMessages(List<Message> messages) {
+/*    public static void printMessages(List<Message> messages) {
         if (!messages.isEmpty()) {
             UserDAO             usrDAO = new MySQLUserDAO();
             MessageReceiversDAO mrDAO  = new MySQLMessageReceiversDAO();
@@ -120,6 +120,20 @@ public class Services {
                 }
 
                 System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiversSb +
+                        "\t\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated());
+            }
+            System.out.println("\n");
+        }
+    }*/
+
+    public static void printMessages(List<Message> messages) {
+        if (!messages.isEmpty()) {
+
+            for (Message m : messages) {
+                String senderName           = assignUsernameFromUserId(m.getSenderId());
+                String messageReceiverNames = getMessageReceiverNames(m);
+
+                System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + messageReceiverNames +
                         "\t\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated());
             }
             System.out.println("\n");
@@ -142,6 +156,45 @@ public class Services {
         System.out.println("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiversSb +
                 "\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated() +
                 "\n\tMessage: " + m.getMessageBody());
+    }
+
+    public static String getMessageReceiverNames(Message message) {
+        UserDAO             usrDAO = new MySQLUserDAO();
+        MessageReceiversDAO mrDAO  = new MySQLMessageReceiversDAO();
+
+        List<Long>    receiverIds       = mrDAO.getMessageReceiverIds(message.getId());
+        StringBuilder receiversSbuilder = new StringBuilder();
+
+        for (long receiverId : receiverIds) {
+            User receiver = usrDAO.getUser(receiverId);
+            receiversSbuilder.append(receiver.getUsername() + " ");
+        }
+        return receiversSbuilder.toString();
+    }
+
+    /*
+     * Helper method that returns a String array carrying 2 vales
+     * The first one is the username of the sender of the message
+     * The second is a String with all the usernames of the receivers of the message
+     */
+    public static String[] getMessageSenderAndReceiverNames(Message message) {
+        UserDAO             usrDAO = new MySQLUserDAO();
+        MessageReceiversDAO mrDAO  = new MySQLMessageReceiversDAO();
+
+        User     sender = usrDAO.getUser(message.getSenderId());
+        String[] names  = new String[2];
+        names[0] = sender.getUsername();
+
+        List<Long>    receiverIds       = mrDAO.getMessageReceiverIds(message.getId());
+        StringBuilder receiversSb = new StringBuilder();
+
+        for (long receiverId : receiverIds) {
+            User receiver = usrDAO.getUser(receiverId);
+            receiversSb.append(receiver.getUsername() + " ");
+        }
+
+        names[1] = receiversSb.toString();
+        return names;
     }
 
 /*    public static void printUserInfo(User user) {

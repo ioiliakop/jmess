@@ -14,7 +14,7 @@ public interface MessageDAO {
 
     List<Message> getConversation(long user1Id, long user2Id);
 
-    /* date_time is assigned at the database by default during the insert operation */
+    /* date_created is assigned at the database by default during the insert operation */
     long insertMessage(String messageSubject, String messageBody, long senderId);
 
     int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId);
