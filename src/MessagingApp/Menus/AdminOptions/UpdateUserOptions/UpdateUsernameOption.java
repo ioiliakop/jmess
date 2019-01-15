@@ -12,7 +12,7 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 public class UpdateUsernameOption extends MenuOption {
 
     public UpdateUsernameOption(User user) {
-        super(user, "Update user's username");
+        super(user, "Update username");
     }
 
     @Override

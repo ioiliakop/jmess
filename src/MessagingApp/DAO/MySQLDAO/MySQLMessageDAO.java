@@ -19,6 +19,7 @@ public class MySQLMessageDAO implements MessageDAO {
 //            "(sender_id = ? and receiver_id = ?) or (sender_id = ? and receiver_id = ?) order by date_time";
     private static final String SQL_MESSAGE_INSERT                = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
     private static final String SQL_MESSAGE_UPDATE                = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
+    private static final String SQL_MESSAGE_UPDATE_SUBJECT_BODY   = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
     private static final String SQL_MESSAGE_DELETE                = "DELETE FROM messages WHERE id = ?";
 
 
@@ -143,7 +144,27 @@ public class MySQLMessageDAO implements MessageDAO {
         return 0;
     }
 
-//    @Override
+    @Override
+    public int updateMessage(Message message) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_UPDATE)) {
+
+            pstmt.setString(1, message.getMessageSubject());
+            pstmt.setString(2, message.getMessageBody());
+            pstmt.setLong(3, message.getId());
+
+            int rowsUpdated = pstmt.executeUpdate();
+            if (rowsUpdated == 1) {
+                return rowsUpdated;
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+/*    //    @Override
     public long insertMessage(String messageSubject, String messageBody, long senderId, long receiverId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_INSERT, Statement.RETURN_GENERATED_KEYS)) {
@@ -151,7 +172,6 @@ public class MySQLMessageDAO implements MessageDAO {
             pstmt.setString(1, messageSubject);
             pstmt.setString(2, messageBody);
             pstmt.setLong(3, senderId);
-            pstmt.setLong(4, receiverId);
 
             int insertedRows = pstmt.executeUpdate();
             if (insertedRows == 1) {
@@ -166,7 +186,7 @@ public class MySQLMessageDAO implements MessageDAO {
             ex.printStackTrace();
         }
         return 0;
-    }
+    }*/
 
     @Override
     public int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId) {

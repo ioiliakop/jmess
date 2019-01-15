@@ -10,7 +10,7 @@ import static MessagingApp.Menus.MenuUtils.*;
 public class UpdatePasswordOption extends MenuOption {
 
     public UpdatePasswordOption(User user) {
-        super(user, "Update user's password");
+        super(user, "Update password");
     }
 
     @Override

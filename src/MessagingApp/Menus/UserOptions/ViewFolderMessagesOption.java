@@ -20,11 +20,11 @@ import static MessagingApp.Menus.MessageServices.printMessages;
 
 
 /* User option that prints all user messages in the container (Inbox/Sentbox etc.) passed as parameter */
-public class ViewContainerMessagesOption extends MenuOption {
+public class ViewFolderMessagesOption extends MenuOption {
 
     private Folder container;
 
-    public ViewContainerMessagesOption(User user, Folder container) {
+    public ViewFolderMessagesOption(User user, Folder container) {
         super(user);
         this.container = container;
         this.setMenuLine("View messages in " + container.name());

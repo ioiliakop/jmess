@@ -11,28 +11,27 @@ import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
-public class RestoreDeletedUser extends MenuOption {
+public class RestoreDeletedUserOption extends MenuOption {
 
-    public RestoreDeletedUser() {
-        super("Restore a deleted user");
+    public RestoreDeletedUserOption() {
+        super("Reactivate a deleted user account");
     }
 
     @Override
     public void execute() {
-        String username = inputGeneric("Enter username of the deleted user to restore: ");
-        UserDAO        usrDAO   = new MySQLUserDAO();
-        User           user     = usrDAO.getUser(username);
+        String  username         = inputGeneric("Enter username of the deleted user to restore: ");
+        UserDAO usrDAO           = new MySQLUserDAO();
+        User    userToBeRestored = usrDAO.getUser(username);
 
-        if (user != null) {
+        if (userToBeRestored != null) {
 
-            if (user.getStatusId() == DELETED.ID()) {
+            if (userToBeRestored.getStatusId() == DELETED.ID()) {
 
-                if (requestConfirmation("User " + user.getUsername() + " will be restored.\nAre you sure? ")) {
+                if (requestConfirmation("User " + userToBeRestored.getUsername() + " will be restored.\nAre you sure? ")) {
 
-                    User deletedUser = this.getUser();
-                    deletedUser.setStatusId(ACTIVE.ID());
+                    userToBeRestored.setStatusId(ACTIVE.ID());
 
-                    if (usrDAO.updateUser(deletedUser) == 1) System.out.println("User successfully restored.");
+                    if (usrDAO.updateUser(userToBeRestored) == 1) System.out.println("User successfully restored.");
                     else System.out.println("Unknown Error. User was not restored.");
 
                 } else System.out.println("Operation was cancelled.");

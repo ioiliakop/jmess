@@ -108,12 +108,13 @@ public class MenuUtils {
     public static String inputMessageSubject() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter subject:");
-        String inputMessage = sc.nextLine();
-        if (inputMessage.length() > 100) {
-            System.out.println("Subject is limited to 100 characters. Rest will be skipped. Sorry :/");
-            inputMessage = inputMessage.substring(0, 99);
+        String input = sc.nextLine();
+        if (input.length() < 1 || input.length() > 100) {
+            System.out.println("Subject can't be empty or more than 100 characters.");
+            System.out.println("Please try again.");
+            return inputMessageSubject();
         }
-        return inputMessage;
+        return input;
     }
 
     /* Helper method that returns user input from console after printing message in parameter */

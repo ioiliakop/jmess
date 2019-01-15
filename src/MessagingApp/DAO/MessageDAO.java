@@ -17,6 +17,8 @@ public interface MessageDAO {
     /* date_created is assigned at the database by default during the insert operation */
     long insertMessage(String messageSubject, String messageBody, long senderId);
 
+    int updateMessage(Message message);
+
     int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId);
 
     int updateMessageSubjectOrBody(String messageSubjectOrBody, long messageId);

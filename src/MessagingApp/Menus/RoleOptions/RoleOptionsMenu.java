@@ -3,6 +3,7 @@ package MessagingApp.Menus.RoleOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 
+import static MessagingApp.Entities.Roles.Role.EDITOR;
 import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 
 public class RoleOptionsMenu extends Menu {
@@ -11,8 +12,8 @@ public class RoleOptionsMenu extends Menu {
         super(user);
         this.setMenuLine(getRoleFromRoleId(user.getRoleId()) + " Options");
         this.setMenuTitle(this.getMenuLine());
-
         this.add(new ViewAllMessagesOption());
+        if (user.getRoleId()>=EDITOR.ID()) this.add(new EditMessagesOption());
         this.add(new RoleUserMessagesOption(user));
     }
 }

@@ -6,7 +6,7 @@ import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.MenuOption;
 import MessagingApp.Menus.UserOptions.DeleteMessageOptions.DeleteMessageOptionsMenu;
-import MessagingApp.Menus.UserOptions.ViewContainerMessagesOption;
+import MessagingApp.Menus.UserOptions.ViewFolderMessagesOption;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
@@ -49,8 +49,8 @@ public class RoleUserMessagesOption extends MenuOption {
                 Menu roleOptions = new Menu(user);
                 roleOptions.setMenuTitle(getRoleAbilitiesString() + user.getUsername() + "'s messages");
                 roleOptions.setExitPrompt("Back");
-                roleOptions.add(new ViewContainerMessagesOption(user, INBOX));
-                roleOptions.add(new ViewContainerMessagesOption(user, SENTBOX));
+                roleOptions.add(new ViewFolderMessagesOption(user, INBOX));
+                roleOptions.add(new ViewFolderMessagesOption(user, SENTBOX));
                 if (this.getUser().getRoleId() == DELETER.ID()) {
                     roleOptions.add(new DeleteMessageOptionsMenu(user));
                 }

@@ -20,18 +20,17 @@ public class DeleteUserOption extends MenuOption {
 
         String  username = inputGeneric("Enter username of the user to be deleted: ");
         UserDAO usrDAO   = new MySQLUserDAO();
-        User    user     = usrDAO.getUser(username);
+        User    userToBeDeleted     = usrDAO.getUser(username);
 
-        if (user != null) {
+        if (userToBeDeleted != null) {
 
-            if (user.getStatusId() == ACTIVE.ID()) {
+            if (userToBeDeleted.getStatusId() == ACTIVE.ID()) {
 
-                if (requestConfirmation("User " + user.getUsername() + " will be deleted.\nAre you sure? ")) {
+                if (requestConfirmation("User " + userToBeDeleted.getUsername() + " will be deleted.\nAre you sure? ")) {
 
-                    User deletedUser = this.getUser();
-                    deletedUser.setStatusId(DELETED.ID());
+                    userToBeDeleted.setStatusId(DELETED.ID());
 
-                    if (usrDAO.updateUser(deletedUser) == 1) System.out.println("User successfully deleted.");
+                    if (usrDAO.updateUser(userToBeDeleted) == 1) System.out.println("User successfully deleted.");
                     else System.out.println("Unknown Error. User was not deleted.");
 
                 } else System.out.println("Operation was cancelled.");

@@ -13,9 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static MessagingApp.Entities.Statuses.Status.DELETED;
+
 public class MessageServices {
 
-    /* Method that takes a list of messages and prints them on the screen in user-friendly format */
+/*    *//* Method that takes a list of messages and prints them on the screen in user-friendly format *//*
     public static void printMessages(List<Message> messages) {
         if (!messages.isEmpty()) {
 
@@ -28,6 +30,17 @@ public class MessageServices {
             }
             System.out.println("\n");
         }
+    }*/
+
+    /* Method that takes a list of messages and prints them on the screen in user-friendly format */
+    public static void printMessages(List<Message> messages) {
+        if (!messages.isEmpty()) {
+
+            for (Message message : messages) {
+                System.out.println(getMessageString(message));
+            }
+            System.out.println();
+        }
     }
 
     /*
@@ -36,25 +49,18 @@ public class MessageServices {
      * It calls other helper methods to
      */
     public static String getMessageString(Message message) {
-        UserDAO             usrDAO = new MySQLUserDAO();
-        MessageReceiversDAO mrDAO  = new MySQLMessageReceiversDAO();
+        String[] names = getMessageSenderAndReceiverNames(message);
 
-        String        senderName  = Services.assignUsernameFromUserId(message.getSenderId());
-        List<Long>    receiverIds = mrDAO.getMessageReceiverIds(message.getId());
-        StringBuilder receiversSb = new StringBuilder();
+        String senderName = names[0];
+        String receiverNames  = names[1];
 
-        for (long receiverId : receiverIds) {
-            User receiver = usrDAO.getUser(receiverId);
-            receiversSb.append(receiver.getUsername() + " ");
-        }
-
-        return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiversSb +
+        return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverNames +
                 "\t\tDateTime: " + message.getMessageDateCreated() + "\n\tSubject: " + message.getMessageSubject() +
                 "\n\tMessage: " + message.getMessageBody();
     }
 
     /*
-     * method that returns a string of the receiver names of a message, seperated by a space
+     * method that returns a string of the receiver names of a message, separated by a space
      * used when we want ot print message info, either on screen, or on a file
      */
     public static String getMessageReceiverNames(Message message) {
@@ -72,9 +78,10 @@ public class MessageServices {
     }
 
     /*
-     * Helper method that returns a String array carrying 2 vales
+     * Helper method that returns a String array carrying 2 values
      * The first one is the username of the sender of the message
      * The second is a String with all the usernames of the receivers of the message
+     * 'deleted' is appended to each deleted user's username to denote user's status
      */
     public static String[] getMessageSenderAndReceiverNames(Message message) {
         UserDAO             usrDAO = new MySQLUserDAO();
@@ -83,13 +90,16 @@ public class MessageServices {
         User     sender = usrDAO.getUser(message.getSenderId());
         String[] names  = new String[2];
         names[0] = sender.getUsername();
+        if (sender.getStatusId() == DELETED.ID()) names[0] = names[0] + "(deleted)";
 
         List<Long>    receiverIds = mrDAO.getMessageReceiverIds(message.getId());
         StringBuilder receiversSb = new StringBuilder();
 
         for (long receiverId : receiverIds) {
             User receiver = usrDAO.getUser(receiverId);
-            receiversSb.append(receiver.getUsername() + " ");
+            receiversSb.append(receiver.getUsername());
+            if (receiver.getStatusId() == DELETED.ID()) receiversSb.append("(deleted)");
+            receiversSb.append(" ");
         }
 
         names[1] = receiversSb.toString();
