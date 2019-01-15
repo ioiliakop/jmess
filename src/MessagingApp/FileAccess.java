@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static MessagingApp.Menus.Services.getMessageString;
+import static MessagingApp.Menus.MessageServices.getMessageString;
 
 public class FileAccess {
 

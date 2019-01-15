@@ -6,14 +6,14 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
-import MessagingApp.Menus.Services;
+import MessagingApp.Menus.MessageServices;
 import MessagingApp.OldMenus.MenuOption;
 
 import java.util.List;
 
 import static MessagingApp.Menus.MenuUtils.*;
-import static MessagingApp.Menus.Services.getMessageIdsFromMessages;
-import static MessagingApp.Menus.Services.printMessages;
+import static MessagingApp.Menus.MessageServices.getMessageIdsFromMessages;
+import static MessagingApp.Menus.MessageServices.printMessages;
 
 
 public class EditUserMessagesOption extends MenuOption {
@@ -38,7 +38,7 @@ public class EditUserMessagesOption extends MenuOption {
                 printMessages(userMessages);
 
                 List<Long> userMessageIds    = getMessageIdsFromMessages(userMessages);
-                long       selectedMessageId = Services.getMessageIdInList(userMessageIds);
+                long       selectedMessageId = MessageServices.getMessageIdInList(userMessageIds);
 
                 if (selectedMessageId != 0) {
                     Message selectedMessage = msgDAO.getMessage(selectedMessageId);

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.Services.printMessages;
+import static MessagingApp.Menus.MessageServices.printMessages;
 
 public class ViewUserMessagesOption extends MenuOption {
 

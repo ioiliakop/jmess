@@ -11,6 +11,8 @@ public class RoleOptionsMenu extends Menu {
         super(user);
         this.setMenuLine(getRoleFromRoleId(user.getRoleId()) + " Options");
         this.setMenuTitle(this.getMenuLine());
+
+        this.add(new ViewAllMessagesOption());
         this.add(new RoleUserMessagesOption(user));
     }
 }

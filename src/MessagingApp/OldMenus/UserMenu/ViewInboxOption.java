@@ -10,8 +10,8 @@ import java.util.List;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
-import static MessagingApp.Menus.Services.printMessages;
+import static MessagingApp.Menus.MessageServices.getMessagesFromMessageIds;
+import static MessagingApp.Menus.MessageServices.printMessages;
 
 public class ViewInboxOption extends MenuOption {
 

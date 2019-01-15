@@ -11,12 +11,12 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Menus.Services.getMessageIdInList;
+import static MessagingApp.Menus.MessageServices.getMessageIdInList;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
-import static MessagingApp.Menus.Services.getMessageString;
-import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
-import static MessagingApp.Menus.Services.printMessages;
+import static MessagingApp.Menus.MessageServices.getMessageString;
+import static MessagingApp.Menus.MessageServices.getMessagesFromMessageIds;
+import static MessagingApp.Menus.MessageServices.printMessages;
 
 
 /* User option that prints all user messages in the container (Inbox/Sentbox etc.) passed as parameter */
