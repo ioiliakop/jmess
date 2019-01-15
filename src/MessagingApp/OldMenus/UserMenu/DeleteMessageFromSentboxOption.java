@@ -1,7 +1,7 @@
 package MessagingApp.OldMenus.UserMenu;
 
-import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
-import MessagingApp.DAO.UserContainerMessageDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
+import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.OldMenus.MenuOption;
@@ -28,8 +28,8 @@ public class DeleteMessageFromSentboxOption extends MenuOption {
 
     @Override
     public void doAction() {
-        UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-        List<Long>                      messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), SENTBOX);
+        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), SENTBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);
@@ -41,7 +41,7 @@ public class DeleteMessageFromSentboxOption extends MenuOption {
 
                 if (requestConfirmation("Message with id '" + selectedMessageId + "' will be moved to trash.\nAre you sure?")) {
 
-                    if (ucmDAO.updateUserContainerMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
+                    if (ucmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
                         System.out.println("Message successfully moved to trash");
                     }
 

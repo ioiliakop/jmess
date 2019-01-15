@@ -1,7 +1,7 @@
 package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 
-import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
-import MessagingApp.DAO.UserContainerMessageDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
+import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.MessageFolders.Folder;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
@@ -29,12 +29,12 @@ public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
     @Override
     public void execute() {
 
-        User                    owner  = this.getUser();
-        UserContainerMessageDAO ucmDAO = new MySQLUserContainerMessageDAO();
+        User                 owner  = this.getUser();
+        UserFolderMessageDAO ucmDAO = new MySQLUserFolderMessageDAO();
 
         List<Long> messageIdsList;
         do {
-            messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), container);
+            messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), container);
 
             if (!messageIdsList.isEmpty()) {
                 // First we print the available messages list to help the user choose
@@ -48,7 +48,7 @@ public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
                 if (selectedMessageId != 0) {
 
                     if (requestConfirmation("Message with id '" + selectedMessageId + "' will be moved to trash.\nAre you sure?")) {
-                        if (ucmDAO.updateUserContainerMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
+                        if (ucmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
                             System.out.println("Message successfully moved to trash");
                         } else System.out.println("Unknown error. Message delete operation failed.");
                     } else System.out.println("Delete operation cancelled.");

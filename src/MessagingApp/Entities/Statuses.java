@@ -30,6 +30,7 @@ public class Statuses {
         }
     }
 
+    /* Helper method */
     public static Status getStatusFromStatusId(long statusId) {
         if (statusId == 1) return ACTIVE;
         return DELETED;

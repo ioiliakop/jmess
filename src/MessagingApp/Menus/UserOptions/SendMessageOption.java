@@ -4,9 +4,9 @@ import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MessageReceiversDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageReceiversDAO;
-import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
-import MessagingApp.DAO.UserContainerMessageDAO;
+import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
@@ -63,8 +63,8 @@ public class SendMessageOption extends MenuOption {
                 System.out.println("Message sent successfully");
 
                 // If sent successfully we register it in the user's sentbox
-                UserContainerMessageDAO ucmDAO = new MySQLUserContainerMessageDAO();
-                ucmDAO.insertUserContainerMessage(sender.getId(), SENTBOX, sentMessageId);
+                UserFolderMessageDAO ucmDAO = new MySQLUserFolderMessageDAO();
+                ucmDAO.insertUserFolderMessage(sender.getId(), SENTBOX, sentMessageId);
 
                 // Then for each receiver
                 MessageReceiversDAO mrDAO = new MySQLMessageReceiversDAO();
@@ -72,7 +72,7 @@ public class SendMessageOption extends MenuOption {
                     //We insert each receiver id along with the message id, in the messages_receivers table
                     mrDAO.insertMessageReceivers(sentMessageId, receiver.getId());
                     // And register the message in each receiver's inbox
-                    ucmDAO.insertUserContainerMessage(receiver.getId(), INBOX, sentMessageId);
+                    ucmDAO.insertUserFolderMessage(receiver.getId(), INBOX, sentMessageId);
                 }
 
                 // We also append the message to a text file, calling the respective method

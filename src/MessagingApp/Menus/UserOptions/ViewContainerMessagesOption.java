@@ -2,8 +2,8 @@ package MessagingApp.Menus.UserOptions;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
-import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
-import MessagingApp.DAO.UserContainerMessageDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
+import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.MessageFolders.Folder;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
@@ -32,9 +32,9 @@ public class ViewContainerMessagesOption extends MenuOption {
 
     @Override
     public void execute() {
-        long                    ownerId        = this.getUser().getId();
-        UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(ownerId, container);
+        long                 ownerId        = this.getUser().getId();
+        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(ownerId, container);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> containerMessages = getMessagesFromMessageIds(messageIdsList);

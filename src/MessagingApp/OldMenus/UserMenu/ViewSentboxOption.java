@@ -1,7 +1,7 @@
 package MessagingApp.OldMenus.UserMenu;
 
-import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
-import MessagingApp.DAO.UserContainerMessageDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
+import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.OldMenus.MenuOption;
@@ -25,8 +25,8 @@ public class ViewSentboxOption extends MenuOption {
 
     @Override
     public void doAction() {
-        UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), SENTBOX);
+        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), SENTBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);

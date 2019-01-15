@@ -38,9 +38,9 @@ public class SendMessageOption extends MenuOption {
 //            appendMessageToFile(sentMessage);
 //
 //            /* And assign it to sender's sentbox and receiver's inbox */
-//            UserContainerMessageDAO ucmDAO = new MySQLUserContainerMessageDAO();
-//            ucmDAO.insertUserContainerMessage(sender.getId(), SENTBOX, messageId);
-//            ucmDAO.insertUserContainerMessage(receiver.getId(), INBOX, messageId);
+//            UserFolderMessageDAO ucmDAO = new MySQLUserFolderMessageDAO();
+//            ucmDAO.insertUserFolderMessage(sender.getId(), SENTBOX, messageId);
+//            ucmDAO.insertUserFolderMessage(receiver.getId(), INBOX, messageId);
 
         } else System.out.println("Sorry, username not found.");
 

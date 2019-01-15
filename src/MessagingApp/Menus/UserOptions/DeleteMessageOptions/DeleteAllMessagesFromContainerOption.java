@@ -1,7 +1,7 @@
 package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 
-import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
-import MessagingApp.DAO.UserContainerMessageDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
+import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.MessageFolders;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
@@ -24,14 +24,14 @@ public class DeleteAllMessagesFromContainerOption extends MenuOption {
 
     @Override
     public void execute() {
-        User                    owner          = this.getUser();
-        UserContainerMessageDAO ucmDAO         = new MySQLUserContainerMessageDAO();
-        List<Long>              messageIdsList = ucmDAO.getUserContainerMessages(owner.getId(), container);
+        User                 owner          = this.getUser();
+        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), container);
 
         if (!messageIdsList.isEmpty()) {
             if (requestConfirmation("All messages in " + container.name() + " will be moved to trash.\nAre you sure?")) {
 
-                int numberOfUpdatedMessages = ucmDAO.updateAllUserContainerMessages(container, owner.getId(), TRASH);
+                int numberOfUpdatedMessages = ucmDAO.updateAllUserFolderMessages(container, owner.getId(), TRASH);
                 if (numberOfUpdatedMessages > 0) {
                     System.out.println(numberOfUpdatedMessages + " messages successfully moved to trash.\n" +
                             container.name() + " is now empty.");
