@@ -12,15 +12,14 @@ import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLDeleteById;
 
 public class MySQLMessageDAO implements MessageDAO {
 
-    private static final String SQL_MESSAGE_SELECT_ALL            = "SELECT * FROM messages";
-    private static final String SQL_MESSAGE_SELECT_BY_ID          = "SELECT * FROM messages WHERE id = ?";
-    private static final String SQL_MESSAGE_SELECT_ALL_BY_USER_ID = "SELECT * FROM messages WHERE sender_id = ? OR receiver_id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL              = "SELECT * FROM messages";
+    private static final String SQL_MESSAGE_SELECT_BY_ID            = "SELECT * FROM messages WHERE id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_SENT_BY_USER = "SELECT * FROM messages WHERE sender_id = ?";
     //    private static final String SQL_MESSAGE_SELECT_ALL_BETWEEN_2_USERS = "SELECT * FROM messages WHERE " +
 //            "(sender_id = ? and receiver_id = ?) or (sender_id = ? and receiver_id = ?) order by date_time";
-    private static final String SQL_MESSAGE_INSERT                = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
-    private static final String SQL_MESSAGE_UPDATE                = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
-    private static final String SQL_MESSAGE_UPDATE_SUBJECT_BODY   = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
-    private static final String SQL_MESSAGE_DELETE                = "DELETE FROM messages WHERE id = ?";
+    private static final String SQL_MESSAGE_INSERT                  = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
+    private static final String SQL_MESSAGE_UPDATE                  = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
+    private static final String SQL_MESSAGE_DELETE                  = "DELETE FROM messages WHERE id = ?";
 
 
     @Override
@@ -73,12 +72,11 @@ public class MySQLMessageDAO implements MessageDAO {
         return null;
     }
 
-    public List<Message> getAllUserMessages(long userId) {
+    public List<Message> getAllMessagesSentByUser(long userId) {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_SELECT_ALL_BY_USER_ID)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_SELECT_ALL_SENT_BY_USER)) {
 
             pstmt.setLong(1, userId);
-            pstmt.setLong(2, userId);
             ResultSet rs = pstmt.executeQuery();
 
             List<Message> messagesList = new ArrayList<>();
@@ -205,12 +203,6 @@ public class MySQLMessageDAO implements MessageDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return 0;
-    }
-
-    @Override
-    public int updateMessageSubjectOrBody(String messageBodyOrSubject, long messageId) {
-//        return SQLUpdateVarcharFieldById(SQL_MESSAGE_UPDATE, messageBody, messageId);
         return 0;
     }
 

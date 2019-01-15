@@ -10,7 +10,7 @@ public interface MessageDAO {
 
     List<Message> getAllMessages();
 
-    List<Message> getAllUserMessages(long userId);
+    List<Message> getAllMessagesSentByUser(long userId);
 
     List<Message> getConversation(long user1Id, long user2Id);
 
@@ -20,8 +20,6 @@ public interface MessageDAO {
     int updateMessage(Message message);
 
     int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId);
-
-    int updateMessageSubjectOrBody(String messageSubjectOrBody, long messageId);
 
     int deleteMessage(long messageId);
 }

@@ -22,7 +22,7 @@ public class DeleteUserMessagesOption extends MenuOption {
 
 /*        if (user != null) {
             MessageDAO    msgDAO       = new MySQLMessageDAO();
-            List<Message> userMessages = msgDAO.getAllUserMessages(user.getId());
+            List<Message> userMessages = msgDAO.getAllMessagesSentByUser(user.getId());
 
             if (!userMessages.isEmpty()) {
                 printMessages(userMessages);

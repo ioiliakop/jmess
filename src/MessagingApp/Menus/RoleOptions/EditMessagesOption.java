@@ -48,7 +48,7 @@ public class EditMessagesOption extends MenuOption {
             }
 
             // We check if there are changes before proceeding with the update
-            if (selectedMessage != updatedSelectedMessage) {
+            if (!selectedMessage.equals(updatedSelectedMessage)) {
                 if (requestConfirmation("Proceed with update? ")) {
                     int result = msgDAO.updateMessage(updatedSelectedMessage);
                     if (result != 1) System.out.println("Unknown Error. Message was not updated.");

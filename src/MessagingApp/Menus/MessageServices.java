@@ -106,6 +106,7 @@ public class MessageServices {
         return names;
     }
 
+    /* Returns a list of messages from respective list of message IDs */
     public static List<Message> getMessagesFromMessageIds(List<Long> messageIdsList) {
         List<Message> messagesList = new ArrayList<>();
         MessageDAO    msgDAO       = new MySQLMessageDAO();

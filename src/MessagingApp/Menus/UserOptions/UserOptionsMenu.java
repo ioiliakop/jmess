@@ -49,4 +49,9 @@ public class UserOptionsMenu extends Menu {
     }
 
 
+    // TODO will implement if time
+    /* Method that prompts the user if he has received new messages */
+    private void promptForNewMessages(){
+
+    }
 }

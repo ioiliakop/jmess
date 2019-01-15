@@ -76,10 +76,10 @@ public class MenuUtils {
     }
 
     /*
-    * Helper method that returns the MD5 hash of the string passed as parameter
-    * Used for calculating the MD5 hash of the password
-    */
-    public static String getMD5Of(String string){
+     * Helper method that returns the MD5 hash of the string passed as parameter
+     * Used for calculating the MD5 hash of the password
+     */
+    public static String getMD5Of(String string) {
         String myHash = null;
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -117,7 +117,10 @@ public class MenuUtils {
         return input;
     }
 
-    /* Helper method that returns user input from console after printing message in parameter */
+    /*
+     * Helper method that returns user input from console after printing message in parameter
+     * It doesn't validate input in any way
+     */
     public static String inputGeneric(String message) {
         Scanner sc = new Scanner(System.in);
         System.out.print(message);
