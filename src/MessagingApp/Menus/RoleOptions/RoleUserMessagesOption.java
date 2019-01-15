@@ -26,10 +26,7 @@ public class RoleUserMessagesOption extends MenuOption {
 
     public RoleUserMessagesOption(User user) {
         super(user);
-        String roleOptions = "View";
-        if (user.getRoleId() == EDITOR.ID()) roleOptions = roleOptions + "/Edit";
-        else if (user.getRoleId() == DELETER.ID()) roleOptions = roleOptions + "/Edit/Delete";
-        this.setMenuLine(roleOptions + " a user's messages");
+        this.setMenuLine(getRoleAbilitiesString() + "a user's messages");
     }
 
     @Override
@@ -50,7 +47,7 @@ public class RoleUserMessagesOption extends MenuOption {
                 // If user is an active user we create and call a new menu
                 // which allows us to view selected user's inbox and sentbox
                 Menu roleOptions = new Menu(user);
-                roleOptions.setMenuTitle(this.getMenuLine());
+                roleOptions.setMenuTitle(getRoleAbilitiesString() + user.getUsername() + "'s messages");
                 roleOptions.setExitPrompt("Back");
                 roleOptions.add(new ViewContainerMessagesOption(user, INBOX));
                 roleOptions.add(new ViewContainerMessagesOption(user, SENTBOX));
@@ -62,5 +59,13 @@ public class RoleUserMessagesOption extends MenuOption {
             } else System.out.println("Sorry. This user has been deleted");
         } else System.out.println("Sorry. Not a registered user");
         pauseExecution();
+    }
+
+    /* method that helps correctly present role's abilities in menu lines and titles */
+    private String getRoleAbilitiesString(){
+        String roleOptions = "View";
+        if (this.getUser().getRoleId() == EDITOR.ID()) roleOptions = roleOptions + "/Edit";
+        else if (this.getUser().getRoleId() == DELETER.ID()) roleOptions = roleOptions + "/Edit/Delete";
+        return roleOptions + " ";
     }
 }

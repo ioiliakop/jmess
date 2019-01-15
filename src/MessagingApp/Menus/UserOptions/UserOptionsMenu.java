@@ -7,6 +7,13 @@ import MessagingApp.Menus.UserOptions.DeleteMessageOptions.DeleteMessageOptionsM
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
 
+/**
+ * Menu presenting all user options
+ * This class and all submenu classes extending the Menu class could be omitted
+ * The options could be added at menu creation after calling menu default constructor
+ * These separate submenu classes were created for better organization of the relative options
+ * We gather and select User options here for example
+ */
 public class UserOptionsMenu extends Menu {
 
     /*
