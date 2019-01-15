@@ -6,7 +6,8 @@ import MessagingApp.Menus.Menu;
 public class AdminOptionsMenu extends Menu {
 
     public AdminOptionsMenu(User user) {
-        super(user,"Admin Options","Admin Options");
+        super(user,"Admin Options");
+        this.setMenuTitle("Admin Options");
         this.add(new CreateUserOption());
         this.add(new UpdateUserOption());
         this.add(new DeleteUserOption());

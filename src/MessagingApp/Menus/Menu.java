@@ -43,14 +43,6 @@ public class Menu extends MenuOption {
         this.menuOptions = new ArrayList<>();
     }
 
-    /* Constructor also used when menu is a submenu. Can set alternate input for titleTemplate here */
-    public Menu(User user, String menuLine, String alternateTitleParameter) {
-        super(user, menuLine);
-        this.menuTitle = String.format(MENU_TITLE_TEMPLATE, alternateTitleParameter);
-        this.exitPrompt = "Back";
-        this.menuOptions = new ArrayList<>();
-    }
-
     public void setMenuTitle(String menuTitle) {
         this.menuTitle = String.format(MENU_TITLE_TEMPLATE, menuTitle);
     }
