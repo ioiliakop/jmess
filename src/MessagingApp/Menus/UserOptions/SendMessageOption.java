@@ -63,8 +63,8 @@ public class SendMessageOption extends MenuOption {
                 System.out.println("Message sent successfully");
 
                 // If sent successfully we register it in the user's sentbox
-                UserFolderMessageDAO ucmDAO = new MySQLUserFolderMessageDAO();
-                ucmDAO.insertUserFolderMessage(sender.getId(), SENTBOX, sentMessageId);
+                UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
+                ufmDAO.insertUserFolderMessage(sender.getId(), SENTBOX, sentMessageId);
 
                 // Then for each receiver
                 MessageReceiversDAO mrDAO = new MySQLMessageReceiversDAO();
@@ -72,7 +72,7 @@ public class SendMessageOption extends MenuOption {
                     //We insert each receiver id along with the message id, in the messages_receivers table
                     mrDAO.insertMessageReceivers(sentMessageId, receiver.getId());
                     // And register the message in each receiver's inbox
-                    ucmDAO.insertUserFolderMessage(receiver.getId(), INBOX, sentMessageId);
+                    ufmDAO.insertUserFolderMessage(receiver.getId(), INBOX, sentMessageId);
                 }
 
                 // We also append the message to a text file, calling the respective method

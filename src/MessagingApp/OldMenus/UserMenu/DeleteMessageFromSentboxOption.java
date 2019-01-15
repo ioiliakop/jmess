@@ -28,8 +28,8 @@ public class DeleteMessageFromSentboxOption extends MenuOption {
 
     @Override
     public void doAction() {
-        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
-        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), SENTBOX);
+        UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), SENTBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);
@@ -41,7 +41,7 @@ public class DeleteMessageFromSentboxOption extends MenuOption {
 
                 if (requestConfirmation("Message with id '" + selectedMessageId + "' will be moved to trash.\nAre you sure?")) {
 
-                    if (ucmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
+                    if (ufmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
                         System.out.println("Message successfully moved to trash");
                     }
 

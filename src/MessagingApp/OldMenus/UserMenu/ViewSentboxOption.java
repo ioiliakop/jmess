@@ -25,8 +25,8 @@ public class ViewSentboxOption extends MenuOption {
 
     @Override
     public void doAction() {
-        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
-        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), SENTBOX);
+        UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), SENTBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);

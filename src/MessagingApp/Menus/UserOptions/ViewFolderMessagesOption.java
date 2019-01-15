@@ -33,8 +33,8 @@ public class ViewFolderMessagesOption extends MenuOption {
     @Override
     public void execute() {
         long                 ownerId        = this.getUser().getId();
-        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
-        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(ownerId, container);
+        UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(ownerId, container);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> containerMessages = getMessagesFromMessageIds(messageIdsList);

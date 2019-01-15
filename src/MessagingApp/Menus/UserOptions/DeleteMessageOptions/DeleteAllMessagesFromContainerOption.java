@@ -25,13 +25,13 @@ public class DeleteAllMessagesFromContainerOption extends MenuOption {
     @Override
     public void execute() {
         User                 owner          = this.getUser();
-        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
-        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), container);
+        UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), container);
 
         if (!messageIdsList.isEmpty()) {
             if (requestConfirmation("All messages in " + container.name() + " will be moved to TRASH.\nAre you sure?")) {
 
-                int numberOfUpdatedMessages = ucmDAO.updateAllUserFolderMessages(container, owner.getId(), TRASH);
+                int numberOfUpdatedMessages = ufmDAO.updateAllUserFolderMessages(container, owner.getId(), TRASH);
                 if (numberOfUpdatedMessages > 0) {
                     System.out.println(numberOfUpdatedMessages + " messages successfully moved to trash.\n" +
                             container.name() + " is now empty.");

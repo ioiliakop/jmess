@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserFolderMessageDAO {
 
-    List<Long> getUserFolderMessages(long userId, Folder folder);
+    List<Long> getUserFolderMessageIDs(long userId, Folder folder);
 
     long insertUserFolderMessage(long userId, Folder folder, long messageId);
 

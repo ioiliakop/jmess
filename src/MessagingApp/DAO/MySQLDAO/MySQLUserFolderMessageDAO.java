@@ -10,19 +10,18 @@ import java.util.List;
 
 public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
 
-    private static final String SQL_MESSAGE_IDS_SELECT_BY_USER_FOLDER     = "SELECT message_id FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
-    private static final String SQL_USER_FOLDER_MESSAGE_INSERT            = "INSERT INTO users_folders_messages (user_id,folder_id,message_id) VALUES(?,?,?)";
-    private static final String SQL_MESSAGE_FOLDER_UPDATE                 = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND message_id = ?";
-    private static final String SQL_ALL_MESSAGES_IN_FOLDER_UPDATE         = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = ?";
-    private static final String SQL_ALL_TARGET_USER_MESSAGES_IN_INBOX_UPDATE = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = 1 AND users_folders_messages.message_id = ";
-    private static final String SQL_USER_FOLDER_ALL_MESSAGES_DELETE       = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
-    private static final String SQL_USER_FOLDER_MESSAGE_DELETE            = "DELETE FROM users_folders_messages WHERE message_id = ?";
+    private static final String SQL_SELECT_MESSAGE_IDS_BY_USER_FOLDER        = "SELECT message_id FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_INSERT_USER_FOLDER_MESSAGE               = "INSERT INTO users_folders_messages (user_id,folder_id,message_id) VALUES(?,?,?)";
+    private static final String SQL_UPDATE_SPECIFIC_MESSAGE_FOLDER           = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND message_id = ?";
+    private static final String SQL_UPDATE_ALL_MESSAGES_IN_USER_FOLDER       = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_DELETE_ALL_MESSAGES_IN_USER              = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_USER_FOLDER_MESSAGE_DELETE               = "DELETE FROM users_folders_messages WHERE message_id = ?";
 
 
     @Override
-    public List<Long> getUserFolderMessages(long userId, Folder folder) {
+    public List<Long> getUserFolderMessageIDs(long userId, Folder folder) {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_IDS_SELECT_BY_USER_FOLDER)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_SELECT_MESSAGE_IDS_BY_USER_FOLDER)) {
 
             pstmt.setLong(1, userId);
             pstmt.setLong(2, folder.ID());
@@ -43,17 +42,10 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
         return null;
     }
 
-/*    private long extractMessageIdFromResultSet(ResultSet rs) throws SQLException {
-        long messageId;
-        role.setId(rs.getLong("id"));
-        role.setRoleName(rs.getString("role_name"));
-        return role;
-    }*/
-
     @Override
     public long insertUserFolderMessage(long userId, Folder folder, long messageId) {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_FOLDER_MESSAGE_INSERT)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_INSERT_USER_FOLDER_MESSAGE)) {
 
             pstmt.setLong(1, userId);
             pstmt.setLong(2, folder.ID());
@@ -68,27 +60,10 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
         return 0;
     }
 
-/*    public long insertUserFolderMessage(long userId, long folderId, long messageId) {
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_FOLDER_MESSAGE_INSERT)) {
-
-            pstmt.setLong(1, userId);
-            pstmt.setLong(2, folderId);
-            pstmt.setLong(3, messageId);
-            int rowsInserted = pstmt.executeUpdate();
-
-            if (rowsInserted==1) return rowsInserted;
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
-    }*/
-
     @Override
     public int updateUserFolderMessage(long userId, Folder folder, long messageId) {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_FOLDER_UPDATE)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_UPDATE_SPECIFIC_MESSAGE_FOLDER)) {
 
             pstmt.setLong(1, folder.ID());
             pstmt.setLong(2, userId);
@@ -106,7 +81,7 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
     @Override
     public int updateAllUserFolderMessages(Folder originalFolder, long userId, Folder targetFolder) {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_ALL_MESSAGES_IN_FOLDER_UPDATE)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_UPDATE_ALL_MESSAGES_IN_USER_FOLDER)) {
 
             pstmt.setLong(1, targetFolder.ID());
             pstmt.setLong(2, userId);
@@ -124,7 +99,7 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
     @Override
     public int deleteUserAllFolderMessages(long userId, Folder folder) {
         try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_FOLDER_ALL_MESSAGES_DELETE)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_DELETE_ALL_MESSAGES_IN_USER)) {
 
             pstmt.setLong(1, userId);
             pstmt.setLong(2, folder.ID());

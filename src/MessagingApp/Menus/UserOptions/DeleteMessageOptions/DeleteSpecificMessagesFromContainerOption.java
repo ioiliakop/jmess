@@ -30,11 +30,11 @@ public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
     public void execute() {
 
         User                 owner  = this.getUser();
-        UserFolderMessageDAO ucmDAO = new MySQLUserFolderMessageDAO();
+        UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
 
         List<Long> messageIdsList;
         do {
-            messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), folder);
+            messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), folder);
 
             if (!messageIdsList.isEmpty()) {
                 // First we print the available messages list to help the user choose
@@ -48,7 +48,7 @@ public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
                 if (selectedMessageId != 0) {
 
                     if (requestConfirmation("Message with id '" + selectedMessageId + "' will be moved to trash.\nAre you sure?")) {
-                        if (ucmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
+                        if (ufmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
                             System.out.println("Message successfully moved to trash");
                         } else System.out.println("Unknown error. Message delete operation failed.");
                     } else System.out.println("Delete operation cancelled.");

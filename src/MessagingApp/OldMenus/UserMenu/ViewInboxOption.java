@@ -30,8 +30,8 @@ public class ViewInboxOption extends MenuOption {
 
     @Override
     public void doAction() {
-        UserFolderMessageDAO ucmDAO         = new MySQLUserFolderMessageDAO();
-        List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), INBOX);
+        UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
+        List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), INBOX);
 
         if (!messageIdsList.isEmpty()) {
             List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);

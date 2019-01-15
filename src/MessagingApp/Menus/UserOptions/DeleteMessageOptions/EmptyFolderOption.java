@@ -2,8 +2,11 @@ package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.UserFolderMessageDAO;
+import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+
+import java.util.List;
 
 import static MessagingApp.Entities.MessageFolders.*;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
@@ -28,16 +31,20 @@ public class EmptyFolderOption extends MenuOption {
 
     @Override
     public void execute() {
-        System.out.println("Attention. All messages in " + folder + " will pe permanently deleted.");
-        if (requestConfirmation("Continue?")) {
-            if (requestConfirmation("This action is IRREVERSIBLE. Really continue?")) {
+        UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
+        List<Long> messagesInFolder = ufmDAO.getUserFolderMessageIDs(this.getUser().getId(),folder);
 
-                UserFolderMessageDAO ufmDAO                  = new MySQLUserFolderMessageDAO();
-                int                  numberOfDeletedMessages = ufmDAO.deleteUserAllFolderMessages(this.getUser().getId(), folder);
-                System.out.println(numberOfDeletedMessages + " messages were deleted");
+        if (!messagesInFolder.isEmpty()) {
+            System.out.println("Attention. All messages in " + folder + " will pe permanently deleted.");
+            if (requestConfirmation("Continue?")) {
+                if (requestConfirmation("This action is IRREVERSIBLE. Really continue?")) {
 
-            } else System.out.println("Operation cancelled. Phew, that was close");
-        } else System.out.println("Operation cancelled");
+                    int numberOfDeletedMessages = ufmDAO.deleteUserAllFolderMessages(this.getUser().getId(), folder);
+                    System.out.println(numberOfDeletedMessages + " messages were successfully deleted");
+
+                } else System.out.println("Operation cancelled. Phew, that was close");
+            } else System.out.println("Operation cancelled");
+        } else System.out.println("There are no messages in " + folder);
         pauseExecution();
     }
 

@@ -59,7 +59,7 @@ public class EditUserMessagesOption extends MenuOption {
                     }
                 }
 
-//                        if (ucmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
+//                        if (ufmDAO.updateUserFolderMessage(owner.getId(), TRASH, selectedMessageId) == 1) {
 //                            System.out.println("Message successfully moved to trash");
             } else System.out.println("User has no messages, either sent or received.");
 
