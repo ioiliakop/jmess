@@ -30,8 +30,8 @@ public class Main {
 
         //enum tet
 
-/*        if ("USER".equals(FinalEntities.Roles.USER.name())) {
-            System.out.println(FinalEntities.Roles.USER.ID());
+/*        if ("USER".equals(FinalEntities.Role.USER.name())) {
+            System.out.println(FinalEntities.Role.USER.ID());
         }*/
 
 

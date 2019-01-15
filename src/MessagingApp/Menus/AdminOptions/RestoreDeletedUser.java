@@ -5,8 +5,8 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Entities.FinalEntities.Status.ACTIVE;
-import static MessagingApp.Entities.FinalEntities.Status.DELETED;
+import static MessagingApp.Entities.Statuses.Status.ACTIVE;
+import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
@@ -32,8 +32,8 @@ public class RestoreDeletedUser extends MenuOption {
                     User deletedUser = this.getUser();
                     deletedUser.setStatusId(ACTIVE.ID());
 
-                    if (usrDAO.updateUser(deletedUser) == 1) System.out.println("User successfully deleted.");
-                    else System.out.println("Unknown Error. User was not deleted.");
+                    if (usrDAO.updateUser(deletedUser) == 1) System.out.println("User successfully restored.");
+                    else System.out.println("Unknown Error. User was not restored.");
 
                 } else System.out.println("Operation was cancelled.");
 

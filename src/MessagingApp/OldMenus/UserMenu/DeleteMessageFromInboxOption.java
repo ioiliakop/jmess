@@ -9,8 +9,8 @@ import MessagingApp.OldMenus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
-import static MessagingApp.Entities.FinalEntities.MessageContainers.TRASH;
+import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.Services.getMessagesFromMessageIds;
 import static MessagingApp.Menus.Services.printMessages;

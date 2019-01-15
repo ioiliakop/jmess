@@ -2,10 +2,10 @@ package MessagingApp.OldMenus.AdminMenu.UpdateUserMenu;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
-import MessagingApp.Entities.FinalEntities.Roles;
+import MessagingApp.Entities.Roles.Role;
 import MessagingApp.Entities.User;
 
-import static MessagingApp.Entities.FinalEntities.getRoleFromRoleId;
+import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
@@ -28,8 +28,8 @@ public class UpdateUsernameOption extends UpdateUserMenuOption {
             User selectedUser = this.getTargetUser();
 
             if (requestConfirmation("Username will be changed from " + selectedUser.getUsername() + " to " + newUsername + ".")) {
-                UserDAO         usrDAO           = new MySQLUserDAO();
-                Roles selectedUserRole = getRoleFromRoleId(selectedUser.getRoleId());
+                UserDAO usrDAO           = new MySQLUserDAO();
+                Role    selectedUserRole = getRoleFromRoleId(selectedUser.getRoleId());
                 usrDAO.updateUserNameRole(newUsername, selectedUserRole, selectedUser.getId());
                 System.out.println("Username updated to: " + newUsername);
             }

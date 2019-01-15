@@ -4,8 +4,8 @@ import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.UserOptions.DeleteMessageOptions.DeleteMessageOptionsMenu;
 
-import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
-import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
 
 public class UserOptionsMenu extends Menu {
 

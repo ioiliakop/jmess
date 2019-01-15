@@ -2,21 +2,21 @@ package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
 import MessagingApp.DAO.UserContainerMessageDAO;
+import MessagingApp.Entities.MessageFolders;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.FinalEntities.*;
-import static MessagingApp.Entities.FinalEntities.MessageContainers.TRASH;
+import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
 public class DeleteAllMessagesFromContainerOption extends MenuOption {
 
-    private MessageContainers container;
+    private MessageFolders.Folder container;
 
-    public DeleteAllMessagesFromContainerOption(User user, MessageContainers container) {
+    public DeleteAllMessagesFromContainerOption(User user, MessageFolders.Folder container) {
         super(user);
         this.container = container;
         this.setMenuLine("Delete all messages from " + container.name());

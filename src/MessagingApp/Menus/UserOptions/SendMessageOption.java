@@ -15,8 +15,8 @@ import MessagingApp.Menus.MenuOption;
 import java.util.ArrayList;
 import java.util.List;
 
-import static MessagingApp.Entities.FinalEntities.MessageContainers.*;
-import static MessagingApp.Entities.FinalEntities.Status.ACTIVE;
+import static MessagingApp.Entities.MessageFolders.Folder.*;
+import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.FileAccess.appendMessageToFile;
 import static MessagingApp.Menus.MenuUtils.*;
 

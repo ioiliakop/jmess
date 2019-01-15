@@ -9,7 +9,7 @@ import MessagingApp.Menus.RoleOptions.RoleOptionsMenu;
 import MessagingApp.Menus.UserOptions.UserOptionsMenu;
 import MessagingApp.OldMenus.EditorMenu.EditorMenu;
 
-import static MessagingApp.Entities.FinalEntities.Roles.*;
+import static MessagingApp.Entities.Roles.Role.*;
 import static MessagingApp.Menus.MenuUtils.*;
 
 public class LoginScreen {

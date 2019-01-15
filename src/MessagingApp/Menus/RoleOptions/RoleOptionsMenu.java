@@ -3,7 +3,7 @@ package MessagingApp.Menus.RoleOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 
-import static MessagingApp.Entities.FinalEntities.getRoleFromRoleId;
+import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 
 public class RoleOptionsMenu extends Menu {
 

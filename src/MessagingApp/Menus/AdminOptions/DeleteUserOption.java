@@ -5,8 +5,8 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Entities.FinalEntities.Status.DELETED;
-import static MessagingApp.Entities.FinalEntities.Status.ACTIVE;
+import static MessagingApp.Entities.Statuses.Status.DELETED;
+import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.*;
 
 public class DeleteUserOption extends MenuOption {

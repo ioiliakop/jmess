@@ -2,7 +2,7 @@ package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.UserContainerMessageDAO;
 import MessagingApp.MySQLConnection;
-import MessagingApp.Entities.FinalEntities.MessageContainers;
+import MessagingApp.Entities.MessageFolders.Folder;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
 
 
     @Override
-    public List<Long> getUserContainerMessages(long userId, MessageContainers container) {
+    public List<Long> getUserContainerMessages(long userId, Folder container) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_IDS_SELECT_BY_USER_CONTAINER)) {
 
@@ -51,7 +51,7 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
     }*/
 
     @Override
-    public long insertUserContainerMessage(long userId, MessageContainers container, long messageId) {
+    public long insertUserContainerMessage(long userId, Folder container, long messageId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_CONTAINER_MESSAGE_INSERT)) {
 
@@ -86,7 +86,7 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
     }*/
 
     @Override
-    public int updateUserContainerMessage(long userId, MessageContainers container, long messageId) {
+    public int updateUserContainerMessage(long userId, Folder container, long messageId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_CONTAINER_UPDATE)) {
 
@@ -104,7 +104,7 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
     }
 
     @Override
-    public int updateAllUserContainerMessages(MessageContainers originalContainer, long userId, MessageContainers targetContainer) {
+    public int updateAllUserContainerMessages(Folder originalContainer, long userId, Folder targetContainer) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_ALL_MESSAGES_IN_CONTAINER_UPDATE)) {
 
@@ -122,12 +122,12 @@ public class MySQLUserContainerMessageDAO implements UserContainerMessageDAO {
     }
 
     @Override
-    public int deleteUserAllContainerMessages(long userId, MessageContainers container) {
+    public int deleteUserAllContainerMessages(long userId, Folder container) {
         return 0;
     }
 
     @Override
-    public int deleteUserContainerMessage(long userId, MessageContainers container, long messageId) {
+    public int deleteUserContainerMessage(long userId, Folder container, long messageId) {
         return 0;
     }
 }

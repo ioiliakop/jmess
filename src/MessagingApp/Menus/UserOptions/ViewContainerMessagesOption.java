@@ -4,7 +4,7 @@ import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserContainerMessageDAO;
 import MessagingApp.DAO.UserContainerMessageDAO;
-import MessagingApp.Entities.FinalEntities.MessageContainers;
+import MessagingApp.Entities.MessageFolders.Folder;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
@@ -22,9 +22,9 @@ import static MessagingApp.Menus.Services.printMessages;
 /* User option that prints all user messages in the container (Inbox/Sentbox etc.) passed as parameter */
 public class ViewContainerMessagesOption extends MenuOption {
 
-    private MessageContainers container;
+    private Folder container;
 
-    public ViewContainerMessagesOption(User user, MessageContainers container) {
+    public ViewContainerMessagesOption(User user, Folder container) {
         super(user);
         this.container = container;
         this.setMenuLine("View messages in " + container.name());

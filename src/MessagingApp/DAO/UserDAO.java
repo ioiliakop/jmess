@@ -1,11 +1,11 @@
 package MessagingApp.DAO;
 
-import MessagingApp.Entities.FinalEntities.Roles;
+import MessagingApp.Entities.Roles;
+import MessagingApp.Entities.Roles.Role;
+import MessagingApp.Entities.Statuses;
 import MessagingApp.Entities.User;
 
 import java.util.List;
-
-import static MessagingApp.Entities.FinalEntities.*;
 
 public interface UserDAO {
 
@@ -19,16 +19,16 @@ public interface UserDAO {
 
     List<User> getAllActiveUsers();
 
-    long insertUser(String username, String password, Roles role);
+    long insertUser(String username, String password, Role role);
 
     /* default role and status will be 1, active user */
     long insertUser(String username, String password);
 
     int updateUser(User user);
 
-    int updateUserNameRole(String username, Roles role, long userId);
+    int updateUserNameRole(String username, Roles.Role role, long userId);
 
-    int updateUserNameRoleStatus(String username, Roles role, Status status, long userId);
+    int updateUserNameRoleStatus(String username, Roles.Role role, Statuses.Status status, long userId);
 
     /*
      * The password field must have a separate method in our implementation

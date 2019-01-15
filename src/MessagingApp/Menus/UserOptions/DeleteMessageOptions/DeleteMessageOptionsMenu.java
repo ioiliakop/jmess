@@ -3,8 +3,8 @@ package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 
-import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
-import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
 
 public class DeleteMessageOptionsMenu extends Menu {
 

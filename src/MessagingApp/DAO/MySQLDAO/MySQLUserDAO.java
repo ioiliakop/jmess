@@ -2,8 +2,8 @@ package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.MySQLConnection;
-import MessagingApp.Entities.FinalEntities.Status;
-import MessagingApp.Entities.FinalEntities.Roles;
+import MessagingApp.Entities.Statuses.Status;
+import MessagingApp.Entities.Roles.Role;
 import MessagingApp.Entities.User;
 
 import java.sql.*;
@@ -12,7 +12,7 @@ import java.util.List;
 
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLDeleteById;
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLUpdateVarcharFieldById;
-import static MessagingApp.Entities.FinalEntities.Roles.USER;
+import static MessagingApp.Entities.Roles.Role.USER;
 
 public class MySQLUserDAO implements UserDAO {
 
@@ -139,7 +139,7 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public long insertUser(String username, String password, Roles role) {
+    public long insertUser(String username, String password, Role role) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_INSERT, Statement.RETURN_GENERATED_KEYS)) {
 
@@ -191,7 +191,7 @@ public class MySQLUserDAO implements UserDAO {
 
 
     @Override
-    public int updateUserNameRole(String username, Roles role, long userId) {
+    public int updateUserNameRole(String username, Role role, long userId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_NAME_ROLE_UPDATE)) {
 
@@ -211,7 +211,7 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public int updateUserNameRoleStatus(String username, Roles role, Status status, long userId) {
+    public int updateUserNameRoleStatus(String username, Role role, Status status, long userId) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_USER_NAME_ROLE_STATUS_UPDATE)) {
 

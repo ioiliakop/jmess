@@ -8,11 +8,11 @@ import MessagingApp.Menus.MenuOption;
 import MessagingApp.Menus.UserOptions.DeleteMessageOptions.DeleteMessageOptionsMenu;
 import MessagingApp.Menus.UserOptions.ViewContainerMessagesOption;
 
-import static MessagingApp.Entities.FinalEntities.MessageContainers.INBOX;
-import static MessagingApp.Entities.FinalEntities.MessageContainers.SENTBOX;
-import static MessagingApp.Entities.FinalEntities.Roles.DELETER;
-import static MessagingApp.Entities.FinalEntities.Roles.EDITOR;
-import static MessagingApp.Entities.FinalEntities.Status.DELETED;
+import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
+import static MessagingApp.Entities.Roles.Role.DELETER;
+import static MessagingApp.Entities.Roles.Role.EDITOR;
+import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 

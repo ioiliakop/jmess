@@ -1,16 +1,16 @@
 package MessagingApp.Entities;
 
-public class UserContainerMessage {
+public class UserFolderMessage {
 
     private long userId;
     private long containerId;
     private long messageId;
     private boolean isRead;
 
-    public UserContainerMessage() {
+    public UserFolderMessage() {
     }
 
-    public UserContainerMessage(long userId, long containerId, long messageId) {
+    public UserFolderMessage(long userId, long containerId, long messageId) {
         this.userId = userId;
         this.containerId = containerId;
         this.messageId = messageId;

@@ -7,8 +7,8 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.FinalEntities.getRoleFromRoleId;
-import static MessagingApp.Entities.FinalEntities.getStatusFromStatusId;
+import static MessagingApp.Entities.Roles.getRoleFromRoleId;
+import static MessagingApp.Entities.Statuses.getStatusFromStatusId;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
 public class ViewAllUsersOption extends MenuOption {
@@ -25,8 +25,8 @@ public class ViewAllUsersOption extends MenuOption {
         System.out.println("\nUsers in system: ");
         for(User user : allUsers){
             System.out.println("User ID: "+ user.getId() + "\t\tUsername: " + user.getUsername() +
-                    "\t\tMD5password: " + user.getPassword() + "\t\tRole: " + getRoleFromRoleId(user.getRoleId()) +
-                    "\t\tStatus: " + getStatusFromStatusId(user.getStatusId()));
+                    "\t\tMD5password: " + user.getPassword() + "\t\tRoles: " + getRoleFromRoleId(user.getRoleId()) +
+                    "\t\tStatuses: " + getStatusFromStatusId(user.getStatusId()));
         }
         pauseExecution();
     }
