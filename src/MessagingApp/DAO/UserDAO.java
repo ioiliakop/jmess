@@ -13,6 +13,7 @@ public interface UserDAO {
 
     User getUser(String username);
 
+    /* used for login */
     User getActiveUserByUsernameAndPassword(String username, String password);
 
     List<User> getAllUsers();
@@ -21,7 +22,7 @@ public interface UserDAO {
 
     long insertUser(String username, String password, Role role);
 
-    /* default role and status will be 1, active user */
+    /* default role is USER and default status is ACTIVE */
     long insertUser(String username, String password);
 
     int updateUser(User user);

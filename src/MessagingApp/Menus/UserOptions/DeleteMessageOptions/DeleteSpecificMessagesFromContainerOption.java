@@ -18,12 +18,12 @@ import static MessagingApp.Menus.MessageServices.printMessages;
 
 public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
 
-    private Folder container;
+    private Folder folder;
 
-    public DeleteSpecificMessagesFromContainerOption(User user, Folder container) {
+    public DeleteSpecificMessagesFromContainerOption(User user, Folder folder) {
         super(user);
-        this.container = container;
-        this.setMenuLine("Delete select messages from " + container.name());
+        this.folder = folder;
+        this.setMenuLine("Delete select messages from " + folder.name());
     }
 
     @Override
@@ -34,7 +34,7 @@ public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
 
         List<Long> messageIdsList;
         do {
-            messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), container);
+            messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), folder);
 
             if (!messageIdsList.isEmpty()) {
                 // First we print the available messages list to help the user choose
@@ -55,7 +55,7 @@ public class DeleteSpecificMessagesFromContainerOption extends MenuOption {
                 } // no need to print related message here. It's already printed by getMessageIdInList
 
             } else {
-                System.out.println("There are no messages in " + container + " to delete...");
+                System.out.println("There are no messages in " + folder + " to delete...");
                 break;
             }
             // TODO adjust exit loop condition. It asks to repeat even if no messages. Added break temporarily

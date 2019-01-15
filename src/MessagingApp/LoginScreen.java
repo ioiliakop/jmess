@@ -18,8 +18,8 @@ public class LoginScreen {
 
         do {
             System.out.println("\nPlease enter login credentials");
-            String username    = inputUsername();
-            String password    = inputPassword();
+            String username    = inputGeneric("Enter username: ");
+            String password    = inputGeneric("Enter password: ");
             String passwordMD5 = getMD5Of(password);
 
             UserDAO usrDAO = new MySQLUserDAO();

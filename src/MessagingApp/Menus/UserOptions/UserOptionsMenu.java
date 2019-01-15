@@ -7,6 +7,7 @@ import MessagingApp.Menus.UserOptions.DeleteMessageOptions.DeleteMessageOptionsM
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 
 /**
  * Menu presenting all user options
@@ -27,6 +28,7 @@ public class UserOptionsMenu extends Menu {
         this.add(new ViewActiveUsersOption());
         this.add(new ViewFolderMessagesOption(user, INBOX));
         this.add(new ViewFolderMessagesOption(user, SENTBOX));
+        this.add(new ViewFolderMessagesOption(user, TRASH));
         this.add(new DeleteMessageOptionsMenu(user));
         this.add(new UpdatePasswordOption(user));
     }
@@ -41,6 +43,7 @@ public class UserOptionsMenu extends Menu {
         this.add(new ViewActiveUsersOption());
         this.add(new ViewFolderMessagesOption(user, INBOX));
         this.add(new ViewFolderMessagesOption(user, SENTBOX));
+        this.add(new ViewFolderMessagesOption(user, TRASH));
         this.add(new DeleteMessageOptionsMenu(user));
         this.add(new UpdatePasswordOption(user));
     }

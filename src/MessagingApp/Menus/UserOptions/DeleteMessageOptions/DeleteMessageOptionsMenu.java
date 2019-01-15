@@ -5,6 +5,7 @@ import MessagingApp.Menus.Menu;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 
 public class DeleteMessageOptionsMenu extends Menu {
 
@@ -16,6 +17,7 @@ public class DeleteMessageOptionsMenu extends Menu {
         this.add(new DeleteSpecificMessagesFromContainerOption(user, SENTBOX));
         this.add(new DeleteAllMessagesFromContainerOption(user, INBOX));
         this.add(new DeleteAllMessagesFromContainerOption(user, SENTBOX));
+        this.add(new EmptyFolderOption(user,TRASH));
     }
 
 

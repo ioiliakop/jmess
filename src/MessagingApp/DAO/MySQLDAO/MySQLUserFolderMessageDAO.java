@@ -15,7 +15,7 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
     private static final String SQL_MESSAGE_FOLDER_UPDATE                 = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND message_id = ?";
     private static final String SQL_ALL_MESSAGES_IN_FOLDER_UPDATE         = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = ?";
     private static final String SQL_ALL_TARGET_USER_MESSAGES_IN_INBOX_UPDATE = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = 1 AND users_folders_messages.message_id = ";
-    private static final String SQL_USER_FOLDER_ALL_MESSAGES_DELETE       = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id= ?";
+    private static final String SQL_USER_FOLDER_ALL_MESSAGES_DELETE       = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
     private static final String SQL_USER_FOLDER_MESSAGE_DELETE            = "DELETE FROM users_folders_messages WHERE message_id = ?";
 
 
@@ -123,6 +123,18 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
 
     @Override
     public int deleteUserAllFolderMessages(long userId, Folder folder) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_FOLDER_ALL_MESSAGES_DELETE)) {
+
+            pstmt.setLong(1, userId);
+            pstmt.setLong(2, folder.ID());
+
+            int rowsDeleted = pstmt.executeUpdate();
+            return rowsDeleted;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
         return 0;
     }
 

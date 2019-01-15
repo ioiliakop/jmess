@@ -37,9 +37,9 @@ public class UpdateUserOption extends MenuOption {
                 Menu updateUserMenu = new UpdateUserOptionsMenu(targetUser);
                 updateUserMenu.execute();
 
-            } else System.out.println("Selected user has been deleted.");
+            } else System.out.println("Selected user has been deleted");
 
-        } else System.out.println("User not found.");
+        } else System.out.println("User not found");
         pauseExecution();
     }
 }

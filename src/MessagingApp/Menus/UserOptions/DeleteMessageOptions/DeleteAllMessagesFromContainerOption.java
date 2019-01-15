@@ -29,7 +29,7 @@ public class DeleteAllMessagesFromContainerOption extends MenuOption {
         List<Long>           messageIdsList = ucmDAO.getUserFolderMessages(owner.getId(), container);
 
         if (!messageIdsList.isEmpty()) {
-            if (requestConfirmation("All messages in " + container.name() + " will be moved to trash.\nAre you sure?")) {
+            if (requestConfirmation("All messages in " + container.name() + " will be moved to TRASH.\nAre you sure?")) {
 
                 int numberOfUpdatedMessages = ucmDAO.updateAllUserFolderMessages(container, owner.getId(), TRASH);
                 if (numberOfUpdatedMessages > 0) {
