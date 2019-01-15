@@ -10,12 +10,6 @@ public class UserFolderMessage {
     public UserFolderMessage() {
     }
 
-    public UserFolderMessage(long userId, long containerId, long messageId) {
-        this.userId = userId;
-        this.containerId = containerId;
-        this.messageId = messageId;
-    }
-
     public long getUserId() {
         return userId;
     }

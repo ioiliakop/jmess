@@ -14,17 +14,6 @@ public class Message {
     public Message() {
     }
 
-    public Message(String messageSubject, String messageBody, long senderId) {
-        this.messageSubject = messageSubject;
-        this.messageBody = messageBody;
-        this.senderId = senderId;
-    }
-
-    public Message(String messageSubject, String messageBody) {
-        this.messageSubject = messageSubject;
-        this.messageBody = messageBody;
-    }
-
     public long getId() {
         return id;
     }

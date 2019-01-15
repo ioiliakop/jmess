@@ -13,19 +13,6 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, long roleId) {
-        this.username = username;
-        this.password = password;
-        this.roleId = roleId;
-    }
-
-    public User(long id, String username, String password, long roleId) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.roleId = roleId;
-    }
-
     public long getId() {
         return id;
     }

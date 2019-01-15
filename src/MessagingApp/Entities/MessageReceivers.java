@@ -8,11 +8,6 @@ public class MessageReceivers {
     public MessageReceivers() {
     }
 
-    public MessageReceivers(long messageId, long receiverId) {
-        this.messageId = messageId;
-        this.receiverId = receiverId;
-    }
-
     public long getMessageId() {
         return messageId;
     }
