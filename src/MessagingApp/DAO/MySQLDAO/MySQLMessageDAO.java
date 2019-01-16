@@ -1,6 +1,7 @@
 package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.MessageDAO;
+import MessagingApp.Entities.User;
 import MessagingApp.MySQLConnection;
 import MessagingApp.Entities.Message;
 
@@ -9,12 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLDeleteById;
+import static MessagingApp.DAO.MySQLDAO.MySQLHelper.getMessagesWithUserParam;
 
 public class MySQLMessageDAO implements MessageDAO {
 
     private static final String SQL_MESSAGE_SELECT_ALL              = "SELECT * FROM messages";
     private static final String SQL_MESSAGE_SELECT_BY_ID            = "SELECT * FROM messages WHERE id = ?";
     private static final String SQL_MESSAGE_SELECT_ALL_SENT_BY_USER = "SELECT * FROM messages WHERE sender_id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_SENT_TO_USER = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND receiver_id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_OF_USER      = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND (sender_id = ? OR receiver_id = ?)";
     //    private static final String SQL_MESSAGE_SELECT_ALL_BETWEEN_2_USERS = "SELECT * FROM messages WHERE " +
 //            "(sender_id = ? and receiver_id = ?) or (sender_id = ? and receiver_id = ?) order by date_time";
     private static final String SQL_MESSAGE_INSERT                  = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
@@ -31,24 +35,13 @@ public class MySQLMessageDAO implements MessageDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return extractMessageFromResultSet(rs);
+                return MySQLHelper.extractMessageFromResultSet(rs);
             }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return null;
-    }
-
-    /* private method to process a ResultSet returning a Message object */
-    private Message extractMessageFromResultSet(ResultSet rs) throws SQLException {
-        Message message = new Message();
-        message.setId(rs.getLong("id"));
-        message.setMessageSubject(rs.getString("subject"));
-        message.setMessageBody(rs.getString("body"));
-        message.setMessageDateCreated(rs.getTimestamp("date_created"));
-        message.setSenderId(rs.getLong("sender_id"));
-        return message;
     }
 
     @Override
@@ -60,7 +53,7 @@ public class MySQLMessageDAO implements MessageDAO {
             List<Message> messagesList = new ArrayList<>();
 
             while (rs.next()) {
-                Message message = extractMessageFromResultSet(rs);
+                Message message = MySQLHelper.extractMessageFromResultSet(rs);
                 messagesList.add(message);
             }
 
@@ -72,17 +65,28 @@ public class MySQLMessageDAO implements MessageDAO {
         return null;
     }
 
-    public List<Message> getAllMessagesSentByUser(long userId) {
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_SELECT_ALL_SENT_BY_USER)) {
+    public List<Message> getMessagesSentByUser(User sender) {
+        return getMessagesWithUserParam(sender, SQL_MESSAGE_SELECT_ALL_SENT_BY_USER);
+    }
 
-            pstmt.setLong(1, userId);
+    @Override
+    public List<Message> getMessagesSentToUser(User receiver) {
+        return getMessagesWithUserParam(receiver, SQL_MESSAGE_SELECT_ALL_SENT_TO_USER);
+    }
+
+    @Override
+    public List<Message> getMessagesOfUser(User senderOrReceiver) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_SELECT_ALL_OF_USER)) {
+
+            pstmt.setLong(1, senderOrReceiver.getId());
+            pstmt.setLong(2, senderOrReceiver.getId());
             ResultSet rs = pstmt.executeQuery();
 
             List<Message> messagesList = new ArrayList<>();
 
             while (rs.next()) {
-                Message message = extractMessageFromResultSet(rs);
+                Message message = MySQLHelper.extractMessageFromResultSet(rs);
                 messagesList.add(message);
             }
             return messagesList;
@@ -209,5 +213,10 @@ public class MySQLMessageDAO implements MessageDAO {
     @Override
     public int deleteMessage(long messageId) {
         return SQLDeleteById(SQL_MESSAGE_DELETE, messageId);
+    }
+
+    @Override
+    public int deleteMessage(Message message) {
+        return SQLDeleteById(SQL_MESSAGE_DELETE, message.getId());
     }
 }

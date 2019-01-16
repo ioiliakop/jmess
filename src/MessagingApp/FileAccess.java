@@ -13,6 +13,7 @@ public class FileAccess {
     public static void appendMessageToFile(Message message) {
 
         try {
+
             // We specify the file name and path here
             File file = new File("messages.txt");
 

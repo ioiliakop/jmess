@@ -13,10 +13,10 @@ public class DeleteMessageOptionsMenu extends Menu {
     public DeleteMessageOptionsMenu(User user) {
         super(user, "Delete Message Options");
         this.setMenuTitle("Delete Message Options");
-        this.add(new DeleteSpecificMessagesFromContainerOption(user, INBOX));
-        this.add(new DeleteSpecificMessagesFromContainerOption(user, SENTBOX));
-        this.add(new DeleteAllMessagesFromContainerOption(user, INBOX));
-        this.add(new DeleteAllMessagesFromContainerOption(user, SENTBOX));
+        this.add(new DeleteSpecificMessagesFromFolderOption(user, INBOX));
+        this.add(new DeleteSpecificMessagesFromFolderOption(user, SENTBOX));
+        this.add(new DeleteAllMessagesFromFolderOption(user, INBOX));
+        this.add(new DeleteAllMessagesFromFolderOption(user, SENTBOX));
         this.add(new EmptyFolderOption(user,TRASH));
     }
 

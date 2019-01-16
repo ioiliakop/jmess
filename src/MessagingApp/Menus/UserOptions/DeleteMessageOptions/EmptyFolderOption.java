@@ -2,7 +2,6 @@ package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.UserFolderMessageDAO;
-import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
@@ -18,7 +17,7 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
  * In this application we only use it for the TRASH folder
  * As all other delete operations are implicitly moving the messages to the TRASH folder
  * But it can easily be performed on other folders if needed in the future
- * just by passing the target folder as a parameter in the constructor
+ * by passing the target folder as a parameter in the constructor
  */
 public class EmptyFolderOption extends MenuOption {
 

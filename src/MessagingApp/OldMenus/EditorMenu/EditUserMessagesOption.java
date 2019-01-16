@@ -32,7 +32,7 @@ public class EditUserMessagesOption extends MenuOption {
 
         if (user != null) {
             MessageDAO    msgDAO       = new MySQLMessageDAO();
-            List<Message> userMessages = msgDAO.getAllMessagesSentByUser(user.getId());
+            List<Message> userMessages = msgDAO.getMessagesSentByUser(user);
 
             if (!userMessages.isEmpty()) {
                 printMessages(userMessages);

@@ -41,6 +41,7 @@ public class Roles {
         if (roleId == 4) return DELETER;
         if (roleId == 3) return EDITOR;
         if (roleId == 2) return VIEWER;
+        if (roleId == 1) return USER;
         return USER;
     }
 }

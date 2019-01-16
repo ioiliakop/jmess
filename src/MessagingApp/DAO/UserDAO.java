@@ -13,7 +13,7 @@ public interface UserDAO {
 
     User getUser(String username);
 
-    /* used for login */
+    /* used for authentication at login screen */
     User getActiveUserByUsernameAndPassword(String username, String password);
 
     List<User> getAllUsers();
@@ -22,7 +22,7 @@ public interface UserDAO {
 
     long insertUser(String username, String password, Role role);
 
-    /* default role is USER and default status is ACTIVE */
+    /* default role and status are set by the db by default, values USER and ACTIVE respectively */
     long insertUser(String username, String password);
 
     int updateUser(User user);
@@ -39,4 +39,6 @@ public interface UserDAO {
     int updateUserPassword(String password, long userId);
 
     int deleteUser(long userId);
+
+    int deleteUser(User user);
 }

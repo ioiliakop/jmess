@@ -39,7 +39,7 @@ public class MySQLUserDAO implements UserDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return extractUserFromResultSet(rs);
+                return MySQLHelper.extractUserFromResultSet(rs);
             }
 
         } catch (SQLException ex) {
@@ -57,7 +57,7 @@ public class MySQLUserDAO implements UserDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return extractUserFromResultSet(rs);
+                return MySQLHelper.extractUserFromResultSet(rs);
             }
 
         } catch (SQLException ex) {
@@ -76,7 +76,7 @@ public class MySQLUserDAO implements UserDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                return extractUserFromResultSet(rs);
+                return MySQLHelper.extractUserFromResultSet(rs);
             }
 
         } catch (SQLException ex) {
@@ -94,7 +94,7 @@ public class MySQLUserDAO implements UserDAO {
             ArrayList<User> usersList = new ArrayList<>();
 
             while (rs.next()) {
-                User user = extractUserFromResultSet(rs);
+                User user = MySQLHelper.extractUserFromResultSet(rs);
                 usersList.add(user);
             }
 
@@ -115,7 +115,7 @@ public class MySQLUserDAO implements UserDAO {
             ArrayList<User> usersList = new ArrayList<>();
 
             while (rs.next()) {
-                User user = extractUserFromResultSet(rs);
+                User user = MySQLHelper.extractUserFromResultSet(rs);
                 usersList.add(user);
             }
 
@@ -125,17 +125,6 @@ public class MySQLUserDAO implements UserDAO {
             ex.printStackTrace();
         }
         return null;
-    }
-
-    /* private helper method to process a ResultSet returning a USER object */
-    private User extractUserFromResultSet(ResultSet rs) throws SQLException {
-        User user = new User();
-        user.setId(rs.getLong("id"));
-        user.setUsername(rs.getString("username"));
-        user.setPassword(rs.getString("password"));
-        user.setRoleId(rs.getLong("role_id"));
-        user.setStatusId(rs.getLong("status_id"));
-        return user;
     }
 
     @Override
@@ -239,5 +228,10 @@ public class MySQLUserDAO implements UserDAO {
     @Override
     public int deleteUser(long userId) {
         return SQLDeleteById(SQL_USER_DELETE, userId);
+    }
+
+    @Override
+    public int deleteUser(User user) {
+        return SQLDeleteById(SQL_USER_DELETE, user.getId());
     }
 }

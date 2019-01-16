@@ -20,6 +20,15 @@ import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.FileAccess.appendMessageToFile;
 import static MessagingApp.Menus.MenuUtils.*;
 
+/*
+ * This option gives a user the ability to a user to send a message
+ * In this application model, this includes the following steps
+ * 1 - Takes a list of receivers from user input
+ * 2 - Takes message subject and body from user
+ * 3 - It inserts the message in the db (current timestamp is entered automatically at db)
+ * 4 - Then it registers it to the sender's SENTBOX
+ * 5 - Then it registers it to each receiver's INBOX (if there are multiple)
+ */
 public class SendMessageOption extends MenuOption {
 
     public SendMessageOption(User user) {

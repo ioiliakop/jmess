@@ -19,7 +19,7 @@ import static MessagingApp.Menus.MessageServices.getMessagesFromMessageIds;
 import static MessagingApp.Menus.MessageServices.printMessages;
 
 
-/* User option that prints all user messages in the container (Inbox/Sentbox etc.) passed as parameter */
+/* User option that prints all user messages in the folder (INBOX/SENTBOX etc.) passed as parameter */
 public class ViewFolderMessagesOption extends MenuOption {
 
     private Folder container;

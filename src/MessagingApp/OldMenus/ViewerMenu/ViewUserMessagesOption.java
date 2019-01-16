@@ -29,10 +29,10 @@ public class ViewUserMessagesOption extends MenuOption {
 
         if (user != null) {
             MessageDAO msgDAO = new MySQLMessageDAO();
-            List<Message> userMessages = msgDAO.getAllMessagesSentByUser(user.getId());
-
-            if (!userMessages.isEmpty()) printMessages(userMessages);
-            else System.out.println("User has no messages, either sent or received.");
+//            List<Message> userMessages = msgDAO.getMessagesSentByUser(user.getId());
+//
+//            if (!userMessages.isEmpty()) printMessages(userMessages);
+//            else System.out.println("User has no messages, either sent or received.");
 
         } else {
             System.out.println("Sorry, username not found.");

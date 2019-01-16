@@ -1,6 +1,7 @@
 package MessagingApp.DAO;
 
 import MessagingApp.Entities.Message;
+import MessagingApp.Entities.User;
 
 import java.util.List;
 
@@ -10,7 +11,11 @@ public interface MessageDAO {
 
     List<Message> getAllMessages();
 
-    List<Message> getAllMessagesSentByUser(long userId);
+    List<Message> getMessagesSentByUser(User sender);
+
+    List<Message> getMessagesSentToUser(User receiver);
+
+    List<Message> getMessagesOfUser(User senderOrReceiver);
 
     List<Message> getConversation(long user1Id, long user2Id);
 
@@ -22,4 +27,6 @@ public interface MessageDAO {
     int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId);
 
     int deleteMessage(long messageId);
+
+    int deleteMessage(Message message);
 }

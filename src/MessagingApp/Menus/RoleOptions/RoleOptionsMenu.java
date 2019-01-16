@@ -2,20 +2,25 @@ package MessagingApp.Menus.RoleOptions;
 
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
+import MessagingApp.Menus.UserOptions.DeleteMessageOptions.DeleteMessageOptionsMenu;
 
+import static MessagingApp.Entities.Roles.Role.DELETER;
 import static MessagingApp.Entities.Roles.Role.EDITOR;
 import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 
 public class RoleOptionsMenu extends Menu {
 
-    public RoleOptionsMenu(User user) {
-        super(user);
-        this.setMenuLine(getRoleFromRoleId(user.getRoleId()) + " Options");
+    public RoleOptionsMenu(User roleOwner) {
+        super(roleOwner);
+        this.setMenuLine(getRoleFromRoleId(roleOwner.getRoleId()) + " Options");
         this.setExitPrompt("Back");
         this.setMenuTitle(this.getMenuLine());
         this.add(new ViewAllMessagesOption());
-        this.add(new ViewMessagesSentByUserOption());
-        if (user.getRoleId()>=EDITOR.ID()) this.add(new EditMessagesOption());
-        this.add(new RoleUserMessagesOption(user));
+        if (roleOwner.getRoleId()>=EDITOR.ID()) this.add(new EditMessagesOption());
+//        if (roleOwner.getRoleId()>= DELETER.ID()) this.add(new DeleteMessagesMenu());
+        this.add(new RoleMessagesSentByUserOption(roleOwner));
+        this.add(new RoleMessagesSentToUserOption(roleOwner));
+        this.add(new RoleMessagesOfUserOption(roleOwner));
+//        this.add(new RoleUserMessagesOption(roleOwner));
     }
 }
