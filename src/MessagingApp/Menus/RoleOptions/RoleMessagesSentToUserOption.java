@@ -53,13 +53,7 @@ public class RoleMessagesSentToUserOption extends MenuOption {
                     }
                 }
 
-//                if (this.getUser().getRoleId()>=DELETER.ID()) {
-//                    if (requestConfirmation("Do you want to delete any of the above messages?")) {
-//                        deleteMessageInList(selectedUserMessages);
-//                    }
-//                }
-
-            } else System.out.println("User '" + selectedUser.getUsername() + "' hasn't received any messages. Ever...");
+            } else System.out.println("No messages found...");
 
         } else System.out.println("User not found");
 

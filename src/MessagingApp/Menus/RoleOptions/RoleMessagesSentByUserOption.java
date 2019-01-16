@@ -22,7 +22,7 @@ import static MessagingApp.Menus.RoleOptions.RoleHelper.editMessageInList;
 public class RoleMessagesSentByUserOption extends MenuOption {
 
     public RoleMessagesSentByUserOption(User roleOwner) {
-        super(roleOwner,"View all messages sent by a specific user");
+        super(roleOwner, "View all messages sent by a specific user");
     }
 
     @Override
@@ -40,23 +40,16 @@ public class RoleMessagesSentByUserOption extends MenuOption {
             if (!selectedUserMessages.isEmpty()) {
                 printMessages(selectedUserMessages);
 
-                if (this.getUser().getRoleId()>=EDITOR.ID()) {
+                if (this.getUser().getRoleId() >= EDITOR.ID()) {
                     if (requestConfirmation("Do you want to edit any of the above messages?")) {
                         editMessageInList(selectedUserMessages);
-                    }
-                } else if (this.getUser().getRoleId()>=DELETER.ID()) {
-                    if (requestConfirmation("Do you want to delete any of the above messages?")) {
-                        deleteMessageInList(selectedUserMessages);
+                    } else if (this.getUser().getRoleId() >= DELETER.ID()) {
+                        if (requestConfirmation("Do you want to delete any of the above messages?")) {
+                            deleteMessageInList(selectedUserMessages);
+                        }
                     }
                 }
-
-//                if (this.getUser().getRoleId()>=DELETER.ID()) {
-//                    if (requestConfirmation("Do you want to delete any of the above messages?")) {
-//                        deleteMessageInList(selectedUserMessages);
-//                    }
-//                }
-
-            } else System.out.println("User '" + selectedUser.getUsername() + "' hasn't received any messages. Ever...");
+            } else System.out.println("No messages found...");
 
         } else System.out.println("User not found");
 
@@ -64,3 +57,5 @@ public class RoleMessagesSentByUserOption extends MenuOption {
     }
 
 }
+
+

@@ -17,7 +17,7 @@ import static MessagingApp.Entities.Statuses.Status.DELETED;
 
 public class MessageServices {
 
-/*    *//* Method that takes a list of messages and prints them on the screen in user-friendly format *//*
+    /*    *//* Method that takes a list of messages and prints them on the screen in user-friendly format *//*
     public static void printMessages(List<Message> messages) {
         if (!messages.isEmpty()) {
 
@@ -51,8 +51,8 @@ public class MessageServices {
     public static String getMessageString(Message message) {
         String[] names = getMessageSenderAndReceiverNames(message);
 
-        String senderName = names[0];
-        String receiverNames  = names[1];
+        String senderName    = names[0];
+        String receiverNames = names[1];
 
         return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverNames +
                 "\t\tDateTime: " + message.getMessageDateCreated() + "\n\tSubject: " + message.getMessageSubject() +
@@ -158,4 +158,26 @@ public class MessageServices {
 
         return messageId;
     }
+
+    /*
+     * Helper method that takes user input for message id
+     * Validates input if it's valid number type for message id
+     * Returns the input as long if it is
+     * Returns 0 otherwise
+     */
+    public static long inputMessageId() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter message id: ");
+        String input = sc.nextLine();
+
+        long messageId = 0;
+        try {
+            messageId = Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            System.out.println("Sorry, not a valid message id.");
+        }
+        return messageId;
+    }
+
+
 }
