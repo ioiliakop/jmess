@@ -44,7 +44,7 @@ public class UpdateUserRoleOption extends MenuOption {
                 updatedUser.setRoleId(newRoleId);
 
                 UserDAO usrDAO = new MySQLUserDAO();
-                if (usrDAO.updateUser(updatedUser) == 1) System.out.println("Roles successfully updated.");
+                if (usrDAO.updateUser(updatedUser) == 1) System.out.println("Role successfully updated.");
                 else System.out.println("Unknown error. Update failed.");
 
             } else System.out.println("Update cancelled.");

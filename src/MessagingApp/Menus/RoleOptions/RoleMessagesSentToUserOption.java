@@ -25,7 +25,6 @@ public class RoleMessagesSentToUserOption extends MenuOption {
 
     public RoleMessagesSentToUserOption(User roleUser) {
         super(roleUser, getRoleAbilitiesString(getRoleFromRoleId(roleUser.getRoleId()))+ "all messages sent to a specific user");
-
     }
 
     @Override

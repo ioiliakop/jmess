@@ -12,17 +12,19 @@ import java.util.List;
 
 import static MessagingApp.Entities.Roles.Role.DELETER;
 import static MessagingApp.Entities.Roles.Role.EDITOR;
+import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.printMessages;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.deleteMessageInList;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.editMessageInList;
+import static MessagingApp.Menus.RoleOptions.RoleHelper.getRoleAbilitiesString;
 
 public class RoleMessagesSentByUserOption extends MenuOption {
 
-    public RoleMessagesSentByUserOption(User roleOwner) {
-        super(roleOwner, "View all messages sent by a specific user");
+    public RoleMessagesSentByUserOption(User roleUser) {
+        super(roleUser, getRoleAbilitiesString(getRoleFromRoleId(roleUser.getRoleId())) + "all messages sent by a specific user");
     }
 
     @Override
