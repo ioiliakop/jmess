@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
+import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
@@ -85,22 +87,10 @@ public class MessageServices {
                 ANSI_CYAN + "\n\tMessage: " + ANSI_PURPLE + message.getMessageBody() + ANSI_RESET + "\n";
     }
 
-    /*
-     * method that returns a string of the receiver names of a message, separated by a space
-     * used when we want ot print message info, either on screen, or on a file
-     */
-    public static String getMessageReceiverNames(Message message) {
-        UserDAO             usrDAO = new MySQLUserDAO();
-        MessageReceiversDAO mrDAO  = new MySQLMessageReceiversDAO();
-
-        List<Long>    receiverIds       = mrDAO.getMessageReceiverIds(message.getId());
-        StringBuilder receiversSbuilder = new StringBuilder();
-
-        for (long receiverId : receiverIds) {
-            User receiver = usrDAO.getUser(receiverId);
-            receiversSbuilder.append(receiver.getUsername() + " ");
-        }
-        return receiversSbuilder.toString();
+    public static List<Long> getMessageReceiverIDs(Message message) {
+        MessageReceiversDAO mrDAO       = new MySQLMessageReceiversDAO();
+        List<Long>          receiverIds = mrDAO.getMessageReceiverIds(message.getId());
+        return receiverIds;
     }
 
     /*
@@ -208,5 +198,21 @@ public class MessageServices {
         }
     }
 
+    /* checks validity of message move
+    * e.g. message that was originally in sent folder and was moved to trash
+    * cannot be moved from trash to inbox, only back to sentbox
+    */
+    public static boolean messageIsValidForMoveTo(User folderOwner, Message message, Folder targetFolder) {
+        if (targetFolder == TRASH) return true;
+        if (targetFolder == INBOX) {
+            if (getMessageReceiverIDs(message).contains(folderOwner.getId())) return true;
+            else return false;
+        }
+        if (targetFolder == SENTBOX) {
+            if (folderOwner.getId() == message.getSenderId()) return true;
+            else return false;
+        }
+        return true;
+    }
 
 }

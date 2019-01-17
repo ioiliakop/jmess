@@ -30,8 +30,6 @@ public class ViewFolderMessagesOption extends MenuOption {
     @Override
     public void execute() {
         User owner = this.getUser();
-
-//        long                 ownerId        = this.getUser().getId();
         UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
         List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), folder);
 

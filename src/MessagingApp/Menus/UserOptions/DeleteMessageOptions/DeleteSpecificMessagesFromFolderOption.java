@@ -33,7 +33,6 @@ public class DeleteSpecificMessagesFromFolderOption extends MenuOption {
 
     @Override
     public void execute() {
-
         User                 owner  = this.getUser();
         UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
 
