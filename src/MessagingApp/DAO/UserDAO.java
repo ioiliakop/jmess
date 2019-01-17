@@ -27,18 +27,5 @@ public interface UserDAO {
 
     int updateUser(User user);
 
-    int updateUserNameRole(String username, Roles.Role role, long userId);
-
-    int updateUserNameRoleStatus(String username, Roles.Role role, Statuses.Status status, long userId);
-
-    /*
-     * The password field must have a separate method in our implementation
-     * As it is not the password that is retrieved from the db
-     * but the MD5 hash of the password
-     */
-    int updateUserPassword(String password, long userId);
-
-    int deleteUser(long userId);
-
     int deleteUser(User user);
 }

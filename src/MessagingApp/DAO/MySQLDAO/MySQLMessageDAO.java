@@ -167,55 +167,6 @@ public class MySQLMessageDAO implements MessageDAO {
         return 0;
     }
 
-/*    //    @Override
-    public long insertMessage(String messageSubject, String messageBody, long senderId, long receiverId) {
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_INSERT, Statement.RETURN_GENERATED_KEYS)) {
-
-            pstmt.setString(1, messageSubject);
-            pstmt.setString(2, messageBody);
-            pstmt.setLong(3, senderId);
-
-            int insertedRows = pstmt.executeUpdate();
-            if (insertedRows == 1) {
-                // We get the generated key from the resultSet below
-                ResultSet rs = pstmt.getGeneratedKeys();
-                if (rs.next()) {
-                    return rs.getLong(1);
-                }
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
-    }*/
-
-    @Override
-    public int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId) {
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_UPDATE)) {
-
-            pstmt.setString(1, messageSubject);
-            pstmt.setString(2, messageBody);
-            pstmt.setLong(3, messageId);
-
-            int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated == 1) {
-                return rowsUpdated;
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
-    }
-
-    @Override
-    public int deleteMessage(long messageId) {
-        return SQLDeleteById(SQL_MESSAGE_DELETE, messageId);
-    }
-
     @Override
     public int deleteMessage(Message message) {
         return SQLDeleteById(SQL_MESSAGE_DELETE, message.getId());

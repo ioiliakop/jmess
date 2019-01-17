@@ -132,22 +132,11 @@ public class MessageServices {
 
     /*
      * Helper method that takes a list of message IDs as parameter
-     * Then takes user input for
-     * First validates input if it's valid number type, returns 0 if not
      * Then compares it against list of message IDs passed as parameter
      * Returns the message ID if it is contained in the list or 0 otherwise
      */
     public static long getMessageIdInList(List<Long> messageIds) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter message id: ");
-        String input = sc.nextLine();
-
-        long messageId = 0;
-        try {
-            messageId = Long.parseLong(input);
-        } catch (NumberFormatException e) {
-            System.out.println("Sorry, not a valid message id.");
-        }
+        long messageId = inputMessageId();
 
         if (messageId != 0) {
             if (!messageIds.contains(messageId)) {
@@ -161,8 +150,8 @@ public class MessageServices {
 
     /*
      * Helper method that takes user input for message id
-     * Validates input if it's valid number type for message id
-     * Returns the input as long if it is
+     * Validates input if it's valid number type for message id (integer/long)
+     * Returns the input given as 'long', if it is
      * Returns 0 otherwise
      */
     public static long inputMessageId() {

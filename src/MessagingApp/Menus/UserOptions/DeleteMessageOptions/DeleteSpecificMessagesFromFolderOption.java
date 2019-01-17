@@ -46,10 +46,10 @@ public class DeleteSpecificMessagesFromFolderOption extends MenuOption {
                 List<Message> inboxMessages = getMessagesFromMessageIds(messageIdsList);
                 printMessages(inboxMessages);
 
-                // We get user selection
+                // We get user selection and validate it
                 long selectedMessageId = getMessageIdInList(messageIdsList);
 
-                // We validate it and proceed accordingly
+                // We then proceed accordingly
                 if (selectedMessageId != 0) {
 
                     if (requestConfirmation("Message with id '" + selectedMessageId + "' will be moved to trash.\nAre you sure?")) {

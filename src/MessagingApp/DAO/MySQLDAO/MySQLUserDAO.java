@@ -178,58 +178,6 @@ public class MySQLUserDAO implements UserDAO {
         return 0;
     }
 
-
-    @Override
-    public int updateUserNameRole(String username, Role role, long userId) {
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_NAME_ROLE_UPDATE)) {
-
-            pstmt.setString(1, username);
-            pstmt.setLong(2, role.ID());
-            pstmt.setLong(3, userId);
-
-            int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated == 1) {
-                return rowsUpdated;
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
-    }
-
-    @Override
-    public int updateUserNameRoleStatus(String username, Role role, Status status, long userId) {
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_NAME_ROLE_STATUS_UPDATE)) {
-
-            pstmt.setString(1, username);
-            pstmt.setLong(2, role.ID());
-            pstmt.setLong(3, status.ID());
-            pstmt.setLong(4, userId);
-
-            int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated == 1) {
-                return rowsUpdated;
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
-    }
-
-    @Override
-    public int updateUserPassword(String password, long userId) {
-        return SQLUpdateVarcharFieldById(SQL_USER_PASSWORD_UPDATE, password, userId);
-    }
-
-    @Override
-    public int deleteUser(long userId) {
-        return SQLDeleteById(SQL_USER_DELETE, userId);
-    }
-
     @Override
     public int deleteUser(User user) {
         return SQLDeleteById(SQL_USER_DELETE, user.getId());

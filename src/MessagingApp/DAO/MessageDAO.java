@@ -24,9 +24,5 @@ public interface MessageDAO {
 
     int updateMessage(Message message);
 
-    int updateMessageSubjectAndBody(String messageSubject, String messageBody, long messageId);
-
-    int deleteMessage(long messageId);
-
     int deleteMessage(Message message);
 }
