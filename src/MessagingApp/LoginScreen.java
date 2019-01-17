@@ -8,6 +8,7 @@ import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.RoleOptions.RoleOptionsMenu;
 import MessagingApp.Menus.UserOptions.UserOptionsMenu;
 
+import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.Roles.Role.*;
 import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.MessageServices.unreadMessagesPrompt;
@@ -31,10 +32,9 @@ public class LoginScreen {
 
                 // First prints successful login message along with any unread messages in inbox (if any)
                 System.out.println("\nSuccessfully logged in as " + user.getUsername());
-                unreadMessagesPrompt(user);
+                unreadMessagesPrompt(user, INBOX);
 
                 if (user.getRoleId() == ADMIN.ID()) {
-                    unreadMessagesPrompt(user);
                     Menu adminMenu = new Menu(user);
                     adminMenu.add(new AdminOptionsMenu(user));
                     adminMenu.add(new UserOptionsMenu(user, "User Options"));
@@ -54,7 +54,7 @@ public class LoginScreen {
                     viewerMenu.add(new RoleOptionsMenu(user));
                     viewerMenu.add(new UserOptionsMenu(user, "User Options"));
                     viewerMenu.execute();
-                } else if (user.getRoleId() == USER.ID()){
+                } else if (user.getRoleId() == USER.ID()) {
                     UserOptionsMenu userMenu = new UserOptionsMenu(user);
                     userMenu.execute();
                 }

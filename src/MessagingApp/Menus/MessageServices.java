@@ -9,6 +9,8 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
+import MessagingApp.Entities.MessageFolders;
+import MessagingApp.Entities.MessageFolders.Folder;
 import MessagingApp.Entities.User;
 
 import java.util.ArrayList;
@@ -206,11 +208,15 @@ public class MessageServices {
         return messageId;
     }
 
-    /* Checks if logged in user has unread messages in inbox since last visit */
-    public static void unreadMessagesPrompt(User user){
-        UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
-        long numberOfUnreadMessages = ufmDAO.getUnreadMessagesCountInFolder(user,INBOX);
-        if (numberOfUnreadMessages>0) {
+    /*
+     * Checks if logged in user has unread messages in a folder
+     * and prints corresponding message if he has
+     * Was created for inbox, but can be used for other folders if needed in the future
+     */
+    public static void unreadMessagesPrompt(User user, Folder folder) {
+        UserFolderMessageDAO ufmDAO                 = new MySQLUserFolderMessageDAO();
+        long                 numberOfUnreadMessages = ufmDAO.getUnreadMessagesCountInFolder(user, folder);
+        if (numberOfUnreadMessages > 0) {
             System.out.println("You have " + numberOfUnreadMessages + " unread messages. Please check your INBOX");
             pauseExecution();
         }

@@ -37,8 +37,8 @@ public class RoleMessagesSentByUserOption extends MenuOption {
         if (selectedUser != null) {
             MessageDAO    msgDAO               = new MySQLMessageDAO();
             List<Message> selectedUserMessages = msgDAO.getMessagesSentByUser(selectedUser);
-
-            viewEditDeleteMessagesInList(this.getUser(), selectedUserMessages);
+            User roleUser = this.getUser();
+            viewEditDeleteMessagesInList(roleUser, selectedUserMessages);
 
         } else System.out.println("User not found");
 

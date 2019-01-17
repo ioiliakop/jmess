@@ -10,7 +10,9 @@ public interface UserFolderMessageDAO {
 
     List<Long> getUserFolderMessageIDs(long userId, Folder folder);
 
-    long getUnreadMessagesCountInFolder(User user, Folder folder);
+    List<Long> getMessageIDsInFolderSentByUser(User owner, Folder folder, User sender);
+
+    long getUnreadMessagesCountInFolder(User owner, Folder folder);
 
     long insertUserFolderMessage(long userId, Folder folder, long messageId);
 
@@ -18,7 +20,7 @@ public interface UserFolderMessageDAO {
 
     long updateUserFolderMessagesAsRead(User user, Folder folder);
 
-    /* Moves all messages send by a specific user, from their current folder to a target folder */
+    /* Moves all messages sent by a specific user, from their current folder to a target folder */
     long updateUserFolderMessagesSentBy(User owner, Folder originalFolder, Folder targetFolder, User sender);
 
     int updateAllUserFolderMessages(Folder originalFolder, long userId, Folder targetFolder);

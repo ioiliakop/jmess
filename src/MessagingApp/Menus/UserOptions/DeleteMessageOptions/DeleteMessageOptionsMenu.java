@@ -2,6 +2,7 @@ package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
+import MessagingApp.Menus.RoleOptions.DeleteMessageOption;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
@@ -19,6 +20,7 @@ public class DeleteMessageOptionsMenu extends Menu {
         this.setMenuTitle("Delete Message Options");
         this.add(new DeleteSpecificMessagesFromFolderOption(user, INBOX));
         this.add(new DeleteSpecificMessagesFromFolderOption(user, SENTBOX));
+        this.add(new DeleteMessagesSentByFromFolderOption(user, INBOX));
         this.add(new DeleteAllMessagesFromFolderOption(user, INBOX));
         this.add(new DeleteAllMessagesFromFolderOption(user, SENTBOX));
         this.add(new EmptyFolderOption(user,TRASH));

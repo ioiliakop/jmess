@@ -13,6 +13,7 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
 
     private static final String SQL_SELECT_MESSAGE_IDS_BY_USER_FOLDER           = "SELECT message_id FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
     private static final String SQL_SELECT_COUNT_UNREAD_MESSAGES_IN_USER_FOLDER = "SELECT COUNT(message_id) FROM users_folders_messages WHERE user_id = ? AND folder_id = ? AND is_read = 0";
+    private static final String SQL_SELECT_MESSAGE_IDS_IN_USER_FOLDER_SENT_BY   = "SELECT DISTINCT message_id FROM users_folders_messages, messages WHERE user_id = ? AND folder_id = ? AND sender_id = ?";
     private static final String SQL_INSERT_USER_FOLDER_MESSAGE                  = "INSERT INTO users_folders_messages (user_id,folder_id,message_id) VALUES(?,?,?)";
     private static final String SQL_UPDATE_SPECIFIC_MESSAGE_FOLDER              = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND message_id = ?";
     private static final String SQL_UPDATE_MESSAGE_IN_FOLDER_AS_READ            = "UPDATE users_folders_messages SET is_read = 1 WHERE user_id = ? AND folder_id = ?";
@@ -47,11 +48,36 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
     }
 
     @Override
-    public long getUnreadMessagesCountInFolder(User user, Folder folder) {
+    public List<Long> getMessageIDsInFolderSentByUser(User owner, Folder folder, User sender) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_SELECT_MESSAGE_IDS_IN_USER_FOLDER_SENT_BY)) {
+
+            pstmt.setLong(1, owner.getId());
+            pstmt.setLong(2, folder.ID());
+            pstmt.setLong(3, sender.getId());
+            ResultSet rs = pstmt.executeQuery();
+
+            List<Long> messageIdsList = new ArrayList<>();
+
+            while (rs.next()) {
+                long messageId = rs.getLong("message_id");
+                messageIdsList.add(messageId);
+            }
+
+            return messageIdsList;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public long getUnreadMessagesCountInFolder(User owner, Folder folder) {
         try (Connection conn = MySQLConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL_SELECT_COUNT_UNREAD_MESSAGES_IN_USER_FOLDER)) {
 
-            pstmt.setLong(1, user.getId());
+            pstmt.setLong(1, owner.getId());
             pstmt.setLong(2, folder.ID());
             ResultSet rs = pstmt.executeQuery();
 
