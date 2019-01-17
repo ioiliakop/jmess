@@ -1,4 +1,4 @@
-package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
+package MessagingApp.Menus.UserOptions.MessageFolderOptions;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;

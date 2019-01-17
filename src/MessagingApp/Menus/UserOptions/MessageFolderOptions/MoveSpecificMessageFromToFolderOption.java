@@ -1,4 +1,4 @@
-package MessagingApp.Menus.UserOptions;
+package MessagingApp.Menus.UserOptions.MessageFolderOptions;
 
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
@@ -28,8 +28,8 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
 
     @Override
     public void execute() {
-        User         folderOwner  = this.getUser();
-        UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
+        User                 folderOwner = this.getUser();
+        UserFolderMessageDAO ufmDAO      = new MySQLUserFolderMessageDAO();
 
         List<Long> messageIdsList;
         do {
@@ -47,6 +47,7 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
                 if (selectedMessageId != 0) {
                     MessageDAO msgDAO          = new MySQLMessageDAO();
                     Message    selectedMessage = msgDAO.getMessage(selectedMessageId);
+
                     if (messageIsValidForMoveTo(folderOwner, selectedMessage, targetFolder)) {
 
                         if (requestConfirmation("Message with id '" + selectedMessageId + "' will be moved to " + targetFolder + ".\nAre you sure?")) {
@@ -54,15 +55,15 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
                                 System.out.println("Message successfully moved to " + targetFolder);
                             } else System.out.println("Unknown error. Message move operation failed.");
                         } else System.out.println("Move operation cancelled.");
+                    } else System.out.println("Selected message cannot be moved to " + targetFolder);
 
-                    } // no need to print related message here. It's already printed by getMessageIdInList
-                } else System.out.println("Selected message cannot be moved to " + targetFolder);
+                } // no need to print related message here. It's already printed by getMessageIdInList
             } else {
                 System.out.println("There are no messages in " + currentFolder);
                 break;
             }
             // TODO adjust exit loop condition. It asks to repeat even if no messages. Added break temporarily
-        } while (requestConfirmation("Would you like to delete another message?"));
+        } while (requestConfirmation("Would you like to choose another message?"));
 
         pauseExecution();
     }

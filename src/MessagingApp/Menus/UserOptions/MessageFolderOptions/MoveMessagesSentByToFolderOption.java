@@ -1,4 +1,4 @@
-package MessagingApp.Menus.UserOptions;
+package MessagingApp.Menus.UserOptions.MessageFolderOptions;
 
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
@@ -25,8 +25,8 @@ public class MoveMessagesSentByToFolderOption extends MenuOption {
     private Folder currentFolder;
     private Folder targetFolder;
 
-    public MoveMessagesSentByToFolderOption(User folderOwner, Folder currentFolder, Folder targetFolder, String menuLine) {
-        super(folderOwner, menuLine);
+    public MoveMessagesSentByToFolderOption(User folderOwner, Folder currentFolder, Folder targetFolder) {
+        super(folderOwner, "Move messages sent by a specific user from " + currentFolder + " to " + targetFolder);
         this.currentFolder = currentFolder;
         this.targetFolder = targetFolder;
     }

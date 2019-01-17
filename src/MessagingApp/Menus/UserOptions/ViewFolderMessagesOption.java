@@ -35,6 +35,7 @@ public class ViewFolderMessagesOption extends MenuOption {
 
         if (!messageIdsList.isEmpty()) {
             List<Message> containerMessages = getMessagesFromMessageIds(messageIdsList);
+            System.out.println("\nMessages in " + folder + ":");
             printMessages(containerMessages);
 
             // We ask the user if he wishes to view a message from the folder

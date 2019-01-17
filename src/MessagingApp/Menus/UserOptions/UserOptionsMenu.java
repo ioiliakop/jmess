@@ -3,7 +3,7 @@ package MessagingApp.Menus.UserOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.AdminOptions.UpdateUserOptions.UpdatePasswordOption;
 import MessagingApp.Menus.Menu;
-import MessagingApp.Menus.UserOptions.DeleteMessageOptions.DeleteMessageOptionsMenu;
+import MessagingApp.Menus.UserOptions.MessageFolderOptions.MessageFolderOptionsMenu;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
@@ -29,7 +29,7 @@ public class UserOptionsMenu extends Menu {
         this.add(new ViewFolderMessagesOption(user, INBOX));
         this.add(new ViewFolderMessagesOption(user, SENTBOX));
         this.add(new ViewFolderMessagesOption(user, TRASH));
-        this.add(new DeleteMessageOptionsMenu(user));
+        this.add(new MessageFolderOptionsMenu(user));
         this.add(new UpdatePasswordOption(user));
     }
 
@@ -44,7 +44,7 @@ public class UserOptionsMenu extends Menu {
         this.add(new ViewFolderMessagesOption(user, INBOX));
         this.add(new ViewFolderMessagesOption(user, SENTBOX));
         this.add(new ViewFolderMessagesOption(user, TRASH));
-        this.add(new DeleteMessageOptionsMenu(user));
+        this.add(new MessageFolderOptionsMenu(user));
         this.add(new UpdatePasswordOption(user));
     }
 
