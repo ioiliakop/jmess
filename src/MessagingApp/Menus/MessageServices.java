@@ -5,7 +5,9 @@ import MessagingApp.DAO.MessageReceiversDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageReceiversDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
+import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.UserDAO;
+import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 
@@ -13,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.Statuses.Status.DELETED;
+import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
 public class MessageServices {
 
@@ -200,6 +204,16 @@ public class MessageServices {
             System.out.println("Sorry, not a valid message id.");
         }
         return messageId;
+    }
+
+    /* Checks if logged in user has unread messages in inbox since last visit */
+    public static void unreadMessagesPrompt(User user){
+        UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
+        long numberOfUnreadMessages = ufmDAO.getUnreadMessagesCountInFolder(user,INBOX);
+        if (numberOfUnreadMessages>0) {
+            System.out.println("You have " + numberOfUnreadMessages + " unread messages. Please check your INBOX");
+            pauseExecution();
+        }
     }
 
 

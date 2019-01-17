@@ -17,7 +17,7 @@ import static MessagingApp.Entities.Roles.Role.USER;
 public class MySQLUserDAO implements UserDAO {
 
     private static final String SQL_USER_SELECT_ALL              = "SELECT * FROM users";
-    private static final String SQL_USER_SELECT_ALL_ACTIVE       = "SELECT * FROM users WHERE status_id = 1";
+    private static final String SQL_USER_SELECT_BY_STATUS        = "SELECT * FROM users WHERE status_id = ?";
     private static final String SQL_USER_SELECT_BY_ID            = "SELECT * FROM users WHERE id = ?";
     private static final String SQL_USER_SELECT_BY_NAME          = "SELECT * FROM users WHERE username = ?";
     private static final String SQL_USER_SELECT_BY_NAME_PASS     = "SELECT * FROM users WHERE username = ? AND password = ? AND status_id = 1";
@@ -86,12 +86,12 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public ArrayList<User> getAllUsers() {
+    public List<User> getAllUsers() {
         try (Connection conn = MySQLConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(SQL_USER_SELECT_ALL)) {
 
-            ArrayList<User> usersList = new ArrayList<>();
+            List<User> usersList = new ArrayList<>();
 
             while (rs.next()) {
                 User user = MySQLHelper.extractUserFromResultSet(rs);
@@ -107,18 +107,19 @@ public class MySQLUserDAO implements UserDAO {
     }
 
     @Override
-    public List<User> getAllActiveUsers() {
+    public List<User> getAllUsersByStatus(Status status) {
         try (Connection conn = MySQLConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(SQL_USER_SELECT_ALL_ACTIVE)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL_USER_SELECT_BY_STATUS)) {
 
-            ArrayList<User> usersList = new ArrayList<>();
+            pstmt.setLong(1, status.ID());
+            ResultSet rs = pstmt.executeQuery();
+
+            List<User> usersList = new ArrayList<>();
 
             while (rs.next()) {
                 User user = MySQLHelper.extractUserFromResultSet(rs);
                 usersList.add(user);
             }
-
             return usersList;
 
         } catch (SQLException ex) {

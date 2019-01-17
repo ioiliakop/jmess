@@ -8,6 +8,7 @@ import MessagingApp.Menus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Entities.Roles.getRoleFromRoleId;
+import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
 public class ViewActiveUsersOption extends MenuOption {
@@ -19,7 +20,7 @@ public class ViewActiveUsersOption extends MenuOption {
     @Override
     public void execute() {
         UserDAO    usrDAO         = new MySQLUserDAO();
-        List<User> allActiveUsers = usrDAO.getAllActiveUsers();
+        List<User> allActiveUsers = usrDAO.getAllUsersByStatus(ACTIVE);
 
         System.out.println("\nUsers available to message: ");
         for (User user : allActiveUsers) {

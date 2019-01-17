@@ -1,6 +1,7 @@
 package MessagingApp.DAO.MySQLDAO;
 
 import MessagingApp.DAO.UserFolderMessageDAO;
+import MessagingApp.Entities.User;
 import MessagingApp.MySQLConnection;
 import MessagingApp.Entities.MessageFolders.Folder;
 
@@ -10,12 +11,14 @@ import java.util.List;
 
 public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
 
-    private static final String SQL_SELECT_MESSAGE_IDS_BY_USER_FOLDER        = "SELECT message_id FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
-    private static final String SQL_INSERT_USER_FOLDER_MESSAGE               = "INSERT INTO users_folders_messages (user_id,folder_id,message_id) VALUES(?,?,?)";
-    private static final String SQL_UPDATE_SPECIFIC_MESSAGE_FOLDER           = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND message_id = ?";
-    private static final String SQL_UPDATE_ALL_MESSAGES_IN_USER_FOLDER       = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = ?";
-    private static final String SQL_DELETE_ALL_MESSAGES_IN_USER              = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
-    private static final String SQL_USER_FOLDER_MESSAGE_DELETE               = "DELETE FROM users_folders_messages WHERE message_id = ?";
+    private static final String SQL_SELECT_MESSAGE_IDS_BY_USER_FOLDER           = "SELECT message_id FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_SELECT_COUNT_UNREAD_MESSAGES_IN_USER_FOLDER = "SELECT COUNT(message_id) FROM users_folders_messages WHERE user_id = ? AND folder_id = ? AND is_read = 0";
+    private static final String SQL_INSERT_USER_FOLDER_MESSAGE                  = "INSERT INTO users_folders_messages (user_id,folder_id,message_id) VALUES(?,?,?)";
+    private static final String SQL_UPDATE_SPECIFIC_MESSAGE_FOLDER              = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND message_id = ?";
+    private static final String SQL_UPDATE_MESSAGE_IN_FOLDER_AS_READ            = "UPDATE users_folders_messages SET is_read = 1 WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_UPDATE_ALL_MESSAGES_IN_USER_FOLDER          = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_DELETE_ALL_MESSAGES_IN_USER                 = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_USER_FOLDER_MESSAGE_DELETE                  = "DELETE FROM users_folders_messages WHERE message_id = ?";
 
 
     @Override
@@ -40,6 +43,26 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
             ex.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public long getUnreadMessagesCountInFolder(User user, Folder folder) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_SELECT_COUNT_UNREAD_MESSAGES_IN_USER_FOLDER)) {
+
+            pstmt.setLong(1, user.getId());
+            pstmt.setLong(2, folder.ID());
+            ResultSet rs = pstmt.executeQuery();
+
+            long numberOfUnreadMessages = 0;
+            if (rs.next()) {
+                numberOfUnreadMessages = rs.getLong("COUNT(message_id)");
+            }
+            return numberOfUnreadMessages;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
     }
 
     @Override
@@ -77,6 +100,24 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
         }
         return 0;
     }
+
+    @Override
+    public long updateUserFolderMessagesAsRead(User user, Folder folder) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_UPDATE_MESSAGE_IN_FOLDER_AS_READ)) {
+
+            pstmt.setLong(1, user.getId());
+            pstmt.setLong(2, folder.ID());
+            long rowsUpdated = pstmt.executeUpdate();
+
+            return rowsUpdated;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
 
     @Override
     public int updateAllUserFolderMessages(Folder originalFolder, long userId, Folder targetFolder) {
