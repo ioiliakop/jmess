@@ -5,12 +5,9 @@ import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Menus.MenuOption;
 
-import java.util.List;
-import java.util.Scanner;
-
 import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.MessageServices.*;
-import static MessagingApp.Menus.RoleOptions.RoleHelper.editMessageInList;
+import static MessagingApp.Menus.RoleOptions.RoleHelper.updateMessageIfChanged;
 
 /*
  * Provides functionality to edit any stored message in the db's `messages` table
@@ -48,25 +45,10 @@ public class EditMessageOption extends MenuOption {
                 }
 
                 // We check if there are changes before proceeding with the update
-                if (!selectedMessage.equals(updatedSelectedMessage)) {
-                    if (requestConfirmation("Proceed with update? ")) {
-                        int result = msgDAO.updateMessage(updatedSelectedMessage);
-                        if (result != 1) System.out.println("Unknown Error. Message was not updated.");
-                        else System.out.println("Message updated successfully");
-                    } else System.out.println("Update was cancelled");
-                } else System.out.println("No changes made");
+                updateMessageIfChanged(msgDAO, selectedMessage, updatedSelectedMessage);
             } else System.out.println("Message not found");
-
-
         }
-
-
-/*        // We get a list of all messages and message IDs
-        MessageDAO    msgDAO        = new MySQLMessageDAO();
-        List<Message> allMessages   = msgDAO.getAllMessages();
-
-        editMessageInList(allMessages);*/
-
         pauseExecution();
     }
+
 }

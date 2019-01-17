@@ -48,14 +48,18 @@ public class RoleHelper {
             }
 
             // We check if there are changes before proceeding with the update
-            if (!selectedMessage.equals(updatedSelectedMessage)) {
-                if (requestConfirmation("Proceed with update? ")) {
-                    int result = msgDAO.updateMessage(updatedSelectedMessage);
-                    if (result != 1) System.out.println("Unknown Error. Message was not updated.");
-                    else System.out.println("Message updated successfully");
-                } else System.out.println("Update was cancelled");
-            } else System.out.println("No changes made");
+            updateMessageIfChanged(msgDAO, selectedMessage, updatedSelectedMessage);
         }
+    }
+
+    static void updateMessageIfChanged(MessageDAO msgDAO, Message selectedMessage, Message updatedSelectedMessage) {
+        if (!selectedMessage.equals(updatedSelectedMessage)) {
+            if (requestConfirmation("Proceed with update? ")) {
+                int result = msgDAO.updateMessage(updatedSelectedMessage);
+                if (result != 1) System.out.println("Unknown Error. Message was not updated.");
+                else System.out.println("Message updated successfully");
+            } else System.out.println("Update was cancelled");
+        } else System.out.println("No changes made");
     }
 
     public static void deleteMessageInList(List<Message> messages) {
