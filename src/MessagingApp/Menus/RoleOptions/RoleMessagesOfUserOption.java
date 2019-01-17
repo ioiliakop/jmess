@@ -10,16 +10,15 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Entities.Roles.Role.DELETER;
-import static MessagingApp.Entities.Roles.Role.EDITOR;
 import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
-import static MessagingApp.Menus.MessageServices.printMessages;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.*;
 
-/* Option to View/Edit/Delete a user's messages depending on user role */
+/**
+ * Option to View/Edit/Delete a user's messages
+ * Depending on role, view, view/edit or all 3 view/edit/delete options are available
+ */
 public class RoleMessagesOfUserOption extends MenuOption {
 
     public RoleMessagesOfUserOption(User roleUser) {
@@ -37,7 +36,7 @@ public class RoleMessagesOfUserOption extends MenuOption {
         if (selectedUser != null) {
             MessageDAO    msgDAO               = new MySQLMessageDAO();
             List<Message> selectedUserMessages = msgDAO.getMessagesOfUser(selectedUser);
-            User roleUser = this.getUser();
+            User          roleUser             = this.getUser();
             viewEditDeleteMessagesInList(roleUser, selectedUserMessages);
 
         } else System.out.println("User not found");

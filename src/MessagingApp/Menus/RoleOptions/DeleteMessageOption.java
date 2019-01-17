@@ -7,14 +7,14 @@ import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
-import static MessagingApp.Menus.MessageServices.getMessageString;
+import static MessagingApp.Menus.MessageServices.getColoredMessageString;
 import static MessagingApp.Menus.MessageServices.inputMessageId;
 
-/*
-* This option performs permanent message deletion
-* The message is removed from the db and from all users' folders
-* Only 'DELETER' role can perform this operation
-*/
+/**
+ * This option performs permanent message deletion
+ * The message is removed from the db and from all users' folders
+ * Only 'DELETER' role can perform this operation
+ */
 public class DeleteMessageOption extends MenuOption {
 
     public DeleteMessageOption() {
@@ -33,12 +33,13 @@ public class DeleteMessageOption extends MenuOption {
             // Then we check if there is indeed a message with given ID
             if (selectedMessage != null) {
                 System.out.println("\nYou have selected to delete message with id: " + messageId);
-                System.out.println(getMessageString(selectedMessage));
+                System.out.println(getColoredMessageString(selectedMessage));
 
                 // We ask 2 times to confirm as this is an irreversible permanent deletion
                 if (requestConfirmation("\nAttention. Message will be permanently deleted. Continue?")) {
-                    if (requestConfirmation("All users will permanently lose access to message. Are you sure?")){
-                        if (msgDAO.deleteMessage(selectedMessage) == 1) System.out.println("Message successfully deleted");
+                    if (requestConfirmation("All users will permanently lose access to message. Are you sure?")) {
+                        if (msgDAO.deleteMessage(selectedMessage) == 1)
+                            System.out.println("Message successfully deleted");
                         else System.out.println("Unknown error. Message was not deleted");
                     } else System.out.println("Operation cancelled");
                 } else System.out.println("Operation cancelled");

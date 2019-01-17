@@ -16,7 +16,7 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.getMessagesFromMessageIds;
 import static MessagingApp.Menus.MessageServices.printMessages;
 
-/*
+/**
  * This Option moves selected messages from specific user's folder (INBOX, SENTBOX) to TRASH
  * The messages and their respective content will still remain in the db
  * Available for inspection and handling by higher role users

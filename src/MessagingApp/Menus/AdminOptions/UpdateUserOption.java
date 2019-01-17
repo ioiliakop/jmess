@@ -11,7 +11,7 @@ import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
-/*
+/**
  * Option that prompts the admin to enter a user to update
  * IF admin enters a valid user, ONLY THEN it calls the 'Update user submenu',
  * while passing the selected user as a parameter to the submenu

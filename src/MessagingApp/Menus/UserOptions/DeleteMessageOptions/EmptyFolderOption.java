@@ -11,7 +11,7 @@ import static MessagingApp.Entities.MessageFolders.*;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
-/*
+/**
  * This user option is used to directly delete all messages from a folder
  * In this application we only use it for the TRASH folder
  * As all other delete operations are implicitly moving the messages to the TRASH folder
@@ -29,8 +29,8 @@ public class EmptyFolderOption extends MenuOption {
 
     @Override
     public void execute() {
-        UserFolderMessageDAO ufmDAO = new MySQLUserFolderMessageDAO();
-        List<Long> messagesInFolder = ufmDAO.getUserFolderMessageIDs(this.getUser().getId(),folder);
+        UserFolderMessageDAO ufmDAO           = new MySQLUserFolderMessageDAO();
+        List<Long>           messagesInFolder = ufmDAO.getUserFolderMessageIDs(this.getUser().getId(), folder);
 
         if (!messagesInFolder.isEmpty()) {
             System.out.println("Attention. All messages in " + folder + " will pe permanently deleted.");

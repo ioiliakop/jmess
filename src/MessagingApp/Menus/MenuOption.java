@@ -1,6 +1,5 @@
 package MessagingApp.Menus;
 
-
 import MessagingApp.Entities.User;
 
 /**

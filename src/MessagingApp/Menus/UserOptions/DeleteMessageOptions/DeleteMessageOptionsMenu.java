@@ -2,17 +2,16 @@ package MessagingApp.Menus.UserOptions.DeleteMessageOptions;
 
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
-import MessagingApp.Menus.RoleOptions.DeleteMessageOption;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 
-/*
-* Options available to a user to delete messages from his personal account's folders only
-* The messages contents not deleted from the db
-* This menu is always a submenu
-*/
+/**
+ * Options available to a user to delete messages from his personal account's folders only
+ * The messages contents not deleted from the db
+ * This menu is always a submenu
+ */
 public class DeleteMessageOptionsMenu extends Menu {
 
     public DeleteMessageOptionsMenu(User user) {
@@ -23,7 +22,7 @@ public class DeleteMessageOptionsMenu extends Menu {
         this.add(new DeleteMessagesSentByFromFolderOption(user, INBOX));
         this.add(new DeleteAllMessagesFromFolderOption(user, INBOX));
         this.add(new DeleteAllMessagesFromFolderOption(user, SENTBOX));
-        this.add(new EmptyFolderOption(user,TRASH));
+        this.add(new EmptyFolderOption(user, TRASH));
     }
 
 

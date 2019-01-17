@@ -9,7 +9,7 @@ import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.MessageServices.*;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.updateMessageIfChanged;
 
-/*
+/**
  * Provides functionality to edit any stored message in the db's `messages` table
  * Available to 'EDITOR' and 'DELETER' roles
  */
@@ -30,7 +30,7 @@ public class EditMessageOption extends MenuOption {
 
             if (selectedMessage != null) {
                 System.out.println("\nYou have selected to edit message with id: " + messageId);
-                System.out.println(getMessageString(selectedMessage));
+                System.out.println(getColoredMessageString(selectedMessage));
 
                 Message updatedSelectedMessage = msgDAO.getMessage(messageId);
 

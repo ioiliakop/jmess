@@ -42,20 +42,6 @@ public class MessageServices {
     public static final String ANSI_CYAN_BACKGROUND   = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND  = "\u001B[47m";
 
-    /*    *//* Method that takes a list of messages and prints them on the screen in user-friendly format *//*
-    public static void printMessages(List<Message> messages) {
-        if (!messages.isEmpty()) {
-
-            for (Message m : messages) {
-                String senderName           = Services.assignUsernameFromUserId(m.getSenderId());
-                String messageReceiverNames = getMessageReceiverNames(m);
-
-                System.out.print("\nMsgID: " + m.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + messageReceiverNames +
-                        "\t\t\tSubject: " + m.getMessageSubject() + "\t\tDateTime: " + m.getMessageDateCreated());
-            }
-            System.out.println("\n");
-        }
-    }*/
 
     /* Method that takes a list of messages and prints them on the screen in user-friendly format */
     public static void printMessages(List<Message> messages) {
@@ -217,7 +203,7 @@ public class MessageServices {
         UserFolderMessageDAO ufmDAO                 = new MySQLUserFolderMessageDAO();
         long                 numberOfUnreadMessages = ufmDAO.getUnreadMessagesCountInFolder(user, folder);
         if (numberOfUnreadMessages > 0) {
-            System.out.println("You have " + numberOfUnreadMessages + " unread messages. Please check your INBOX");
+            System.out.println("You have " + numberOfUnreadMessages + " unread messages. Please check your " + folder.name());
             pauseExecution();
         }
     }

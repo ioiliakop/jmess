@@ -7,9 +7,9 @@ import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.*;
 
-/*
+/**
  * Option given to admin to update a user's password
- * And to the user to update his/her own password
+ * The user also has this option, to update his/her own password naturally
  */
 public class UpdatePasswordOption extends MenuOption {
 

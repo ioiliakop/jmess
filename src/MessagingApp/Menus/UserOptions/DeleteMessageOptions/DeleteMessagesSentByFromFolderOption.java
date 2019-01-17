@@ -23,21 +23,21 @@ public class DeleteMessagesSentByFromFolderOption extends MenuOption {
 
     @Override
     public void execute() {
-        User                 owner          = this.getUser();
-        UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
-        List<Long>           messageIdsList = ufmDAO.getMessageIDsInFolderSentByUser(owner, folder);
-
-        if (!messageIdsList.isEmpty()) {
-            if (requestConfirmation("All messages in " + folder.name() + " will be moved to TRASH.\nAre you sure?")) {
-
-                int numberOfUpdatedMessages = ufmDAO.updateAllUserFolderMessages(folder, owner.getId(), TRASH);
-                if (numberOfUpdatedMessages > 0) {
-                    System.out.println(numberOfUpdatedMessages + " messages successfully moved to trash.\n" +
-                            folder.name() + " is now empty.");
-                } else System.out.println("Unknown error. No messages were deleted.");
-
-            }
-        } else System.out.println("There are no messages to delete...");
+//        User                 owner          = this.getUser();
+//        UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
+//        List<Long>           messageIdsList = ufmDAO.getMessageIDsInFolderSentByUser(owner, folder);
+//
+//        if (!messageIdsList.isEmpty()) {
+//            if (requestConfirmation("All messages in " + folder.name() + " will be moved to TRASH.\nAre you sure?")) {
+//
+//                int numberOfUpdatedMessages = ufmDAO.updateAllUserFolderMessages(folder, owner.getId(), TRASH);
+//                if (numberOfUpdatedMessages > 0) {
+//                    System.out.println(numberOfUpdatedMessages + " messages successfully moved to trash.\n" +
+//                            folder.name() + " is now empty.");
+//                } else System.out.println("Unknown error. No messages were deleted.");
+//
+//            }
+//        } else System.out.println("There are no messages to delete...");
 
         pauseExecution();
     }

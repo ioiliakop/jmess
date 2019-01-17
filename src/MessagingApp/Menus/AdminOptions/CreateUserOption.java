@@ -7,6 +7,12 @@ import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.*;
 
+/**
+ * All new user accounts are assigned level 1 user role, with no special privileges
+ * and naturally have 'ACTIVE' status
+ * Admin should update the role separately, within the update user submenu
+ * if he wishes to elevate user rights
+ */
 public class CreateUserOption extends MenuOption {
 
     public CreateUserOption() {

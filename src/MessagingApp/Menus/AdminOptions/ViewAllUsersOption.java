@@ -11,10 +11,9 @@ import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 import static MessagingApp.Entities.Statuses.getStatusFromStatusId;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
-
-/*
-* Gives the admin user information on all users registered
-* Either active ore deleted/deactivated
+/**
+ * Gives the admin user information on all users registered
+ * Either active ore deleted/deactivated
  */
 public class ViewAllUsersOption extends MenuOption {
 
@@ -24,12 +23,12 @@ public class ViewAllUsersOption extends MenuOption {
 
     @Override
     public void execute() {
-        UserDAO usrDAO = new MySQLUserDAO();
+        UserDAO    usrDAO   = new MySQLUserDAO();
         List<User> allUsers = usrDAO.getAllUsers();
 
         System.out.println("\nUsers in system: ");
-        for(User user : allUsers){
-            System.out.println("User ID: "+ user.getId() + "\t\tUsername: " + user.getUsername() +
+        for (User user : allUsers) {
+            System.out.println("User ID: " + user.getId() + "\t\tUsername: " + user.getUsername() +
                     "\t\tMD5password: " + user.getPassword() + "\t\tRole: " + getRoleFromRoleId(user.getRoleId()) +
                     "\t\tStatus: " + getStatusFromStatusId(user.getStatusId()));
         }

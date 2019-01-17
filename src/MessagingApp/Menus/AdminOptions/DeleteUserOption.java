@@ -9,11 +9,11 @@ import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.*;
 
-/*
-* In this application the user account remains in the db but his status is changed to 'DELETED'
-* No user can message him. In any messages he/she has participated, either as sender or receiver,
-* he/she is marked as (deleted) to other users
-*/
+/**
+ * In this application the user account remains in the db but his status is changed to 'DELETED'
+ * No user can message him. In any messages he/she has participated, either as sender or receiver,
+ * he/she is marked as (deleted) to other users
+ */
 public class DeleteUserOption extends MenuOption {
 
     public DeleteUserOption() {
@@ -23,9 +23,9 @@ public class DeleteUserOption extends MenuOption {
     @Override
     public void execute() {
 
-        String  username = inputGeneric("Enter username of the user to be deleted: ");
-        UserDAO usrDAO   = new MySQLUserDAO();
-        User    userToBeDeleted     = usrDAO.getUser(username);
+        String  username        = inputGeneric("Enter username of the user to be deleted: ");
+        UserDAO usrDAO          = new MySQLUserDAO();
+        User    userToBeDeleted = usrDAO.getUser(username);
 
         if (userToBeDeleted != null) {
 

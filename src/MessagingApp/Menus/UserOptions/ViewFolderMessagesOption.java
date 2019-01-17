@@ -16,7 +16,7 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.*;
 
 
-/* User option that prints all user messages in the folder (INBOX/SENTBOX etc.) passed as parameter */
+/** User option that prints all user messages in the folder (INBOX/SENTBOX etc.) passed as parameter */
 public class ViewFolderMessagesOption extends MenuOption {
 
     private Folder folder;

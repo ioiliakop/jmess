@@ -3,7 +3,9 @@ package MessagingApp.Menus.AdminOptions.UpdateUserOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 
-/* This is the admin submenu to update a user */
+/**
+ * This is the admin submenu to update a user
+ */
 public class UpdateUserOptionsMenu extends Menu {
 
     public UpdateUserOptionsMenu(User targetUser) {

@@ -11,7 +11,6 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
-import MessagingApp.WriteToFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.FileAccess.appendMessageToFile;
 import static MessagingApp.Menus.MenuUtils.*;
 
-/*
+/**
  * This option gives a user the ability to a user to send a message
  * In this application model, this includes the following steps
  * 1 - Takes a list of receivers from user input
@@ -46,10 +45,11 @@ public class SendMessageOption extends MenuOption {
             String  username = inputGeneric("Which user do you want to message?\n");
             UserDAO usrDAO   = new MySQLUserDAO();
             User    receiver = usrDAO.getUser(username);
+            // Check if user with given username exists
             if (receiver != null) {
-
+                // if user exists, next check if it's an active user
                 if (receiver.getStatusId() == ACTIVE.ID()) {
-
+                    // If it is, we make a last check if user is already in receivers list
                     if (messageReceivers.contains(receiver)) System.out.println("User is already in recipients");
                     else messageReceivers.add(receiver);
 
@@ -87,9 +87,6 @@ public class SendMessageOption extends MenuOption {
 
                 // We also append the message to a text file, calling the respective method
                 Message sentMessage = msgDAO.getMessage(sentMessageId);
-//                WriteToFile writeToFile = new WriteToFile();
-//                writeToFile.writeToFile(sentMessage);
-
                 appendMessageToFile(sentMessage);
             } else System.out.println("Unknown error. Message was not sent.");
 

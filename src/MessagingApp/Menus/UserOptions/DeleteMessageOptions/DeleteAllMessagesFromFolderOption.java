@@ -15,7 +15,7 @@ import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
-/*
+/**
  * This Option gives the ability to delete messages from specific user's folder (INBOX, SENTBOX, TRASH etc.)
  * The messages and their respective content will still remain in the db
  * Available for inspection and handling by higher role users
@@ -33,11 +33,11 @@ public class DeleteAllMessagesFromFolderOption extends MenuOption {
     @Override
     public void execute() {
 
-        String senderName = inputGeneric("Which user's messages do you want to delete from " + folder.name() + " ?");
-        UserDAO usrDAO = new MySQLUserDAO();
-        User sender = usrDAO.getUser(senderName);
+        String  senderName = inputGeneric("Which user's messages do you want to delete from " + folder.name() + " ?");
+        UserDAO usrDAO     = new MySQLUserDAO();
+        User    sender     = usrDAO.getUser(senderName);
 
-        if (sender!= null) {
+        if (sender != null) {
             User                 owner          = this.getUser();
             UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
             List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), folder);

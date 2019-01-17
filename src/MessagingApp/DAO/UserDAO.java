@@ -1,7 +1,6 @@
 package MessagingApp.DAO;
 
 import MessagingApp.Entities.Roles.Role;
-import MessagingApp.Entities.Statuses;
 import MessagingApp.Entities.User;
 
 import java.util.List;
@@ -19,6 +18,7 @@ public interface UserDAO {
 
     List<User> getAllUsers();
 
+    /* can ask for either 'ACTIVE' or 'DELETED' users */
     List<User> getAllUsersByStatus(Status status);
 
     /* default status is 'ACTIVE' for a created user */
@@ -29,5 +29,6 @@ public interface UserDAO {
 
     int updateUser(User user);
 
+    /* No user is ever deleted from db in this application */
     int deleteUser(User user);
 }

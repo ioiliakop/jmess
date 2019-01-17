@@ -7,10 +7,10 @@ import static MessagingApp.Entities.Roles.Role.DELETER;
 import static MessagingApp.Entities.Roles.Role.EDITOR;
 import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 
-/*
-* This is a submenu that will appear for viewer/editor/deleter roles
-* All these roles extra options are included here
-*/
+/**
+ * This is a submenu that will appear for viewer/editor/deleter roles
+ * All these roles extra options are included here
+ */
 public class RoleOptionsMenu extends Menu {
 
     public RoleOptionsMenu(User roleOwner) {
@@ -21,10 +21,11 @@ public class RoleOptionsMenu extends Menu {
 
         // Lowest role viewer. Above roles (editor, viewer) have this option
         this.add(new ViewAllMessagesOption());
-        // Both editor and deleter roles have this optioon
-        if (roleOwner.getRoleId()==EDITOR.ID() || roleOwner.getRoleId()==DELETER.ID()) this.add(new EditMessageOption());
+        // Both editor and deleter roles have this option
+        if (roleOwner.getRoleId() == EDITOR.ID() || roleOwner.getRoleId() == DELETER.ID())
+            this.add(new EditMessageOption());
         // only deleter role has this option
-        if (roleOwner.getRoleId()== DELETER.ID()) this.add(new DeleteMessageOption());
+        if (roleOwner.getRoleId() == DELETER.ID()) this.add(new DeleteMessageOption());
 
         // the following role options adjust functionality based on role
         // so they are common for viewer, editor and deleter classes
