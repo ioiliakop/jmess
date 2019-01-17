@@ -3,6 +3,7 @@ package MessagingApp.Menus.AdminOptions;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.Menu;
 
+/* submenu with all options available to a user with admin role */
 public class AdminOptionsMenu extends Menu {
 
     public AdminOptionsMenu(User user) {

@@ -7,6 +7,10 @@ import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Menus.MenuUtils.*;
 
+/*
+ * Option given to admin to update a user's password
+ * And to the user to update his/her own password
+ */
 public class UpdatePasswordOption extends MenuOption {
 
     public UpdatePasswordOption(User user) {
@@ -16,12 +20,12 @@ public class UpdatePasswordOption extends MenuOption {
     @Override
     public void execute() {
 
-        String newPassword  = inputPassword();
+        String newPassword = inputPassword();
         String passwordMD5 = getMD5Of(newPassword);
 
         if (requestConfirmation("Proceed with password update? ")) {
 
-            User   updatedUser = this.getUser();
+            User updatedUser = this.getUser();
             updatedUser.setPassword(passwordMD5);
             UserDAO usrDAO = new MySQLUserDAO();
 

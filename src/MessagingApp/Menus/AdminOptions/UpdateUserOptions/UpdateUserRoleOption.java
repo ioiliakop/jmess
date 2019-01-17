@@ -13,6 +13,7 @@ import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
+/* only admin can assign/update a role */
 public class UpdateUserRoleOption extends MenuOption {
 
     public UpdateUserRoleOption(User user) {

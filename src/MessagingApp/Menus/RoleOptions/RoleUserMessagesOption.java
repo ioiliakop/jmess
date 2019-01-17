@@ -16,6 +16,8 @@ import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
+
+// TODO DECIDED not to use this. Probably remove this completely
 /*
  * This option gives the user who invoked it, the ability to respectively
  * view/edit/delete a specific user's messages, depending on his role (viewer/editor/deleter)

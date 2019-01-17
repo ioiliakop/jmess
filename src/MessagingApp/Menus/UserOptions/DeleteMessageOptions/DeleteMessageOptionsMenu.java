@@ -7,9 +7,13 @@ import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 
+/*
+* Options available to a user to delete messages from his personal account's folders only
+* The messages contents not deleted from the db
+* This menu is always a submenu
+*/
 public class DeleteMessageOptionsMenu extends Menu {
 
-    /* This menu is always a submenu */
     public DeleteMessageOptionsMenu(User user) {
         super(user, "Delete Message Options");
         this.setMenuTitle("Delete Message Options");

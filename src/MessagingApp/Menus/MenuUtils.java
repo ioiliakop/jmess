@@ -8,9 +8,9 @@ import java.util.Scanner;
 public class MenuUtils {
 
     /*
-     * This method will force execution to stop and wait until the user presses enter. It prompts the
-     * user to press enter to continue. It is irrelevant if the user types any text, execution will
-     * continue after 'Enter'.
+     * Method to pause execution until the user presses enter.
+     * Prompts the user to press enter to continue. Disregards any other characters entered.
+     * Execution will continue after pressing 'Enter'.
      */
     public static void pauseExecution() {
         Scanner sc = new Scanner(System.in);
@@ -19,9 +19,9 @@ public class MenuUtils {
     }
 
     /*
-     * This method can be used if a particular operation requires confirmation, it is useful for delete
-     * or irreversible operations. It forces that the uses explicitly enters "y/yes" or "n/no", any
-     * other input will fail and the confirmation request will be presented again.
+     * Used when a particular operation requires confirmation
+     * Mainly for delete or irreversible operations.
+     * Forces the user to explicitly enter "y/yes" or "n/no"
      */
     public static boolean requestConfirmation(String message) {
         String  input = "";
@@ -38,8 +38,9 @@ public class MenuUtils {
     }
 
     /*
-     * Helper method that returns user input for username
+     * Returns user input for username
      * while checking character length restrictions
+     * Uses recursion
      */
     public static String inputUsername() {
         Scanner sc = new Scanner(System.in);
@@ -51,12 +52,6 @@ public class MenuUtils {
             return inputUsername();
         }
         return username;
-    }
-
-    public static String inputUsername(String message) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print(message + "Enter username: ");
-        return sc.nextLine();
     }
 
     /*
@@ -76,8 +71,9 @@ public class MenuUtils {
     }
 
     /*
-     * Helper method that returns the MD5 hash of the string passed as parameter
+     * Returns the MD5 hash of the string passed as parameter
      * Used for calculating the MD5 hash of the password
+     * Only the MD5 hashes are stored in the db
      */
     public static String getMD5Of(String string) {
         String myHash = null;
@@ -92,7 +88,7 @@ public class MenuUtils {
         return myHash;
     }
 
-    /* Helper method that returns user input, while checking corresponding character length restriction */
+    /* Returns user input for message body, while checking corresponding character length restriction */
     public static String inputMessageBody() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter message:");
@@ -104,7 +100,7 @@ public class MenuUtils {
         return inputMessage;
     }
 
-    /* Helper method that returns user input, while checking corresponding character length restriction */
+    /* Returns user input, while checking corresponding character length restriction */
     public static String inputMessageSubject() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter subject:");
@@ -118,7 +114,7 @@ public class MenuUtils {
     }
 
     /*
-     * Helper method that returns user input from console after printing message in parameter
+     * Returns user input from console after printing message in parameter
      * It doesn't validate input in any way
      */
     public static String inputGeneric(String message) {

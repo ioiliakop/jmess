@@ -25,6 +25,7 @@ public class LoginScreen {
             UserDAO usrDAO = new MySQLUserDAO();
             User    user   = usrDAO.getActiveUserByUsernameAndPassword(username, passwordMD5);
 
+            // validate user's credentials and execute relative menu depending on user role
             if (user == null) {
                 System.out.println("\nUsername or password not correct.");
             } else if (user.getRoleId() == ADMIN.ID()) {

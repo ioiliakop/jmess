@@ -17,6 +17,25 @@ import static MessagingApp.Entities.Statuses.Status.DELETED;
 
 public class MessageServices {
 
+    public static final String ANSI_RESET  = "\u001B[0m";
+    public static final String ANSI_BLACK  = "\u001B[30m";
+    public static final String ANSI_RED    = "\u001B[31m";
+    public static final String ANSI_GREEN  = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE   = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN   = "\u001B[36m";
+    public static final String ANSI_WHITE  = "\u001B[37m";
+
+    public static final String ANSI_BLACK_BACKGROUND  = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND    = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND  = "\u001B[42m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_BLUE_BACKGROUND   = "\u001B[44m";
+    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+    public static final String ANSI_CYAN_BACKGROUND   = "\u001B[46m";
+    public static final String ANSI_WHITE_BACKGROUND  = "\u001B[47m";
+
     /*    *//* Method that takes a list of messages and prints them on the screen in user-friendly format *//*
     public static void printMessages(List<Message> messages) {
         if (!messages.isEmpty()) {
@@ -37,7 +56,7 @@ public class MessageServices {
         if (!messages.isEmpty()) {
 
             for (Message message : messages) {
-                System.out.println(getMessageString(message));
+                System.out.println(getColoredMessageString(message));
             }
             System.out.println();
         }
@@ -46,7 +65,7 @@ public class MessageServices {
     /*
      * Helper method that returns a string with all message info
      * So it can be more understandable and user friendly
-     * It calls other helper methods to
+     * It calls respective helper method to get the sender and receiver names
      */
     public static String getMessageString(Message message) {
         String[] names = getMessageSenderAndReceiverNames(message);
@@ -57,6 +76,21 @@ public class MessageServices {
         return "MsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverNames +
                 "\t\tDateTime: " + message.getMessageDateCreated() + "\n\tSubject: " + message.getMessageSubject() +
                 "\n\tMessage: " + message.getMessageBody() + "\n";
+    }
+
+    /*
+     * provides ease to the user to focus quickly on desired information bits
+     * to be used for console output only
+     */
+    public static String getColoredMessageString(Message message) {
+        String[] names = getMessageSenderAndReceiverNames(message);
+
+        String senderName    = names[0];
+        String receiverNames = names[1];
+
+        return ANSI_CYAN + "MsgID: " + ANSI_YELLOW + message.getId() + ANSI_BLUE + "\t\tFrom: " + ANSI_GREEN + senderName + ANSI_BLUE + "\t\tTo: " + ANSI_GREEN + receiverNames + ANSI_CYAN +
+                "\t\tDateTime: " + ANSI_YELLOW + message.getMessageDateCreated() + ANSI_CYAN + "\n\tSubject: " + ANSI_RED + message.getMessageSubject() +
+                ANSI_CYAN + "\n\tMessage: " + ANSI_PURPLE + message.getMessageBody() + ANSI_RESET + "\n";
     }
 
     /*

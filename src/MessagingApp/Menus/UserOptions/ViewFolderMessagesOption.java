@@ -11,12 +11,9 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Menus.MessageServices.getMessageIdInList;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
-import static MessagingApp.Menus.MessageServices.getMessageString;
-import static MessagingApp.Menus.MessageServices.getMessagesFromMessageIds;
-import static MessagingApp.Menus.MessageServices.printMessages;
+import static MessagingApp.Menus.MessageServices.*;
 
 
 /* User option that prints all user messages in the folder (INBOX/SENTBOX etc.) passed as parameter */
@@ -49,7 +46,7 @@ public class ViewFolderMessagesOption extends MenuOption {
                     if (selectedMessageId !=0){
                         MessageDAO msgDAO = new MySQLMessageDAO();
                         Message selectedMessage = msgDAO.getMessage(selectedMessageId);
-                        System.out.println(getMessageString(selectedMessage));
+                        System.out.println(getColoredMessageString(selectedMessage));
                     }
                 } while (requestConfirmation("Would you like to view another message?"));
             }

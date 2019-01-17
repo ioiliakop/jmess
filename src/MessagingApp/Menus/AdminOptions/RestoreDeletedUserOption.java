@@ -11,6 +11,8 @@ import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
+
+/* Admin has the ability to reactivate a deleted account */
 public class RestoreDeletedUserOption extends MenuOption {
 
     public RestoreDeletedUserOption() {

@@ -11,6 +11,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.WriteToFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,6 +87,9 @@ public class SendMessageOption extends MenuOption {
 
                 // We also append the message to a text file, calling the respective method
                 Message sentMessage = msgDAO.getMessage(sentMessageId);
+//                WriteToFile writeToFile = new WriteToFile();
+//                writeToFile.writeToFile(sentMessage);
+
                 appendMessageToFile(sentMessage);
             } else System.out.println("Unknown error. Message was not sent.");
 

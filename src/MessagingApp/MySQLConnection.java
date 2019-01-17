@@ -12,6 +12,7 @@ public class MySQLConnection {
     public static Connection getConnection() throws SQLException {
         Connection conn = null;
 
+        // Connection properties stored at local file
         try (FileInputStream f = new FileInputStream("MySQLdb.properties")) {
 
             // load the properties file

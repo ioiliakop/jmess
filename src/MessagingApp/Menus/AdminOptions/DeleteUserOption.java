@@ -9,6 +9,11 @@ import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.*;
 
+/*
+* In this application the user account remains in the db but his status is changed to 'DELETED'
+* No user can message him. In any messages he/she has participated, either as sender or receiver,
+* he/she is marked as (deleted) to other users
+*/
 public class DeleteUserOption extends MenuOption {
 
     public DeleteUserOption() {

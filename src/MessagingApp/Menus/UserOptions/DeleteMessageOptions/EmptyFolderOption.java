@@ -11,7 +11,6 @@ import static MessagingApp.Entities.MessageFolders.*;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
-
 /*
  * This user option is used to directly delete all messages from a folder
  * In this application we only use it for the TRASH folder

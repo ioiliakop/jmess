@@ -21,6 +21,7 @@ import static MessagingApp.Menus.RoleOptions.RoleHelper.deleteMessageInList;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.editMessageInList;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.getRoleAbilitiesString;
 
+/* Option to View/Edit/Delete messages sent by a user depending on role */
 public class RoleMessagesSentByUserOption extends MenuOption {
 
     public RoleMessagesSentByUserOption(User roleUser) {

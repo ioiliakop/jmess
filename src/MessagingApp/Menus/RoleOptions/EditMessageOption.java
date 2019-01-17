@@ -12,6 +12,10 @@ import static MessagingApp.Menus.MenuUtils.*;
 import static MessagingApp.Menus.MessageServices.*;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.editMessageInList;
 
+/*
+ * Provides functionality to edit any stored message in the db's `messages` table
+ * Available to 'EDITOR' and 'DELETER' roles
+ */
 public class EditMessageOption extends MenuOption {
 
     public EditMessageOption() {
@@ -24,7 +28,7 @@ public class EditMessageOption extends MenuOption {
         long messageId = inputMessageId();
 
         if (messageId != 0) {
-            MessageDAO msgDAO  = new MySQLMessageDAO();
+            MessageDAO msgDAO          = new MySQLMessageDAO();
             Message    selectedMessage = msgDAO.getMessage(messageId);
 
             if (selectedMessage != null) {

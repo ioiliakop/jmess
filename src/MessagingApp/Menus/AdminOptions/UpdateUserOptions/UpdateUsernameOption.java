@@ -9,6 +9,7 @@ import static MessagingApp.Menus.MenuUtils.inputUsername;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
+/* Only the admin has the option to update a username */
 public class UpdateUsernameOption extends MenuOption {
 
     public UpdateUsernameOption(User user) {

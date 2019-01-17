@@ -11,6 +11,11 @@ import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 import static MessagingApp.Entities.Statuses.getStatusFromStatusId;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
+
+/*
+* Gives the admin user information on all users registered
+* Either active ore deleted/deactivated
+ */
 public class ViewAllUsersOption extends MenuOption {
 
     public ViewAllUsersOption() {

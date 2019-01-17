@@ -14,7 +14,7 @@ import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
  * This class and all submenu classes extending the Menu class could be omitted
  * The options could be added at menu creation after calling menu default constructor
  * These separate submenu classes were created for better organization of the relative options
- * We gather and select User options here for example
+ * We gather and select the User options here
  */
 public class UserOptionsMenu extends Menu {
 

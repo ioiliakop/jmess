@@ -3,7 +3,6 @@ package MessagingApp.Menus.RoleOptions;
 import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
-import MessagingApp.Entities.Roles;
 import MessagingApp.Entities.Roles.Role;
 
 import java.util.List;

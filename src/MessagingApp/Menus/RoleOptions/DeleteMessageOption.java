@@ -13,6 +13,7 @@ import static MessagingApp.Menus.MessageServices.inputMessageId;
 /*
 * This option performs permanent message deletion
 * The message is removed from the db and from all users' folders
+* Only 'DELETER' role can perform this operation
 */
 public class DeleteMessageOption extends MenuOption {
 

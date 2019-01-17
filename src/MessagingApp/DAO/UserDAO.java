@@ -1,8 +1,6 @@
 package MessagingApp.DAO;
 
-import MessagingApp.Entities.Roles;
 import MessagingApp.Entities.Roles.Role;
-import MessagingApp.Entities.Statuses;
 import MessagingApp.Entities.User;
 
 import java.util.List;
@@ -20,6 +18,7 @@ public interface UserDAO {
 
     List<User> getAllActiveUsers();
 
+    /* default status is 'ACTIVE' for a created user */
     long insertUser(String username, String password, Role role);
 
     /* default role and status are set by the db by default, values USER and ACTIVE respectively */
