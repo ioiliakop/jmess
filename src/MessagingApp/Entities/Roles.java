@@ -3,13 +3,14 @@ package MessagingApp.Entities;
 import static MessagingApp.Entities.Roles.Role.*;
 
 /**
- * 'Roles', 'MessageFolders' and 'Statuses' values are finite and final
+ * 'Roles' values are finite and final
  * They are not meant to be altered by any user of this application
  * Only assigned to various users
  * With that in mind, they're implemented here with the use of enums
- * All three enums contain the corresponding id number in the db,
+ * The enum contains the corresponding id number in the db,
  * which is accessible by the ID() method, that is actually a getter.
  * It's abbreviated to ID for convenience and better expression of it's final, non-altering nature
+ * More roles could easily be added to extend our application if needed
  */
 public class Roles {
 

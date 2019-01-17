@@ -54,9 +54,9 @@ public class MessageServices {
         String senderName    = names[0];
         String receiverNames = names[1];
 
-        return "\nMsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverNames +
+        return "MsgID: " + message.getId() + "\t\tFrom: " + senderName + "\t\tTo: " + receiverNames +
                 "\t\tDateTime: " + message.getMessageDateCreated() + "\n\tSubject: " + message.getMessageSubject() +
-                "\n\tMessage: " + message.getMessageBody();
+                "\n\tMessage: " + message.getMessageBody() + "\n";
     }
 
     /*

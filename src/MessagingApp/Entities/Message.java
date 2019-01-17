@@ -73,7 +73,7 @@ public class Message {
 
     @Override
     public String toString() {
-        return "\nMsgID: " + id + "\tsenderId: " + senderId + "\tSubject: " + messageSubject +
+        return "MsgID: " + id + "\tsenderId: " + senderId + "\tSubject: " + messageSubject +
                 "\tDateTime: " + messageDateCreated + "\n\tMessage: " + messageBody;
     }
 }

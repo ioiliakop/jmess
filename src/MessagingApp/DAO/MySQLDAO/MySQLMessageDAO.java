@@ -14,16 +14,17 @@ import static MessagingApp.DAO.MySQLDAO.MySQLHelper.getMessagesWithUserParam;
 
 public class MySQLMessageDAO implements MessageDAO {
 
-    private static final String SQL_MESSAGE_SELECT_ALL              = "SELECT * FROM messages";
-    private static final String SQL_MESSAGE_SELECT_BY_ID            = "SELECT * FROM messages WHERE id = ?";
-    private static final String SQL_MESSAGE_SELECT_ALL_SENT_BY_USER = "SELECT * FROM messages WHERE sender_id = ?";
-    private static final String SQL_MESSAGE_SELECT_ALL_SENT_TO_USER = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND receiver_id = ?";
-    private static final String SQL_MESSAGE_SELECT_ALL_OF_USER      = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND (sender_id = ? OR receiver_id = ?)";
+    private static final String SQL_MESSAGE_SELECT_ALL                   = "SELECT * FROM messages";
+    private static final String SQL_MESSAGE_SELECT_BY_ID                 = "SELECT * FROM messages WHERE id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_SENT_BY_USER      = "SELECT * FROM messages WHERE sender_id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_SENT_TO_USER      = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND receiver_id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_OF_USER           = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND (sender_id = ? OR receiver_id = ?)";
+    private static final String SQL_MESSAGE_SELECT_ALL_IN_FOLDER_SENT_BY = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, users_folders_messages WHERE id = message_id AND folder_id = ? AND sender_id = ? ";
     //    private static final String SQL_MESSAGE_SELECT_ALL_BETWEEN_2_USERS = "SELECT * FROM messages WHERE " +
 //            "(sender_id = ? and receiver_id = ?) or (sender_id = ? and receiver_id = ?) order by date_time";
-    private static final String SQL_MESSAGE_INSERT                  = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
-    private static final String SQL_MESSAGE_UPDATE                  = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
-    private static final String SQL_MESSAGE_DELETE                  = "DELETE FROM messages WHERE id = ?";
+    private static final String SQL_MESSAGE_INSERT                       = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
+    private static final String SQL_MESSAGE_UPDATE                       = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
+    private static final String SQL_MESSAGE_DELETE                       = "DELETE FROM messages WHERE id = ?";
 
 
     @Override
