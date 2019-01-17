@@ -17,15 +17,13 @@ import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.printMessages;
-import static MessagingApp.Menus.RoleOptions.RoleHelper.deleteMessageInList;
-import static MessagingApp.Menus.RoleOptions.RoleHelper.editMessageInList;
-import static MessagingApp.Menus.RoleOptions.RoleHelper.getRoleAbilitiesString;
+import static MessagingApp.Menus.RoleOptions.RoleHelper.*;
 
 /* Option to View/Edit/Delete a user's messages depending on user role */
 public class RoleMessagesOfUserOption extends MenuOption {
 
     public RoleMessagesOfUserOption(User roleUser) {
-        super(roleUser, getRoleAbilitiesString(getRoleFromRoleId(roleUser.getRoleId()))+ "all messages of a specific user (sent or received)");
+        super(roleUser, getRoleAbilitiesString(getRoleFromRoleId(roleUser.getRoleId())) + "all messages of a specific user (sent or received)");
     }
 
     @Override
@@ -40,20 +38,7 @@ public class RoleMessagesOfUserOption extends MenuOption {
             MessageDAO    msgDAO               = new MySQLMessageDAO();
             List<Message> selectedUserMessages = msgDAO.getMessagesOfUser(selectedUser);
 
-            if (!selectedUserMessages.isEmpty()) {
-                printMessages(selectedUserMessages);
-
-                if (this.getUser().getRoleId()>=EDITOR.ID()) {
-                    if (requestConfirmation("Do you want to edit any of the above messages?")) {
-                        editMessageInList(selectedUserMessages);
-                    } else if (this.getUser().getRoleId()>=DELETER.ID()) {
-                        if (requestConfirmation("Do you want to delete any of the above messages?")) {
-                            deleteMessageInList(selectedUserMessages);
-                        }
-                    }
-                }
-
-            } else System.out.println("No messages found...");
+            viewEditDeleteMessagesInList(this.getUser(), selectedUserMessages);
 
         } else System.out.println("User not found");
 

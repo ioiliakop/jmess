@@ -4,6 +4,7 @@ import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.Roles.Role;
+import MessagingApp.Entities.User;
 
 import java.util.List;
 
@@ -12,9 +13,7 @@ import static MessagingApp.Entities.Roles.Role.EDITOR;
 import static MessagingApp.Menus.MenuUtils.inputMessageBody;
 import static MessagingApp.Menus.MenuUtils.inputMessageSubject;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
-import static MessagingApp.Menus.MessageServices.getMessageIdInList;
-import static MessagingApp.Menus.MessageServices.getMessageIdsFromMessages;
-import static MessagingApp.Menus.MessageServices.getMessageString;
+import static MessagingApp.Menus.MessageServices.*;
 
 public class RoleHelper {
 
@@ -87,6 +86,23 @@ public class RoleHelper {
         if (role == EDITOR) roleOptions = roleOptions + "/Edit";
         if (role == DELETER) roleOptions = roleOptions + "/Edit/Delete";
         return roleOptions + " ";
+    }
+
+    static void viewEditDeleteMessagesInList(User roleUser, List<Message> messagesList){
+        if (!messagesList.isEmpty()) {
+            printMessages(messagesList);
+
+            if (roleUser.getRoleId() == EDITOR.ID() || roleUser.getRoleId() == DELETER.ID()) {
+                if (requestConfirmation("Do you want to edit any of the above messages?")) {
+                    editMessageInList(messagesList);
+                } else if (roleUser.getRoleId() == DELETER.ID()) {
+                    if (requestConfirmation("Do you want to delete any of the above messages?")) {
+                        deleteMessageInList(messagesList);
+                    }
+                }
+            }
+
+        } else System.out.println("No messages found...");
     }
 
 }

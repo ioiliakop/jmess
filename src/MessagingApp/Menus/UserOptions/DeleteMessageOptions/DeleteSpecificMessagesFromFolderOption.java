@@ -28,7 +28,7 @@ public class DeleteSpecificMessagesFromFolderOption extends MenuOption {
     public DeleteSpecificMessagesFromFolderOption(User user, Folder folder) {
         super(user);
         this.folder = folder;
-        this.setMenuLine("Delete select messages from " + folder.name());
+        this.setMenuLine("Delete selected message from " + folder.name());
     }
 
     @Override

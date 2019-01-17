@@ -17,6 +17,7 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
     private static final String SQL_UPDATE_SPECIFIC_MESSAGE_FOLDER              = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND message_id = ?";
     private static final String SQL_UPDATE_MESSAGE_IN_FOLDER_AS_READ            = "UPDATE users_folders_messages SET is_read = 1 WHERE user_id = ? AND folder_id = ?";
     private static final String SQL_UPDATE_ALL_MESSAGES_IN_USER_FOLDER          = "UPDATE users_folders_messages SET folder_id = ? WHERE user_id = ? AND folder_id = ?";
+    private static final String SQL_UPDATE_ALL_MESSAGES_IN_FOLDER_SENT_BY       = "UPDATE users_folders_messages, messages SET folder_id = ? WHERE user_id = ? AND folder_id = ? AND sender_id = ?";
     private static final String SQL_DELETE_ALL_MESSAGES_IN_USER                 = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
     private static final String SQL_USER_FOLDER_MESSAGE_DELETE                  = "DELETE FROM users_folders_messages WHERE message_id = ?";
 
@@ -111,6 +112,26 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
             long rowsUpdated = pstmt.executeUpdate();
 
             return rowsUpdated;
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public long updateUserFolderMessagesSentBy(User owner, Folder originalFolder, Folder targetFolder, User sender) {
+        try (Connection conn = MySQLConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL_UPDATE_ALL_MESSAGES_IN_FOLDER_SENT_BY)) {
+
+            pstmt.setLong(1, targetFolder.ID());
+            pstmt.setLong(2, owner.getId());
+            pstmt.setLong(3, originalFolder.ID());
+            pstmt.setLong(4, sender.getId());
+
+            long rowsUpdated = pstmt.executeUpdate();
+
+            if (rowsUpdated > 0) return rowsUpdated;
 
         } catch (SQLException ex) {
             ex.printStackTrace();
