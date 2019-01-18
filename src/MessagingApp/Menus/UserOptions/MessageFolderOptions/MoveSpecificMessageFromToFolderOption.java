@@ -20,8 +20,8 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
     private Folder currentFolder;
     private Folder targetFolder;
 
-    public MoveSpecificMessageFromToFolderOption(User user, Folder currentFolder, Folder targetFolder) {
-        super(user, "Move a specific message from " + currentFolder + " to " + targetFolder);
+    public MoveSpecificMessageFromToFolderOption(User folderOwner, Folder currentFolder, Folder targetFolder) {
+        super(folderOwner, "Move a specific message from " + currentFolder + " to " + targetFolder);
         this.currentFolder = currentFolder;
         this.targetFolder = targetFolder;
     }
@@ -38,6 +38,7 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
             if (!messageIdsList.isEmpty()) {
                 // First we print the available messages list to help the user choose
                 List<Message> currentFolderMessages = getMessagesFromMessageIds(messageIdsList);
+                System.out.println("\nMessages in " + ANSI_WHITE + currentFolder + ANSI_RESET + ":");
                 printMessages(currentFolderMessages);
 
                 // We get user selection and validate it

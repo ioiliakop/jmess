@@ -14,7 +14,7 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 /**
  * This user option is used to directly delete all messages from a folder
  * In this application we only use it for the TRASH folder
- * As all other delete operations are implicitly moving the messages to the TRASH folder
+ * Other delete operations are moving the messages to the TRASH folder
  * But it can easily be performed on other folders if needed in the future
  * by passing the target folder as a parameter in the constructor
  */

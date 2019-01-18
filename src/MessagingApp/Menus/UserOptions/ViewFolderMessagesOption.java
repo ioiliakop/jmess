@@ -12,46 +12,35 @@ import MessagingApp.Menus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.*;
 
 
-/** User option that prints all user messages in the folder (INBOX/SENTBOX etc.) passed as parameter */
+/**
+ * User option that prints all user messages in the folder (INBOX/SENTBOX etc.) passed as parameter
+ */
 public class ViewFolderMessagesOption extends MenuOption {
 
     private Folder folder;
 
-    public ViewFolderMessagesOption(User user, Folder folder) {
-        super(user);
+    public ViewFolderMessagesOption(User folderOwner, Folder folder) {
+        super(folderOwner);
         this.folder = folder;
         this.setMenuLine("View messages in " + folder.name());
     }
 
     @Override
     public void execute() {
-        User owner = this.getUser();
+        User                 folderOwner          = this.getUser();
         UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
-        List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(owner.getId(), folder);
+        List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(folderOwner.getId(), folder);
 
         if (!messageIdsList.isEmpty()) {
-            List<Message> containerMessages = getMessagesFromMessageIds(messageIdsList);
-            System.out.println("\nMessages in " + folder + ":");
-            printMessages(containerMessages);
+            List<Message> folderMessages = getMessagesFromMessageIds(messageIdsList);
+            System.out.println("\nMessages in " + ANSI_WHITE + folder + ANSI_RESET + ":");
+            printMessages(folderMessages);
 
-            // We ask the user if he wishes to view a message from the folder
-            // And proceed accordingly
-            if (requestConfirmation("Would you like to open a message from the above list?")) {
-                long selectedMessageId;
-                do {
-                    selectedMessageId = getMessageIdInList(messageIdsList);
-                    if (selectedMessageId !=0){
-                        MessageDAO msgDAO = new MySQLMessageDAO();
-                        Message selectedMessage = msgDAO.getMessage(selectedMessageId);
-                        System.out.println(getColoredMessageString(selectedMessage));
-                    }
-                } while (requestConfirmation("Would you like to view another message?"));
-            }
-            ufmDAO.updateUserFolderMessagesAsRead(owner,folder);
+            // We then mark all messages as read
+            ufmDAO.updateUserFolderMessagesAsRead(folderOwner, folder);
 
         } else System.out.println("No messages in " + folder);
 

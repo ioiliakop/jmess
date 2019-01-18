@@ -48,10 +48,4 @@ public class UserOptionsMenu extends Menu {
         this.add(new UpdatePasswordOption(user));
     }
 
-
-    // TODO will implement if time
-    /* Method that prompts the user if he has received new messages */
-    private void promptForNewMessages(){
-
-    }
 }
