@@ -24,6 +24,7 @@ public class UpdateUsernameOption extends MenuOption {
         UserDAO usrDAO      = new MySQLUserDAO();
         User    user        = usrDAO.getUser(newUsername);
 
+        // Here we want to validate a user with given username does NOT exist
         if (user == null) {
 
             if (requestConfirmation("Username will be changed to " + newUsername + ". Proceed? ")) {

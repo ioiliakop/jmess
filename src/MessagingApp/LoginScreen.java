@@ -34,6 +34,7 @@ public class LoginScreen {
                 System.out.println("\nSuccessfully logged in as " + user.getUsername());
                 unreadMessagesPrompt(user, INBOX);
 
+                // Then invokes respective menu, depending on user role
                 if (user.getRoleId() == ADMIN.ID()) {
                     Menu adminMenu = new Menu(user);
                     adminMenu.add(new AdminOptionsMenu(user));

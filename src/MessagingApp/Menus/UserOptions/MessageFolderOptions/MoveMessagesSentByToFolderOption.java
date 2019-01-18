@@ -51,7 +51,7 @@ public class MoveMessagesSentByToFolderOption extends MenuOption {
                 List<Long> selectedUserMessageIDs = ufmDAO.getMessageIDsInFolderSentByUser(folderOwner, currentFolder, sender);
                 // check for edge case, we want to prevent user bringing his sent messages to INBOX via TRASH
                 if (sender.getId() == folderOwner.getId() && targetFolder == INBOX) {
-                    System.out.println("You cannot massively choose messages you have sent to move back to INBOX");
+                    System.out.println("You cannot massively your own sent to move back to INBOX");
                 } else {
                     // if there are messages by sender in folder
                     if (!selectedUserMessageIDs.isEmpty()) {

@@ -32,6 +32,7 @@ public class EmptyFolderOption extends MenuOption {
         UserFolderMessageDAO ufmDAO           = new MySQLUserFolderMessageDAO();
         List<Long>           messagesInFolder = ufmDAO.getUserFolderMessageIDs(this.getUser().getId(), folder);
 
+        // First check if there are messages in folder
         if (!messagesInFolder.isEmpty()) {
             System.out.println("Attention. All messages in " + folder + " will pe permanently deleted.");
             if (requestConfirmation("Continue?")) {

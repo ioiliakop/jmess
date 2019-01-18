@@ -85,14 +85,15 @@ public class RoleHelper {
     }
 
 
-    static String getRoleAbilitiesString(Role role){
+    static String getRoleAbilitiesString(Role role) {
         String roleOptions = "View";
         if (role == EDITOR) roleOptions = roleOptions + "/Edit";
         if (role == DELETER) roleOptions = roleOptions + "/Edit/Delete";
         return roleOptions + " ";
     }
 
-    static void viewEditDeleteMessagesInList(User roleUser, List<Message> messagesList){
+    /* helper method with varying functionality based on user role */
+    static void viewEditDeleteMessagesInList(User roleUser, List<Message> messagesList) {
         if (!messagesList.isEmpty()) {
             printMessages(messagesList);
 

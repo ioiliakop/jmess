@@ -11,6 +11,7 @@ import static MessagingApp.Entities.Roles.getRoleFromRoleId;
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 
+/** Option that gives any simple user a short list of available users to message */
 public class ViewActiveUsersOption extends MenuOption {
 
     public ViewActiveUsersOption() {

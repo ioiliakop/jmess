@@ -30,10 +30,11 @@ public class ViewFolderMessagesOption extends MenuOption {
 
     @Override
     public void execute() {
-        User                 folderOwner          = this.getUser();
+        User                 folderOwner    = this.getUser();
         UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
         List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(folderOwner.getId(), folder);
 
+        // First check if there are messages in the folder in the first place
         if (!messageIdsList.isEmpty()) {
             List<Message> folderMessages = getMessagesFromMessageIds(messageIdsList);
             System.out.println("\nMessages in " + ANSI_WHITE + folder + ANSI_RESET + ":");

@@ -26,8 +26,10 @@ public class RestoreDeletedUserOption extends MenuOption {
         UserDAO usrDAO           = new MySQLUserDAO();
         User    userToBeRestored = usrDAO.getUser(username);
 
+        // validate user exists in db
         if (userToBeRestored != null) {
 
+            // validate user is deleted
             if (userToBeRestored.getStatusId() == DELETED.ID()) {
 
                 if (requestConfirmation("User " + userToBeRestored.getUsername() + " will be restored.\nAre you sure? ")) {

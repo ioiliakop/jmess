@@ -30,6 +30,7 @@ public class UpdateUserOption extends MenuOption {
         UserDAO usrDAO         = new MySQLUserDAO();
         User    targetUser     = usrDAO.getUser(targetUsername);
 
+        // validate given user exists
         if (targetUser != null) {
 
             if (targetUser.getStatusId() == ACTIVE.ID()) {
@@ -37,7 +38,7 @@ public class UpdateUserOption extends MenuOption {
                 Menu updateUserMenu = new UpdateUserOptionsMenu(targetUser);
                 updateUserMenu.execute();
 
-            } else System.out.println("Selected user has been deleted");
+            } else System.out.println("Selected user has been deleted. You should reactivate his account first.");
 
         } else System.out.println("User not found");
         pauseExecution();

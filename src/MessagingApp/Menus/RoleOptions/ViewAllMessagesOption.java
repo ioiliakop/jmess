@@ -27,6 +27,7 @@ public class ViewAllMessagesOption extends MenuOption {
 
         MessageDAO    msgDAO      = new MySQLMessageDAO();
         List<Message> allMessages = msgDAO.getAllMessages();
+        System.out.println("All messages registered in our app:");
         printMessages(allMessages);
 
         pauseExecution();

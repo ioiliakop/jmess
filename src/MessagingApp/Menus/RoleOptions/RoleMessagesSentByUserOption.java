@@ -33,6 +33,7 @@ public class RoleMessagesSentByUserOption extends MenuOption {
         UserDAO usrDAO       = new MySQLUserDAO();
         User    selectedUser = usrDAO.getUser(username);
 
+        // validate selected user
         if (selectedUser != null) {
             MessageDAO    msgDAO               = new MySQLMessageDAO();
             List<Message> selectedUserMessages = msgDAO.getMessagesSentByUser(selectedUser);

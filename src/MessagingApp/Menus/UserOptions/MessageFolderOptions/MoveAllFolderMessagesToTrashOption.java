@@ -1,8 +1,6 @@
 package MessagingApp.Menus.UserOptions.MessageFolderOptions;
 
-import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
-import MessagingApp.DAO.UserDAO;
 import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
@@ -11,7 +9,6 @@ import java.util.List;
 
 import static MessagingApp.Entities.MessageFolders.*;
 import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
-import static MessagingApp.Menus.MenuUtils.inputGeneric;
 import static MessagingApp.Menus.MenuUtils.pauseExecution;
 import static MessagingApp.Menus.MenuUtils.requestConfirmation;
 
@@ -32,11 +29,12 @@ public class MoveAllFolderMessagesToTrashOption extends MenuOption {
 
     @Override
     public void execute() {
-
-        User                 folderOwner          = this.getUser();
+        // First we try to get messageIDs in folder
+        User                 folderOwner    = this.getUser();
         UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
         List<Long>           messageIdsList = ufmDAO.getUserFolderMessageIDs(folderOwner.getId(), currentFolder);
 
+        // And check if there are any before proceeding
         if (!messageIdsList.isEmpty()) {
             if (requestConfirmation("All messages in " + currentFolder.name() + " will be moved to TRASH.\nAre you sure?")) {
 

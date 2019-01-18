@@ -18,8 +18,8 @@ import static MessagingApp.Menus.MenuUtils.requestConfirmation;
  */
 public class UpdateUserRoleOption extends MenuOption {
 
-    public UpdateUserRoleOption(User user) {
-        super(user, "Update role");
+    public UpdateUserRoleOption(User targetUser) {
+        super(targetUser, "Update role");
     }
 
     @Override

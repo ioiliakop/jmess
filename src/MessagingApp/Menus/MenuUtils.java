@@ -114,8 +114,8 @@ public class MenuUtils {
     }
 
     /*
-     * Returns user input from console after printing message in parameter
-     * It doesn't validate input in any way
+     * Prompts user for input after printing message passed ad parameter
+     * It doesn't validate input in any way, only returns it as is
      */
     public static String inputGeneric(String message) {
         Scanner sc = new Scanner(System.in);
