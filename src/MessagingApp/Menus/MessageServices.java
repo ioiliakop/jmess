@@ -32,7 +32,7 @@ public class MessageServices {
     public static final String ANSI_BLUE   = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN   = "\u001B[36m";
-    public static final String ANSI_GREY  = "\u001B[37m";
+    public static final String ANSI_GREY   = "\u001B[37m";
 
     public static final String ANSI_BLACK_BACKGROUND  = "\u001B[40m";
     public static final String ANSI_RED_BACKGROUND    = "\u001B[41m";
@@ -198,17 +198,17 @@ public class MessageServices {
     }
 
     /* checks validity of message move
-    * e.g. message that was originally in sent folder and was moved to trash
-    * cannot be moved from trash to inbox, only back to sentbox
-    */
+     * e.g. message that was originally in sent folder and was moved to trash
+     * cannot be moved from trash to inbox, only back to sentbox
+     */
     public static boolean messageIsValidForMoveTo(User folderOwner, Message message, Folder targetFolder) {
         if (targetFolder == TRASH) return true;
-        if (targetFolder == INBOX) {
-            if (getMessageReceiverIDs(message).contains(folderOwner.getId())) return true;
-            else return false;
-        }
         if (targetFolder == SENTBOX) {
             if (folderOwner.getId() == message.getSenderId()) return true;
+            else return false;
+        }
+        if (targetFolder == INBOX) {
+            if (getMessageReceiverIDs(message).contains(folderOwner.getId())) return true;
             else return false;
         }
         return true;

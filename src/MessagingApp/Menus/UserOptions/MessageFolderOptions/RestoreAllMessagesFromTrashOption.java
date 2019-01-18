@@ -39,26 +39,12 @@ public class RestoreAllMessagesFromTrashOption extends MenuOption {
             if (requestConfirmation("All messages will be restored. Are you sure?")) {
 
                 for (Message m : messagesInTrash) {
-                    // Check edge for case where user is both sender and receiver of a message (still needs fix)
-                    if (messageIsValidForMoveTo(trashOwner, m, INBOX) && messageIsValidForMoveTo(trashOwner, m, SENTBOX)) {
-                        System.out.println("Message with id " + m.getId() + " can be restored to INBOX and SENTBOX");
-                        // Asks the user where to restore the message and proceeds accordingly
-                        if (requestConfirmation("Would you like to restore it to INBOX?")) {
-                            long rowsMoved = ufmDAO.updateUserFolderMessage(trashOwner.getId(), INBOX, m.getId());
-                            if (rowsMoved == 1 || rowsMoved == 2) {
-                                System.out.println("Message with id " + m.getId() + " successfully moved to " + INBOX);
-                            } else System.out.println("Unknown error. Message move operation failed.");
-                        } else {
-                            long rowsMoved = ufmDAO.updateUserFolderMessage(trashOwner.getId(), SENTBOX, m.getId());
-                            if (rowsMoved == 1 || rowsMoved == 2) {
-                                System.out.println("Message with id " + m.getId() + " successfully moved to " + SENTBOX);
-                            } else System.out.println("Unknown error. Message move operation failed.");
-                        }
-                        // Case where the user is only a receiver of the message
-                    } else if (messageIsValidForMoveTo(trashOwner, m, INBOX)) {
+                    // Case where the user is only a receiver of the message
+                    if (messageIsValidForMoveTo(trashOwner, m, INBOX)) {
                         if (ufmDAO.updateUserFolderMessage(trashOwner.getId(), INBOX, m.getId()) == 1) {
                             System.out.println("Message with id " + m.getId() + " successfully moved to " + INBOX);
                         } else System.out.println("Unknown error. Message move operation failed.");
+
                         // Case where the user is only sender of the message
                     } else if (messageIsValidForMoveTo(trashOwner, m, SENTBOX)) {
                         if (ufmDAO.updateUserFolderMessage(trashOwner.getId(), SENTBOX, m.getId()) == 1) {

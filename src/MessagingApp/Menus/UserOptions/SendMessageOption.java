@@ -31,8 +31,8 @@ import static MessagingApp.Menus.Utils.*;
  */
 public class SendMessageOption extends MenuOption {
 
-    public SendMessageOption(User user) {
-        super(user, "Send a message");
+    public SendMessageOption(User sender) {
+        super(sender, "Send a message");
     }
 
     @Override
@@ -41,20 +41,24 @@ public class SendMessageOption extends MenuOption {
         // In the first section we ask and get from the user, a list of users he wants to message
         // He can input one or more usernames for recipients of the message
         List<User> messageReceivers = new ArrayList<>();
+        User       sender           = this.getUser();
         do {
             String  username = inputGeneric("Which user do you want to message?\n");
             UserDAO usrDAO   = new MySQLUserDAO();
             User    receiver = usrDAO.getUser(username);
             // Check if user with given username exists
             if (receiver != null) {
-                // if user exists, next check if it's an active user
-                if (receiver.getStatusId() == ACTIVE.ID()) {
-                    // If it is, we make a last check if user is already in receivers list
-                    if (messageReceivers.contains(receiver)) System.out.println("User is already in recipients");
-                    else messageReceivers.add(receiver);
+                // We don't allow user to send message to self
+                if (receiver.getId() != sender.getId()) {
+                    // if user exists, next check if it's an active user
+                    if (receiver.getStatusId() == ACTIVE.ID()) {
 
-                } else System.out.println("This user has been deleted. You can no longer contact him.");
+                        // If it is, we make a last check if user is already in receivers list
+                        if (messageReceivers.contains(receiver)) System.out.println("User is already in recipients");
+                        else messageReceivers.add(receiver);
 
+                    } else System.out.println("This user has been deleted. You can no longer contact him.");
+                } else System.out.println("You cannot choose yourself as receiver.");
             } else System.out.println("User not found.");
 
         } while (requestConfirmation("Would you like to add another receiver?"));
@@ -64,7 +68,6 @@ public class SendMessageOption extends MenuOption {
             // We take message subject and body from the user
             String     messageSubject = inputMessageSubject();
             String     messageBody    = inputMessageBody();
-            User       sender         = this.getUser();
             MessageDAO msgDAO         = new MySQLMessageDAO();
 
             // Then we insert the message into the messages table
