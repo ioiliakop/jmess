@@ -2,7 +2,9 @@ package MessagingApp.DAO;
 
 import java.util.List;
 
-/** interface for table in db that relates messages with receivers */
+/**
+ * interface for table in db that relates messages with receivers
+ */
 public interface MessageReceiversDAO {
 
     /* Returns all receiver IDs of a given message */
@@ -12,12 +14,12 @@ public interface MessageReceiversDAO {
     int insertMessageReceivers(long messageId, long receiverId);
 
     /*
-     * not needed in our implementation
+     * not needed in our implementation, just for reference
      * neither the message id ever gets updated, nor the receivers of a message
      */
     int updateMessageReceivers(long messageId, long receiverId);
 
-    /* not needed in our implementation */
+    /* not needed in our implementation, just for reference */
     int deleteMessageReceivers(long messageId, long receiverId);
 
 }

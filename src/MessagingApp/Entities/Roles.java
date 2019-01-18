@@ -44,4 +44,5 @@ public class Roles {
         if (roleId == 2) return VIEWER;
         return USER;
     }
+
 }

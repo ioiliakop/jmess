@@ -143,4 +143,5 @@ public class MySQLMessageDAO implements MessageDAO {
     public int deleteMessage(Message message) {
         return SQLDeleteById(SQL_MESSAGE_DELETE, message.getId());
     }
+
 }

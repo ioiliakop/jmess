@@ -36,4 +36,5 @@ public class Statuses {
         if (statusId == 1) return ACTIVE;
         return DELETED;
     }
+
 }

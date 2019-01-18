@@ -24,8 +24,8 @@ public class Utils {
      * Forces the user to explicitly enter "y/yes" or "n/no"
      */
     public static boolean requestConfirmation(String message) {
-        String  input = "";
-        Scanner sc    = new Scanner(System.in);
+        String  input;
+        Scanner sc = new Scanner(System.in);
 
         while (true) {
             System.out.print(message + " (y/n) ");

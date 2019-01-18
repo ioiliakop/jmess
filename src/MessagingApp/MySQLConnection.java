@@ -20,12 +20,12 @@ public class MySQLConnection {
             pros.load(f);
 
             // assign db parameters
-            String url = pros.getProperty("url");
-            String user = pros.getProperty("user");
+            String url      = pros.getProperty("url");
+            String user     = pros.getProperty("user");
             String password = pros.getProperty("password");
 
             // create a connection to the database
-            conn = DriverManager.getConnection(url,user,password);
+            conn = DriverManager.getConnection(url, user, password);
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

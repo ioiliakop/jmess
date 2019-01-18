@@ -29,4 +29,5 @@ public class MessageFolders {
             return ID;
         }
     }
+
 }

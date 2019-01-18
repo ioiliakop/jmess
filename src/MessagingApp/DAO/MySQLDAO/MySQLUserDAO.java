@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLDeleteById;
-import static MessagingApp.DAO.MySQLDAO.MySQLHelper.SQLUpdateVarcharFieldById;
 import static MessagingApp.Entities.Roles.Role.USER;
 
 public class MySQLUserDAO implements UserDAO {
@@ -179,4 +178,5 @@ public class MySQLUserDAO implements UserDAO {
     public int deleteUser(User user) {
         return SQLDeleteById(SQL_USER_DELETE, user.getId());
     }
+
 }

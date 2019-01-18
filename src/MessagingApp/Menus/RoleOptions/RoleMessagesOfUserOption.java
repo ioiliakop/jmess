@@ -46,5 +46,4 @@ public class RoleMessagesOfUserOption extends MenuOption {
         pauseExecution();
     }
 
-
 }

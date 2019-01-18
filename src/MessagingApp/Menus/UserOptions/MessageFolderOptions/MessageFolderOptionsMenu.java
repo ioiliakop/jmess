@@ -30,5 +30,4 @@ public class MessageFolderOptionsMenu extends Menu {
         this.add(new EmptyFolderOption(user, TRASH));
     }
 
-
 }

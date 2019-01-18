@@ -25,7 +25,7 @@ public class MySQLMessageReceiversDAO implements MessageReceiversDAO {
             ResultSet rs = pstmt.executeQuery();
 
             List<Long> receiverIdsList = new ArrayList<>();
-            long receiverId;
+            long       receiverId;
             while (rs.next()) {
                 receiverId = rs.getLong("receiver_id");
                 receiverIdsList.add(receiverId);
@@ -64,4 +64,5 @@ public class MySQLMessageReceiversDAO implements MessageReceiversDAO {
     public int deleteMessageReceivers(long messageId, long receiverId) {
         return 0;
     }
+
 }

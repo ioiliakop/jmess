@@ -30,25 +30,6 @@ class MySQLHelper {
         return 0;
     }
 
-    static int SQLUpdateVarcharFieldById(String SQLString, String updatedFieldValue, long id){
-        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQLString)) {
-
-            pstmt.setString(1, updatedFieldValue);
-            pstmt.setLong(2, id);
-
-            int rowsUpdated = pstmt.executeUpdate();
-            if (rowsUpdated == 1) {
-                return rowsUpdated;
-            }
-
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return 0;
-    }
-
-
     /* helper method to process a ResultSet returning a USER object */
     static User extractUserFromResultSet(ResultSet rs) throws SQLException {
         User user = new User();

@@ -43,7 +43,6 @@ public class UpdateUserRoleOption extends MenuOption {
 
                 // no need to try-catch exception here
                 int newRoleId = Integer.parseInt(newRoleInput);
-//            Role newRole   = getRoleFromRoleId(newRoleId);
                 User updatedUser = this.getUser();
                 updatedUser.setRoleId(newRoleId);
 
@@ -57,4 +56,5 @@ public class UpdateUserRoleOption extends MenuOption {
 
         pauseExecution();
     }
+
 }

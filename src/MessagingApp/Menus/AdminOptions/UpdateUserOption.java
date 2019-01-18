@@ -44,4 +44,5 @@ public class UpdateUserOption extends MenuOption {
         } else System.out.println("User not found");
         pauseExecution();
     }
+
 }

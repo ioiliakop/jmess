@@ -76,4 +76,5 @@ public class Message {
         return "MsgID: " + id + "\tsenderId: " + senderId + "\tSubject: " + messageSubject +
                 "\tDateTime: " + messageDateCreated + "\n\tMessage: " + messageBody;
     }
+
 }

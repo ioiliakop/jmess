@@ -5,7 +5,9 @@ import MessagingApp.Entities.User;
 
 import java.util.List;
 
-/** This interface is used to assign messages to user folders and interact with folders */
+/**
+ * This interface is used to assign messages to user folders and interact with folders
+ */
 public interface UserFolderMessageDAO {
 
     List<Long> getUserFolderMessageIDs(long userId, Folder folder);

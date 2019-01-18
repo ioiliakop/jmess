@@ -17,5 +17,4 @@ public class UpdateUserOptionsMenu extends Menu {
         this.add(new UpdateUserRoleOption(targetUser));
     }
 
-
 }

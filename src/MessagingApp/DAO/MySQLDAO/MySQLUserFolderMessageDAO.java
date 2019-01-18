@@ -22,7 +22,6 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
     private static final String SQL_DELETE_ALL_MESSAGES_IN_USER                 = "DELETE FROM users_folders_messages WHERE user_id = ? AND folder_id = ?";
     private static final String SQL_USER_FOLDER_MESSAGE_DELETE                  = "DELETE FROM users_folders_messages WHERE message_id = ?";
 
-
     @Override
     public List<Long> getUserFolderMessageIDs(long userId, Folder folder) {
         try (Connection conn = MySQLConnection.getConnection();
@@ -205,4 +204,5 @@ public class MySQLUserFolderMessageDAO implements UserFolderMessageDAO {
     public int deleteUserFolderMessage(long userId, Folder folder, long messageId) {
         return 0;
     }
+
 }

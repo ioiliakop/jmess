@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class User {
 
-    private long id;
+    private long   id;
     private String username;
     private String password;
-    private long roleId;
-    private long statusId;
+    private long   roleId;
+    private long   statusId;
 
     public User() {
     }
@@ -75,4 +75,5 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, username, password, roleId, statusId);
     }
+
 }
