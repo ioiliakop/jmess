@@ -39,7 +39,7 @@ public class RestoreAllMessagesFromTrashOption extends MenuOption {
             if (requestConfirmation("All messages will be restored. Are you sure?")) {
 
                 for (Message m : messagesInTrash) {
-                    // Check for case where user is both sender and receiver of a message
+                    // Check edge for case where user is both sender and receiver of a message (still needs fix)
                     if (messageIsValidForMoveTo(trashOwner, m, INBOX) && messageIsValidForMoveTo(trashOwner, m, SENTBOX)) {
                         System.out.println("Message with id " + m.getId() + " can be restored to INBOX and SENTBOX");
                         // Asks the user where to restore the message and proceeds accordingly

@@ -19,26 +19,11 @@ import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 public class UserOptionsMenu extends Menu {
 
     /*
-     * Constructor called when it is a root menu
-     * This happens in the case of simple users (level 1), with no extra options
-     */
-    public UserOptionsMenu(User user) {
-        super(user);
-        this.add(new SendMessageOption(user));
-        this.add(new ViewActiveUsersOption());
-        this.add(new ViewFolderMessagesOption(user, INBOX));
-        this.add(new ViewFolderMessagesOption(user, SENTBOX));
-        this.add(new ViewFolderMessagesOption(user, TRASH));
-        this.add(new MessageFolderOptionsMenu(user));
-        this.add(new UpdatePasswordOption(user));
-    }
-
-    /*
      * Constructor called when UserOptionsMenu is called as a sub menu
      * Typical for user with extra options
      */
-    public UserOptionsMenu(User user, String menuLine) {
-        super(user, menuLine);
+    public UserOptionsMenu(User user) {
+        super(user, "User Options");
         this.add(new SendMessageOption(user));
         this.add(new ViewActiveUsersOption());
         this.add(new ViewFolderMessagesOption(user, INBOX));
