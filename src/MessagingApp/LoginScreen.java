@@ -15,7 +15,7 @@ import static MessagingApp.Menus.MessageServices.unreadMessagesPrompt;
 
 public class LoginScreen {
 
-    public static void printLoginScreen() {
+    public static void printLoginScreen() throws MessagingAppException {
         System.out.println("Welcome to our messaging app");
 
         do {
@@ -59,7 +59,7 @@ public class LoginScreen {
                     UserOptionsMenu userMenu = new UserOptionsMenu(user);
                     userMenu.setExitPrompt("Exit"); // We call submenu constructor and change exit prompt
                     userMenu.execute();
-                }
+                } else throw new MessagingAppException("Unknown role ID: " + user.getRoleId());
             } else System.out.println("\nUsername or password not correct");
 
         } while (requestConfirmation("\nLogin again?"));

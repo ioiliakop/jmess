@@ -11,6 +11,7 @@ import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.MessageFolders.Folder;
 import MessagingApp.Entities.User;
+import MessagingApp.MessagingAppException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,17 +33,6 @@ public class MessageServices {
     public static final String ANSI_BLUE   = "\u001B[34m";
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN   = "\u001B[36m";
-    public static final String ANSI_GREY   = "\u001B[37m";
-
-    public static final String ANSI_BLACK_BACKGROUND  = "\u001B[40m";
-    public static final String ANSI_RED_BACKGROUND    = "\u001B[41m";
-    public static final String ANSI_GREEN_BACKGROUND  = "\u001B[42m";
-    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-    public static final String ANSI_BLUE_BACKGROUND   = "\u001B[44m";
-    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-    public static final String ANSI_CYAN_BACKGROUND   = "\u001B[46m";
-    public static final String ANSI_WHITE_BACKGROUND  = "\u001B[47m";
-
 
     /* Method that takes a list of messages and prints them on the screen in user-friendly format */
     public static void printMessages(List<Message> messages) {
@@ -201,7 +191,7 @@ public class MessageServices {
      * e.g. message that was originally in sent folder and was moved to trash
      * cannot be moved from trash to inbox, only back to sentbox
      */
-    public static boolean messageIsValidForMoveTo(User folderOwner, Message message, Folder targetFolder) {
+    public static boolean messageIsValidForMoveTo(User folderOwner, Message message, Folder targetFolder) throws MessagingAppException {
         if (targetFolder == TRASH) return true;
         if (targetFolder == SENTBOX) {
             if (folderOwner.getId() == message.getSenderId()) return true;
@@ -211,7 +201,7 @@ public class MessageServices {
             if (getMessageReceiverIDs(message).contains(folderOwner.getId())) return true;
             else return false;
         }
-        return true;
+        throw new MessagingAppException("Unknown target folder: " + targetFolder.name());
     }
 
 }

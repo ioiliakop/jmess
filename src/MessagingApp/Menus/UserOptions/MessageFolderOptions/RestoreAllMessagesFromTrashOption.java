@@ -39,13 +39,13 @@ public class RestoreAllMessagesFromTrashOption extends MenuOption {
             if (requestConfirmation("All messages will be restored. Are you sure?")) {
 
                 for (Message m : messagesInTrash) {
-                    // Case where the user is only a receiver of the message
+                    // Case where the user is a receiver of the message
                     if (messageIsValidForMoveTo(trashOwner, m, INBOX)) {
                         if (ufmDAO.updateUserFolderMessage(trashOwner.getId(), INBOX, m.getId()) == 1) {
                             System.out.println("Message with id " + m.getId() + " successfully moved to " + INBOX);
                         } else System.out.println("Unknown error. Message move operation failed.");
 
-                        // Case where the user is only sender of the message
+                        // Case where the user is the sender of the message
                     } else if (messageIsValidForMoveTo(trashOwner, m, SENTBOX)) {
                         if (ufmDAO.updateUserFolderMessage(trashOwner.getId(), SENTBOX, m.getId()) == 1) {
                             System.out.println("Message with id " + m.getId() + " successfully moved to " + SENTBOX);

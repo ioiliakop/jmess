@@ -4,7 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        LoginScreen.printLoginScreen();
+        try {
+            LoginScreen.printLoginScreen();
+        } catch (MessagingAppException e) {
+            e.printStackTrace();
+        }
 
     }
 
