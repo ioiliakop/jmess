@@ -2,7 +2,7 @@ package MessagingApp.DAO;
 
 import java.util.List;
 
-/** DAO interface for table in db */
+/** interface for table in db that relates messages with receivers */
 public interface MessageReceiversDAO {
 
     /* Returns all receiver IDs of a given message */

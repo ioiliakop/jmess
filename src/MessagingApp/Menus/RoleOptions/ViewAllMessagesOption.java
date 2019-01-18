@@ -7,7 +7,7 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
+import static MessagingApp.Menus.Utils.pauseExecution;
 import static MessagingApp.Menus.MessageServices.printMessages;
 
 /**

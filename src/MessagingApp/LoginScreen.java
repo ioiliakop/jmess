@@ -10,7 +10,7 @@ import MessagingApp.Menus.UserOptions.UserOptionsMenu;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.Roles.Role.*;
-import static MessagingApp.Menus.MenuUtils.*;
+import static MessagingApp.Menus.Utils.*;
 import static MessagingApp.Menus.MessageServices.unreadMessagesPrompt;
 
 public class LoginScreen {

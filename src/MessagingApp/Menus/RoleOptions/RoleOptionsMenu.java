@@ -26,7 +26,7 @@ public class RoleOptionsMenu extends Menu {
         if (roleUser.getRoleId() == EDITOR.ID() || roleUser.getRoleId() == DELETER.ID())
             this.add(new EditMessageOption());
 
-        // only deleter role has this option
+        // only deleter and admin role has this option
         if (roleUser.getRoleId() == DELETER.ID()) this.add(new DeleteMessageOption());
 
         // the following role options adjust functionality based on role

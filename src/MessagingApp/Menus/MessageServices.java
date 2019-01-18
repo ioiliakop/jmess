@@ -9,7 +9,6 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
-import MessagingApp.Entities.MessageFolders;
 import MessagingApp.Entities.MessageFolders.Folder;
 import MessagingApp.Entities.User;
 
@@ -21,7 +20,7 @@ import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
 import static MessagingApp.Entities.Statuses.Status.DELETED;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
+import static MessagingApp.Menus.Utils.pauseExecution;
 
 public class MessageServices {
 

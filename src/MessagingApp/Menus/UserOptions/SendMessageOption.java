@@ -18,7 +18,7 @@ import java.util.List;
 import static MessagingApp.Entities.MessageFolders.Folder.*;
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.FileAccess.appendMessageToFile;
-import static MessagingApp.Menus.MenuUtils.*;
+import static MessagingApp.Menus.Utils.*;
 
 /**
  * This option gives a user the ability to a user to send a message

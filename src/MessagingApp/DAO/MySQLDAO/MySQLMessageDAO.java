@@ -14,17 +14,14 @@ import static MessagingApp.DAO.MySQLDAO.MySQLHelper.getMessagesWithUserParam;
 
 public class MySQLMessageDAO implements MessageDAO {
 
-    private static final String SQL_MESSAGE_SELECT_ALL                   = "SELECT * FROM messages";
-    private static final String SQL_MESSAGE_SELECT_BY_ID                 = "SELECT * FROM messages WHERE id = ?";
-    private static final String SQL_MESSAGE_SELECT_ALL_SENT_BY_USER      = "SELECT * FROM messages WHERE sender_id = ?";
-    private static final String SQL_MESSAGE_SELECT_ALL_SENT_TO_USER      = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND receiver_id = ?";
-    private static final String SQL_MESSAGE_SELECT_ALL_OF_USER           = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND (sender_id = ? OR receiver_id = ?)";
-    private static final String SQL_MESSAGE_SELECT_ALL_IN_FOLDER_SENT_BY = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, users_folders_messages WHERE id = message_id AND folder_id = ? AND sender_id = ? ";
-    //    private static final String SQL_MESSAGE_SELECT_ALL_BETWEEN_2_USERS = "SELECT * FROM messages WHERE " +
-//            "(sender_id = ? and receiver_id = ?) or (sender_id = ? and receiver_id = ?) order by date_time";
-    private static final String SQL_MESSAGE_INSERT                       = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
-    private static final String SQL_MESSAGE_UPDATE                       = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
-    private static final String SQL_MESSAGE_DELETE                       = "DELETE FROM messages WHERE id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL              = "SELECT * FROM messages";
+    private static final String SQL_MESSAGE_SELECT_BY_ID            = "SELECT * FROM messages WHERE id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_SENT_BY_USER = "SELECT * FROM messages WHERE sender_id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_SENT_TO_USER = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND receiver_id = ?";
+    private static final String SQL_MESSAGE_SELECT_ALL_OF_USER      = "SELECT DISTINCT id, subject, body, date_created, sender_id FROM messages, message_receivers WHERE id = message_id AND (sender_id = ? OR receiver_id = ?)";
+    private static final String SQL_MESSAGE_INSERT                  = "INSERT INTO messages (subject,body,sender_id) VALUES(?,?,?)";
+    private static final String SQL_MESSAGE_UPDATE                  = "UPDATE messages SET subject = ?, body = ? WHERE id = ?";
+    private static final String SQL_MESSAGE_DELETE                  = "DELETE FROM messages WHERE id = ?";
 
 
     @Override
@@ -95,31 +92,6 @@ public class MySQLMessageDAO implements MessageDAO {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return null;
-    }
-
-    @Override
-    public List<Message> getConversation(long user1ID, long user2ID) {
-/*        try (Connection conn = MySQLConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL_MESSAGE_SELECT_ALL_BETWEEN_2_USERS);) {
-
-            List<Message> conversationMessages = new ArrayList<>();
-            pstmt.setLong(1, user1ID);
-            pstmt.setLong(2, user2ID);
-            pstmt.setLong(3, user2ID);
-            pstmt.setLong(4, user1ID);
-
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                Message message = extractMessageFromResultSet(rs);
-                conversationMessages.add(message);
-            }
-
-            return conversationMessages;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
         return null;
     }
 

@@ -7,9 +7,9 @@ import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Entities.Statuses.Status.DELETED;
-import static MessagingApp.Menus.MenuUtils.inputGeneric;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.Utils.inputGeneric;
+import static MessagingApp.Menus.Utils.pauseExecution;
+import static MessagingApp.Menus.Utils.requestConfirmation;
 
 /**
  * Admin has the ability to reactivate a deleted account

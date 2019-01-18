@@ -5,8 +5,8 @@ import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.Utils.pauseExecution;
+import static MessagingApp.Menus.Utils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.getColoredMessageString;
 import static MessagingApp.Menus.MessageServices.inputMessageId;
 

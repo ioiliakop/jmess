@@ -7,7 +7,7 @@ import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
-import static MessagingApp.Menus.MenuUtils.*;
+import static MessagingApp.Menus.Utils.*;
 
 /**
  * In this application the user account remains in the db but his status is changed to 'DELETED'

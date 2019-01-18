@@ -5,7 +5,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 
-public class MenuUtils {
+public class Utils {
 
     /*
      * Method to pause execution until the user presses enter.

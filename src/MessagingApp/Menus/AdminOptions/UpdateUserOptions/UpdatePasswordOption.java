@@ -5,7 +5,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Menus.MenuUtils.*;
+import static MessagingApp.Menus.Utils.*;
 
 /**
  * Option given to admin to update a user's password

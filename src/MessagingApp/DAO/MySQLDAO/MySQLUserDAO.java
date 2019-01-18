@@ -16,18 +16,14 @@ import static MessagingApp.Entities.Roles.Role.USER;
 
 public class MySQLUserDAO implements UserDAO {
 
-    private static final String SQL_USER_SELECT_ALL              = "SELECT * FROM users";
-    private static final String SQL_USER_SELECT_BY_STATUS        = "SELECT * FROM users WHERE status_id = ?";
-    private static final String SQL_USER_SELECT_BY_ID            = "SELECT * FROM users WHERE id = ?";
-    private static final String SQL_USER_SELECT_BY_NAME          = "SELECT * FROM users WHERE username = ?";
-    private static final String SQL_USER_SELECT_BY_NAME_PASS     = "SELECT * FROM users WHERE username = ? AND password = ? AND status_id = 1";
-    private static final String SQL_USER_INSERT                  = "INSERT INTO users(username,password,role_id) VALUES(?,?,?)";
-    private static final String SQL_USER_UPDATE                  = "UPDATE users SET username = ?, password = ?, role_id = ?, status_id = ? WHERE id = ?";
-    private static final String SQL_USER_NAME_ROLE_UPDATE        = "UPDATE users SET username = ?, role_id = ? WHERE id = ?";
-    private static final String SQL_USER_NAME_STATUS_UPDATE      = "UPDATE users SET username = ?, status_id = ? WHERE id = ?";
-    private static final String SQL_USER_NAME_ROLE_STATUS_UPDATE = "UPDATE users SET username = ?, role_id = ?, status_id = ? WHERE id = ?";
-    private static final String SQL_USER_PASSWORD_UPDATE         = "UPDATE users SET password = ? WHERE id = ?";
-    private static final String SQL_USER_DELETE                  = "DELETE FROM users WHERE id = ?";
+    private static final String SQL_USER_SELECT_ALL          = "SELECT * FROM users";
+    private static final String SQL_USER_SELECT_BY_STATUS    = "SELECT * FROM users WHERE status_id = ?";
+    private static final String SQL_USER_SELECT_BY_ID        = "SELECT * FROM users WHERE id = ?";
+    private static final String SQL_USER_SELECT_BY_NAME      = "SELECT * FROM users WHERE username = ?";
+    private static final String SQL_USER_SELECT_BY_NAME_PASS = "SELECT * FROM users WHERE username = ? AND password = ? AND status_id = 1";
+    private static final String SQL_USER_INSERT              = "INSERT INTO users(username,password,role_id) VALUES(?,?,?)";
+    private static final String SQL_USER_UPDATE              = "UPDATE users SET username = ?, password = ?, role_id = ?, status_id = ? WHERE id = ?";
+    private static final String SQL_USER_DELETE              = "DELETE FROM users WHERE id = ?";
 
 
     @Override

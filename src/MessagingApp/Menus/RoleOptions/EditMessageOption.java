@@ -5,7 +5,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Menus.MenuOption;
 
-import static MessagingApp.Menus.MenuUtils.*;
+import static MessagingApp.Menus.Utils.*;
 import static MessagingApp.Menus.MessageServices.*;
 import static MessagingApp.Menus.RoleOptions.RoleHelper.updateMessageIfChanged;
 

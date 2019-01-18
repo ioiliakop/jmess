@@ -9,8 +9,8 @@ import java.util.List;
 
 import static MessagingApp.Entities.MessageFolders.*;
 import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.Utils.pauseExecution;
+import static MessagingApp.Menus.Utils.requestConfirmation;
 
 /**
  * This Option gives the ability to delete messages from specific user's currentFolder (INBOX, SENTBOX, TRASH etc.)

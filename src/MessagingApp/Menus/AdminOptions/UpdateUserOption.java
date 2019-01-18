@@ -8,8 +8,8 @@ import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.MenuOption;
 
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
-import static MessagingApp.Menus.MenuUtils.inputGeneric;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
+import static MessagingApp.Menus.Utils.inputGeneric;
+import static MessagingApp.Menus.Utils.pauseExecution;
 
 /**
  * Option that prompts the admin to enter a user to update

@@ -11,8 +11,8 @@ import java.util.List;
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.SENTBOX;
 import static MessagingApp.Entities.MessageFolders.Folder.TRASH;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.Utils.pauseExecution;
+import static MessagingApp.Menus.Utils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.getMessagesFromMessageIds;
 import static MessagingApp.Menus.MessageServices.messageIsValidForMoveTo;
 

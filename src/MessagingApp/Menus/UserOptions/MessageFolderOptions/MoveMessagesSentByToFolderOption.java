@@ -11,9 +11,9 @@ import MessagingApp.Menus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Entities.MessageFolders.Folder.INBOX;
-import static MessagingApp.Menus.MenuUtils.inputGeneric;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.Utils.inputGeneric;
+import static MessagingApp.Menus.Utils.pauseExecution;
+import static MessagingApp.Menus.Utils.requestConfirmation;
 
 /**
  * This is a flexible option for moving messages sent by a specific user between folders
@@ -26,7 +26,7 @@ public class MoveMessagesSentByToFolderOption extends MenuOption {
     private Folder targetFolder;
 
     public MoveMessagesSentByToFolderOption(User folderOwner, Folder currentFolder, Folder targetFolder) {
-        super(folderOwner, "Move messages sent by a specific user from " + currentFolder + " to " + targetFolder);
+        super(folderOwner, "Move all messages sent by a user from " + currentFolder + " to " + targetFolder);
         this.currentFolder = currentFolder;
         this.targetFolder = targetFolder;
     }

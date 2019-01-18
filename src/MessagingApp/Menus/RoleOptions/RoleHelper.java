@@ -10,9 +10,9 @@ import java.util.List;
 
 import static MessagingApp.Entities.Roles.Role.DELETER;
 import static MessagingApp.Entities.Roles.Role.EDITOR;
-import static MessagingApp.Menus.MenuUtils.inputMessageBody;
-import static MessagingApp.Menus.MenuUtils.inputMessageSubject;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.Utils.inputMessageBody;
+import static MessagingApp.Menus.Utils.inputMessageSubject;
+import static MessagingApp.Menus.Utils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.*;
 
 public class RoleHelper {
@@ -32,12 +32,12 @@ public class RoleHelper {
         if (messageId != 0) {
             MessageDAO msgDAO          = new MySQLMessageDAO();
             Message    selectedMessage = msgDAO.getMessage(messageId);
-            System.out.println("\nYou have selected to edit message with id: " + messageId);
-            System.out.println(getMessageString(selectedMessage));
+            System.out.println("You have selected to edit message with id: " + messageId);
+            System.out.println(getColoredMessageString(selectedMessage));
 
             Message updatedSelectedMessage = msgDAO.getMessage(messageId);
 
-            if (requestConfirmation("\nWould you like to edit message subject?")) {
+            if (requestConfirmation("Would you like to edit message subject?")) {
                 String newSubject = inputMessageSubject();
                 updatedSelectedMessage.setMessageSubject(newSubject);
             }
@@ -73,8 +73,8 @@ public class RoleHelper {
         if (messageId != 0) {
             MessageDAO msgDAO          = new MySQLMessageDAO();
             Message    selectedMessage = msgDAO.getMessage(messageId);
-            System.out.println("\nYou have selected to delete message with id: " + messageId);
-            System.out.println(getMessageString(selectedMessage));
+            System.out.println("You have selected to delete message with id: " + messageId);
+            System.out.println(getColoredMessageString(selectedMessage));
 
             if (requestConfirmation("The message will be permanently deleted. Are you sure?")) {
                 int deleteMessage = msgDAO.deleteMessage(selectedMessage);

@@ -11,8 +11,8 @@ import MessagingApp.Menus.MenuOption;
 import java.util.List;
 
 import static MessagingApp.Entities.MessageFolders.*;
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
-import static MessagingApp.Menus.MenuUtils.requestConfirmation;
+import static MessagingApp.Menus.Utils.pauseExecution;
+import static MessagingApp.Menus.Utils.requestConfirmation;
 import static MessagingApp.Menus.MessageServices.*;
 
 public class MoveSpecificMessageFromToFolderOption extends MenuOption {
@@ -21,7 +21,7 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
     private Folder targetFolder;
 
     public MoveSpecificMessageFromToFolderOption(User folderOwner, Folder currentFolder, Folder targetFolder) {
-        super(folderOwner, "Move a specific message from " + currentFolder + " to " + targetFolder);
+        super(folderOwner, "Move a message from " + currentFolder + " to " + targetFolder);
         this.currentFolder = currentFolder;
         this.targetFolder = targetFolder;
     }
@@ -63,7 +63,7 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
                 System.out.println("There are no messages in " + currentFolder);
                 break;
             }
-            // TODO adjust exit loop condition. It asks to repeat even if no messages. Added break temporarily
+
         } while (requestConfirmation("Would you like to choose another message?"));
 
         pauseExecution();

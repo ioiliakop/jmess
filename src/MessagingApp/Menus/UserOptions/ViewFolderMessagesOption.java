@@ -1,7 +1,5 @@
 package MessagingApp.Menus.UserOptions;
 
-import MessagingApp.DAO.MessageDAO;
-import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.MessageFolders.Folder;
@@ -11,7 +9,7 @@ import MessagingApp.Menus.MenuOption;
 
 import java.util.List;
 
-import static MessagingApp.Menus.MenuUtils.pauseExecution;
+import static MessagingApp.Menus.Utils.pauseExecution;
 import static MessagingApp.Menus.MessageServices.*;
 
 
