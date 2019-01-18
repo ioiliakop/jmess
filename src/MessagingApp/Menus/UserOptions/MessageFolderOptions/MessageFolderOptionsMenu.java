@@ -28,6 +28,7 @@ public class MessageFolderOptionsMenu extends Menu {
         this.add(new MoveMessagesSentByToFolderOption(user, TRASH, INBOX));
         this.add(new DeleteAllMessagesFromFolderOption(user, INBOX));
         this.add(new DeleteAllMessagesFromFolderOption(user, SENTBOX));
+        this.add(new RestoreAllMessagesFromTrashOption(user));
         this.add(new EmptyFolderOption(user, TRASH));
     }
 

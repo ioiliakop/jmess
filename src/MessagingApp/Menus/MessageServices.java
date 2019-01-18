@@ -193,6 +193,7 @@ public class MessageServices {
         UserFolderMessageDAO ufmDAO                 = new MySQLUserFolderMessageDAO();
         long                 numberOfUnreadMessages = ufmDAO.getUnreadMessagesCountInFolder(user, folder);
         if (numberOfUnreadMessages > 0) {
+            System.out.println("Someone wants to talk to you. Congratulations!");
             System.out.println("You have " + numberOfUnreadMessages + " unread messages. Please check your " + folder.name());
             pauseExecution();
         }
