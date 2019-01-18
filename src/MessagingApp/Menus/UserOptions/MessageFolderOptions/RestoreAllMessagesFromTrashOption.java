@@ -5,6 +5,7 @@ import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class RestoreAllMessagesFromTrashOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         User                 trashOwner        = this.getUser();
         UserFolderMessageDAO ufmDAO            = new MySQLUserFolderMessageDAO();
         List<Long>           messageIDsInTrash = ufmDAO.getUserFolderMessageIDs(trashOwner.getId(), TRASH);
@@ -43,13 +44,13 @@ public class RestoreAllMessagesFromTrashOption extends MenuOption {
                     if (messageIsValidForMoveTo(trashOwner, m, INBOX)) {
                         if (ufmDAO.updateUserFolderMessage(trashOwner.getId(), INBOX, m.getId()) == 1) {
                             System.out.println("Message with id " + m.getId() + " successfully moved to " + INBOX);
-                        } else System.out.println("Unknown error. Message move operation failed.");
+                        } else throw new MessagingAppException("Unknown error. Message move operation failed.");
 
                         // Case where the user is the sender of the message
                     } else if (messageIsValidForMoveTo(trashOwner, m, SENTBOX)) {
                         if (ufmDAO.updateUserFolderMessage(trashOwner.getId(), SENTBOX, m.getId()) == 1) {
                             System.out.println("Message with id " + m.getId() + " successfully moved to " + SENTBOX);
-                        } else System.out.println("Unknown error. Message move operation failed.");
+                        } else throw new MessagingAppException("Unknown error. Message move operation failed.");
                     }
                 }
 

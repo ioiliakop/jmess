@@ -5,6 +5,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Roles.Role;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class UpdateUserRoleOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
 
         // We print available roles
         System.out.println("Available roles are:");
@@ -48,7 +49,7 @@ public class UpdateUserRoleOption extends MenuOption {
 
                 UserDAO usrDAO = new MySQLUserDAO();
                 if (usrDAO.updateUser(updatedUser) == 1) System.out.println("Role successfully updated.");
-                else System.out.println("Unknown error. Update failed.");
+                else throw new MessagingAppException("Unknown error. Update failed.");
 
             } else System.out.println("Update cancelled.");
 

@@ -4,6 +4,7 @@ import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import static MessagingApp.Menus.Utils.*;
 import static MessagingApp.Menus.MessageServices.*;
@@ -20,7 +21,7 @@ public class EditMessageOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
 
         long messageId = inputMessageId();
 

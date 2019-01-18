@@ -7,6 +7,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class RoleMessagesSentToUserOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         System.out.println("Which specific user?");
         String username = inputGeneric("Enter username: ");
 

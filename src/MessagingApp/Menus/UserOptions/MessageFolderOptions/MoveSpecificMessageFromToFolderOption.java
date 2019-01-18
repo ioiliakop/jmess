@@ -7,6 +7,7 @@ import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         User                 folderOwner = this.getUser();
         UserFolderMessageDAO ufmDAO      = new MySQLUserFolderMessageDAO();
 
@@ -54,7 +55,7 @@ public class MoveSpecificMessageFromToFolderOption extends MenuOption {
                         if (requestConfirmation("Message with id '" + selectedMessageId + "' will be moved to " + targetFolder + ".\nAre you sure?")) {
                             if (ufmDAO.updateUserFolderMessage(folderOwner.getId(), targetFolder, selectedMessageId) == 1) {
                                 System.out.println("Message successfully moved to " + targetFolder);
-                            } else System.out.println("Unknown error. Message move operation failed.");
+                            } else throw new MessagingAppException("Unknown error. Message move operation failed.");
                         } else System.out.println("Move operation cancelled.");
                     } else System.out.println("Selected message cannot be moved to " + targetFolder);
 

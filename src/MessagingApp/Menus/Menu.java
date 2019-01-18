@@ -1,6 +1,7 @@
 package MessagingApp.Menus;
 
 import MessagingApp.Entities.User;
+import MessagingApp.MessagingAppException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,7 @@ public class Menu extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         while (true) {
             printMenu();
             int selectedIndex = getUserInput();

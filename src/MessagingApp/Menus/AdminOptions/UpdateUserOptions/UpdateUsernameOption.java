@@ -4,6 +4,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import static MessagingApp.Menus.Utils.inputUsername;
 import static MessagingApp.Menus.Utils.pauseExecution;
@@ -19,7 +20,7 @@ public class UpdateUsernameOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         String  newUsername = inputUsername();
         UserDAO usrDAO      = new MySQLUserDAO();
         User    user        = usrDAO.getUser(newUsername);
@@ -32,7 +33,7 @@ public class UpdateUsernameOption extends MenuOption {
                 User updatedUser = this.getUser();
                 updatedUser.setUsername(newUsername);
                 if (usrDAO.updateUser(updatedUser) == 1) System.out.println("Username successfully updated.");
-                else System.out.println("Unknown error. User was not updated.");
+                else throw new MessagingAppException("Unknown error. User was not updated.");
 
             } else System.out.println("Update cancelled.");
 

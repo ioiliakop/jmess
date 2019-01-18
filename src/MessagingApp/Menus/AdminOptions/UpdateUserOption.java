@@ -6,6 +6,7 @@ import MessagingApp.Entities.User;
 import MessagingApp.Menus.AdminOptions.UpdateUserOptions.UpdateUserOptionsMenu;
 import MessagingApp.Menus.Menu;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Menus.Utils.inputGeneric;
@@ -25,7 +26,7 @@ public class UpdateUserOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         String  targetUsername = inputGeneric("Which user do you want to edit/update? ");
         UserDAO usrDAO         = new MySQLUserDAO();
         User    targetUser     = usrDAO.getUser(targetUsername);

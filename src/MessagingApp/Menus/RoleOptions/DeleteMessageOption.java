@@ -4,6 +4,7 @@ import MessagingApp.DAO.MessageDAO;
 import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import static MessagingApp.Menus.Utils.pauseExecution;
 import static MessagingApp.Menus.Utils.requestConfirmation;
@@ -22,7 +23,7 @@ public class DeleteMessageOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         long messageId = inputMessageId();
 
         // Here we first check if the given input is valid to be a message ID (integer/long)
@@ -40,7 +41,7 @@ public class DeleteMessageOption extends MenuOption {
                     if (requestConfirmation("All users will permanently lose access to message. Are you sure?")) {
                         if (msgDAO.deleteMessage(selectedMessage) == 1)
                             System.out.println("Message successfully deleted");
-                        else System.out.println("Unknown error. Message was not deleted");
+                        else throw new MessagingAppException("Unknown error. Message was not deleted");
                     } else System.out.println("Operation cancelled");
                 } else System.out.println("Operation cancelled");
 

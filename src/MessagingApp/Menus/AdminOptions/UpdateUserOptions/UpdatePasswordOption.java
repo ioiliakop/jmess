@@ -4,6 +4,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import static MessagingApp.Menus.Utils.*;
 
@@ -18,7 +19,7 @@ public class UpdatePasswordOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
 
         String newPassword = inputPassword();
         String passwordMD5 = getMD5Of(newPassword);
@@ -30,7 +31,7 @@ public class UpdatePasswordOption extends MenuOption {
             UserDAO usrDAO = new MySQLUserDAO();
 
             if (usrDAO.updateUser(updatedUser) == 1) System.out.println("Password successfully updated.");
-            else System.out.println("Unknown error. Password update failed.");
+            else throw new MessagingAppException("Unknown error. Password update failed.");
 
         } else System.out.println("Update cancelled.");
 

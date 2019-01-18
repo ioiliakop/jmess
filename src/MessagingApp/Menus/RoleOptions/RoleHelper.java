@@ -5,6 +5,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLMessageDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.Roles.Role;
 import MessagingApp.Entities.User;
+import MessagingApp.MessagingAppException;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class RoleHelper {
      * performs edit/update of message
      * Edit functionality refers to the update of the subject and body of the message only
      */
-    public static void editMessageInList(List<Message> messages) {
+    public static void editMessageInList(List<Message> messages) throws MessagingAppException {
         List<Long> messageIDs = getMessageIdsFromMessages(messages);
 
         // We ask the user to make a selection by message ID
@@ -52,17 +53,17 @@ public class RoleHelper {
         }
     }
 
-    static void updateMessageIfChanged(MessageDAO msgDAO, Message selectedMessage, Message updatedSelectedMessage) {
+    static void updateMessageIfChanged(MessageDAO msgDAO, Message selectedMessage, Message updatedSelectedMessage) throws MessagingAppException {
         if (!selectedMessage.equals(updatedSelectedMessage)) {
             if (requestConfirmation("Proceed with update? ")) {
                 int result = msgDAO.updateMessage(updatedSelectedMessage);
-                if (result != 1) System.out.println("Unknown Error. Message was not updated.");
+                if (result != 1) throw new MessagingAppException("Unknown Error. Message was not updated.");
                 else System.out.println("Message updated successfully");
             } else System.out.println("Update was cancelled");
         } else System.out.println("No changes made");
     }
 
-    public static void deleteMessageInList(List<Message> messages) {
+    public static void deleteMessageInList(List<Message> messages) throws MessagingAppException {
         List<Long> messageIDs = getMessageIdsFromMessages(messages);
 
         // We ask the user to make a selection by message ID
@@ -79,7 +80,7 @@ public class RoleHelper {
             if (requestConfirmation("The message will be permanently deleted. Are you sure?")) {
                 int deleteMessage = msgDAO.deleteMessage(selectedMessage);
                 if (deleteMessage == 1) System.out.println("Message successfully deleted");
-                else System.out.println("Unknown error. Message was not deleted");
+                else throw new MessagingAppException("Unknown error. Message was not deleted");
             } else System.out.println("Operation cancelled.");
         }
     }
@@ -93,7 +94,7 @@ public class RoleHelper {
     }
 
     /* helper method with varying functionality based on user role */
-    static void viewEditDeleteMessagesInList(User roleUser, List<Message> messagesList) {
+    static void viewEditDeleteMessagesInList(User roleUser, List<Message> messagesList) throws MessagingAppException {
         if (!messagesList.isEmpty()) {
             printMessages(messagesList);
 

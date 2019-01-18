@@ -11,6 +11,7 @@ import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.Message;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ public class SendMessageOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
 
         // In the first section we ask and get from the user, a list of users he wants to message
         // He can input one or more usernames for recipients of the message
@@ -91,7 +92,7 @@ public class SendMessageOption extends MenuOption {
                 // We also append the message to a text file, calling the respective method
                 Message sentMessage = msgDAO.getMessage(sentMessageId);
                 appendMessageToFile(sentMessage);
-            } else System.out.println("Unknown error. Message was not sent.");
+            } else throw new MessagingAppException("Unknown error. Message was not sent.");
 
         } else System.out.println("No valid receivers selected.");
 

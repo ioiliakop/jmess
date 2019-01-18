@@ -4,6 +4,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import static MessagingApp.Entities.Statuses.Status.DELETED;
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
@@ -21,7 +22,7 @@ public class DeleteUserOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
 
         String  username        = inputGeneric("Enter username of the user to be deleted: ");
         UserDAO usrDAO          = new MySQLUserDAO();
@@ -36,7 +37,7 @@ public class DeleteUserOption extends MenuOption {
                     userToBeDeleted.setStatusId(DELETED.ID());
 
                     if (usrDAO.updateUser(userToBeDeleted) == 1) System.out.println("User successfully deleted.");
-                    else System.out.println("Unknown Error. User was not deleted.");
+                    else throw new MessagingAppException("Unknown Error. User was not deleted.");
 
                 } else System.out.println("Operation was cancelled.");
 

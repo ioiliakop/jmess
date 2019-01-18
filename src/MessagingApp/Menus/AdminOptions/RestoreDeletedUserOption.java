@@ -4,6 +4,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserDAO;
 import MessagingApp.DAO.UserDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import static MessagingApp.Entities.Statuses.Status.ACTIVE;
 import static MessagingApp.Entities.Statuses.Status.DELETED;
@@ -21,7 +22,7 @@ public class RestoreDeletedUserOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         String  username         = inputGeneric("Enter username of the deleted user to restore: ");
         UserDAO usrDAO           = new MySQLUserDAO();
         User    userToBeRestored = usrDAO.getUser(username);
@@ -37,7 +38,7 @@ public class RestoreDeletedUserOption extends MenuOption {
                     userToBeRestored.setStatusId(ACTIVE.ID());
 
                     if (usrDAO.updateUser(userToBeRestored) == 1) System.out.println("User successfully restored.");
-                    else System.out.println("Unknown Error. User was not restored.");
+                    else throw new MessagingAppException("Unknown Error. User was not restored.");
 
                 } else System.out.println("Operation was cancelled.");
 

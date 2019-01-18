@@ -4,6 +4,7 @@ import MessagingApp.DAO.MySQLDAO.MySQLUserFolderMessageDAO;
 import MessagingApp.DAO.UserFolderMessageDAO;
 import MessagingApp.Entities.User;
 import MessagingApp.Menus.MenuOption;
+import MessagingApp.MessagingAppException;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class MoveAllFolderMessagesToTrashOption extends MenuOption {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws MessagingAppException {
         // First we try to get messageIDs in folder
         User                 folderOwner    = this.getUser();
         UserFolderMessageDAO ufmDAO         = new MySQLUserFolderMessageDAO();
@@ -42,7 +43,7 @@ public class MoveAllFolderMessagesToTrashOption extends MenuOption {
                 if (numberOfUpdatedMessages > 0) {
                     System.out.println(numberOfUpdatedMessages + " messages successfully moved to trash.\n" +
                             currentFolder.name() + " is now empty.");
-                } else System.out.println("Unknown error. No messages were deleted.");
+                } else throw new MessagingAppException("Unknown error. No messages were deleted.");
 
             }
         } else System.out.println("There are no messages to delete...");

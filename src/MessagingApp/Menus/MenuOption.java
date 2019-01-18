@@ -1,6 +1,7 @@
 package MessagingApp.Menus;
 
 import MessagingApp.Entities.User;
+import MessagingApp.MessagingAppException;
 
 /**
  * MenuOption is the basis of our console menu system
@@ -52,5 +53,5 @@ public abstract class MenuOption {
         this.menuLine = menuLine;
     }
 
-    public abstract void execute();
+    public abstract void execute() throws MessagingAppException;
 }
