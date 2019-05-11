@@ -46,3 +46,11 @@ The app was built with the intend of being properly maintanable and easily expan
   * All User Options
   * Ability to create new accounts
   * Ability to manage user accounts, assign roles to users
+
+## Other
+
+In the sample data included, password is the same as the username for each account
+
+e.g. for admin user/role  
+username: admin  
+password: admin  
